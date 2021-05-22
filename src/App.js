@@ -1,17 +1,5 @@
-// getting the data 
-// setting it to state
-const STATE = {
-  currentData: [], // this is going to be a list of candy objects
-  searchTerm: "",
-  // this passes the candy to renderIndividualCandy
-  indvCandy: {}, 
-  // variables for list/grid view
-  gridView: false,
-  // variables for filter 
-  checkboxes: []
-}
 
-function App () {
+function App (props) {
   return (<div>
             <div>
               <MakeHeader/>
@@ -33,7 +21,7 @@ function App () {
                     </div>
                     <br/><br/><br/>
                     <div id="candy-div" className="cardpoolGrid">
-                      
+                      <MakeCards props={props}/>
                     </div> 
                   </section>
                 </div>
@@ -76,7 +64,7 @@ function MakeNavBar(){
                     <a href="about.html">About</a>
                 </li>
             </ul>
-            <div id="search-div" class="search" role="search">
+            <div id="search-div" className="search" role="search">
                 <input id="search-bar" type="text" placeholder="Search for your Candy..."></input>
             </div>
         </nav>);
@@ -84,12 +72,12 @@ function MakeNavBar(){
 function MakeButtonsLarge(){
   return(
     <div>
-      <button id="list-button" class="view" aria-label="List View">
-        <i class="fa fa-bars"></i>
+      <button id="list-button" className="view" aria-label="List View">
+        <i className="fa fa-bars"></i>
         List
       </button>
-      <button id="grid-button" class="view" aria-label="Grid View">
-        <i class="fa fa-th-large"></i>
+      <button id="grid-button" className="view" aria-label="Grid View">
+        <i className="fa fa-th-large"></i>
         Grid
       </button>
       <br/><br/><br/>
@@ -98,28 +86,68 @@ function MakeButtonsLarge(){
 }
 
 function MakeForm () {
-  //this is where to input the form code
+  // this is where to input the form code
+  // this should render the form page - not sure if you actually update the state here
 }
 
 function MakeModal () {
-  //this is where to input the modal code
+  // this is where to input the modal code
+  // this should render the modal page - not sure if you actually update the state here
+  
 }
 
 function MakeButtonsSmall() {
   return(
     <div>
       <button id="list-button" aria-label="List View" onclick="renderCardListView()">
-        <i class="fa fa-bars"></i>
+        <i className="fa fa-bars"></i>
         List
       </button>
       <button id="grid-button" aria-label="Grid View" onclick="renderCardGridView()">
-        <i class="fa fa-th-large"></i>
+        <i className="fa fa-th-large"></i>
         Grid
       </button>
       <button id="smallfilterbutton" aria-label="Filter and Sort">
-        <i class="fa fa-filter"></i>
+        <i className="fa fa-filter"></i>
         Filter and Sort
       </button>
     </div>
   );
+}
+
+function MakeFooter() {
+
+  return (
+    <div className="footer">
+      <p>©2021 The WhipperSnappers. All rights reserved.</p>
+      <p>Created by Sachi Figliolini, Victoria Nguyen, and Roshni Srikanth</p>
+      <p>Images taken from
+        <a href="https://www.candywarehouse.com/">Candy Warehouse</a>
+      </p>
+    </div>
+  );
+}
+
+function MakeCards(props) {
+  // the props for this should be the state values
+  // need to figure out how to use state hook for this
+  if(props.gridView) {
+    return <MakeCardsGridView props={props.currentData}/>;
+  }
+  else {
+    return <MakeCardsListView props={props.currentData}/>;
+  }
+}
+function MakeCardsListView(props) {
+  // the props for this should be the list of current candies to show 
+  // this is where the cards code goes
+}
+function MakeCardsGridView(props) {
+  // the props for this should be the list of current candies to show
+  // this is where the cards code goes
+}
+
+function MakeIndv(props) {
+  // the props for this should be the individual candy object
+
 }
