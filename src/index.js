@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {} from "./websitestyle.css";
+
+import SAMPLE_DOGS from './dogs.json'; //a sample list of dogs (model)
+
+ReactDOM.render(<App pets={SAMPLE_DOGS} />, document.getElementById('root'));
 
 ReactDOM.render(
   <React.StrictMode>
