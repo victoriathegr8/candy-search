@@ -1,0 +1,16 @@
+/* css styling */
+body{
+    background-color: #CAC4CE;
+}
+h1, h2 {
+    color: white;
+    font-family: 'Encode Sans', sans-serif;
+    font-weight: 900;
+}
+img {
+    width: 200px;
+    height: 100px;
+}
+.highlighted {
+    background-color: #8D86C9;
+}

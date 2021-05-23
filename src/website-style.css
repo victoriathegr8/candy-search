@@ -1,0 +1,343 @@
+* {
+    box-sizing: border-box;
+}
+/*-- author pictures --*/
+img {
+    width: 200px;
+    height: 210px;
+}
+/*-- nav bar --*/
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4b2e83;
+    padding: 0.75rem 0.75rem 0;
+    z-index: 300;
+}
+nav img {
+    width: 40px;
+    height: 40px;
+    background-color: #B39BC8;
+    border-radius: 10px;
+}
+nav a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+li {
+    display: inline;
+    margin-right: 1rem;
+}
+ul {
+    margin: 0;
+    padding: 0.5rem 0 0;
+}
+nav ul {
+    display: inline-block;
+}
+:any-link:hover {
+    color: #CAC4CE;
+    padding-bottom: 0.5rem;
+    
+}
+.search {
+    display: inline;
+    padding: 1rem;
+    margin-right: 1rem;
+    float: right;
+}
+.search input {
+    height: 2.5rem;
+    font-size: 1.5rem;
+}
+
+/*-- form --*/
+.view {
+    font-size: 1.5rem;
+}
+.sugarrange {
+    width: 20%;
+}
+.filtertype {
+    background-color: #eee;
+}
+.form-column {
+    display: none;
+}
+
+/*-- Filter Form Modal on smaller screens */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 1.5rem;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*-- card views --*/
+.small-view {
+    position: absolute;
+    right: 50px;
+    font-size: 1.5rem;
+}
+.container {
+    display: flex;
+}
+
+/*-- list view --*/
+.cardpoolList {
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+    width: 100%;
+}
+.cardpoolList .card {
+    display:flex;
+    flex-direction: row;
+    flex: 0 0 225px;
+    margin: 0.5rem;
+}
+.cardpoolList .card img {
+    float:right;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+.cardpoolList .card-body {
+    float:left;
+    margin:0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 10px;
+    background-color: #4b2e83;
+    color: #eee;
+    text-align: center;
+}
+.cardpoolList .card p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/*-- grid view --*/
+.cardpoolGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+    width: 100%;
+}
+.cardpoolGrid .card {
+    flex: 0 0 225px;
+    margin: 0.5rem;
+}
+.cardpoolGrid .card img {
+    border-radius: 10px;
+}
+.cardpoolGrid .card-body {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #4b2e83;
+    color: #eee;
+    text-align: center;
+}
+.cardpoolGrid .card p {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color:rgb(49, 49, 253);
+    border-bottom: none;
+}
+
+/*-- problem statement --*/
+
+body {
+    background-color: #F0EBF4;
+    padding-top: 80px;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.problem {
+    width: 80%;
+    margin: auto auto 5%;
+    text-align: center;
+    background: #B39BC8;
+    border-radius: 10px;
+    padding: 20px 12px;
+}
+
+/*-- description --*/
+
+.description {
+    background: #A1C3D1;
+}
+
+/*-- authors --*/
+
+.authors {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+/*-- author row --*/
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+/*-- author info box  --*/
+.author-col {
+    flex-basis: 31%;
+    background: #8b71be;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
+/*-- names --*/
+h3 {
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+}
+/*-- linkedin logos --*/
+.linkedin {
+    width: 50px;
+    height: 50px;
+}
+
+/*-- individual candy info pages --*/
+.card-title {
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+.candy-detail {
+    background-color: #A1C3D1;
+    color: #4b2e83;
+    text-align: left;
+    padding-left: 2em;
+}
+.data-ans {
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.ind-container {
+    display: flex;
+}
+.nutrition-info img{
+    align-content: center;
+    width: 400px;
+    height: fit-content;
+    display: none;
+}
+.indv-filters {
+    display: none;
+}
+.indv-container {
+    display: none;
+}
+
+/*-- header --*/
+.header-row{
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing:border-box;
+}
+.header-image{
+    position: relative;
+    padding-left: 100px;
+    display: inline-block;
+   
+}
+.header-image img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.header-text{
+    display: inline-block;
+    position: relative;
+    padding-top: 50px;
+    padding-left: 100px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+/*-- footer --*/
+.footer {
+    
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+
+/*-- back button --*/
+.back {
+    width: 10px;
+    height: 10px;
+}
+
+/*-- media queries --*/
+@media (min-width: 768px) {
+    .card {
+        flex-basis: 250px;
+    }
+    header {
+        background-image: url('./data/img/candygif.gif');
+        background-size:cover;
+    }
+    .header-text {
+        color: black;
+        background-color: rgb(255, 255, 255, 0.7);
+    }
+    .header-image {
+        display: none;
+    }
+    .nutrition-info img{
+        display: block;
+    }
+}
+@media (min-width: 992px) {
+    .form-column {
+        display: block;
+    }
+    .small-view {
+        display: none;
+    }
+    .cardpool {
+        position:relative;
+    }
+}

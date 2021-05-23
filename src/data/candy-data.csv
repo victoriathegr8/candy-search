@@ -1,0 +1,84 @@
+candynum,competitorname,chocolate,fruity,caramel,peanutyalmondy,nougat,crispedricewafer,hard,bar,pluribus,sugarpercent,pricepercent,winpercent,imglink,hasegg,hasmilk,hassoy
+0,100 Grand,1,0,1,0,0,1,0,1,0,0.73199999,0.86000001,66.971725,https://www.candywarehouse.com/item-images/127198-01_100-grand-fun-size-candy-bars-72-piece-case.jpg?resizeid=104&resizeh=1000&resizew=1000,0,1,1
+1,3 Musketeers,1,0,0,0,1,0,0,1,0,0.60399997,0.51099998,67.602936,https://www.candywarehouse.com/item-images/131758-01_3-musketeers-king-size-candy-bars-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,1,1
+2,Air Heads,0,1,0,0,0,0,0,0,0,0.90600002,0.51099998,52.341465,https://www.candywarehouse.com/item-images/130478-01_airheads-mini-candy-bars-80-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000 ,0,0,0
+3,Almond Joy,1,0,0,1,0,0,0,1,0,0.465,0.76700002,50.347546,https://www.candywarehouse.com/item-images/131780-01_almond-joy-king-size-candy-bars-18-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,1,1
+4,Baby Ruth,1,0,1,1,1,0,0,1,0,0.60399997,0.76700002,56.914547,https://www.candywarehouse.com/item-images/131779-01_baby-ruth-king-size-candy-bars-18-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,1,1
+5,Boston Baked Beans,0,0,0,1,0,0,0,0,1,0.31299999,0.51099998,23.417824,https://www.candywarehouse.com/item-images/129314-01_boston-baked-beans-candy-mini-packs-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+6,Candy Corn,0,0,0,0,0,0,0,0,1,0.90600002,0.32499999,38.010963,https://candywarehouse.com/item-images/126086-01_brachs-mini-candy-corn-14-ounce-bag.jpg,0,0,0
+7,Caramel Apple Pops,0,1,1,0,0,0,0,0,0,0.60399997,0.32499999,34.517681,https://candywarehouse.com/item-images/129613-01_caramel-apple-pops-orchard-assortment-24-piece-bag.jpg,0,1,0
+8,Charleston Chew,1,0,0,0,1,0,0,1,0,0.60399997,0.51099998,38.975037,https://www.candywarehouse.com/item-images/130369-01_charleston-chew-snack-size-bars-96-piece-display-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+9,Chewey Lemonhead Fruit Mix,0,1,0,0,0,0,0,0,1,0.73199999,0.51099998,36.017628,https://candywarehouse.com/item-images/129321-01_chewy-lemonhead-fruit-mix-candy-mini-packs-24-piece-box.jpg,0,0,0
+10,Chiclets,0,1,0,0,0,0,0,0,1,0.046,0.32499999,24.524988,https://candywarehouse.com/item-images/129661-01_canels-assorted-chiclets-gum-2-piece-packs-60-piece-box.jpg,0,0,0
+11,Dots,0,1,0,0,0,0,0,0,1,0.73199999,0.51099998,42.272076,https://candywarehouse.com/item-images/134335-01_dots-gumdrops-candy-225-ounce-packs-24-piece-box.jpg,0,0,0
+12,Dum Dums,0,1,0,0,0,0,1,0,0,0.73199999,0.034000002,39.460556,https://candywarehouse.com/item-images/129604-01_dum-dums-holiday-pops-40-piece-bag.jpg,0,0,0
+13,Fruit Chews,0,1,0,0,0,0,0,0,1,0.127,0.034000002,43.088924,https://candywarehouse.com/item-images/133247-01_hi-chew-fruit-chews-candy-packs-assorted-150-piece-bag.jpg,0,0,0
+14,Fun Dip,0,1,0,0,0,0,1,0,0,0.73199999,0.32499999,39.185505,https://candywarehouse.com/item-images/125648-01_fun-dip-candy-packs-48-piece-box.jpg,0,0,0
+15,Gobstopper,0,1,0,0,0,0,1,0,1,0.90600002,0.45300001,46.783348,https://candywarehouse.com/item-images/128747-01_chewy-gobstopper-candy-375-ounce-packs-12-piece-box.jpg,0,0,0
+16,Haribo Gold Bears,0,1,0,0,0,0,0,0,1,0.465,0.465,57.11974,https://www.candywarehouse.com/item-images/127533-01_haribo-gold-bears-gummy-bears-candy-1-8lb-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+17,Haribo Happy Cola,0,0,0,0,0,0,0,0,1,0.465,0.465,34.158958,https://candywarehouse.com/item-images/160924-01_haribo-gummy-cola-bottles-3-75-lb-box.jpg,0,0,0
+18,Haribo Sour Bears,0,1,0,0,0,0,0,0,1,0.465,0.465,51.41243,https://candywarehouse.com/item-images/127536-01_haribo-gold-bears-sour-gummy-bears-candy-1-6lb-bag.jpg,0,0,0
+19,Haribo Twin Snakes,0,1,0,0,0,0,0,0,1,0.465,0.465,42.178772,https://candywarehouse.com/item-images/131399-01_haribo-gummy-twin-snakes-candy-3-75lb-box.jpg,0,0,0
+20,Hershey's Kisses,1,0,0,0,0,0,0,0,1,0.127,0.093000002,55.375454,https://candywarehouse.com/item-images/129342-01_hersheys-kisses-dark-blue-and-black-foiled-milk-chocolate-combo-800-piece-box.jpg,0,1,1
+21,Hershey's Krackel,1,0,0,0,0,1,0,1,0,0.43000001,0.91799998,62.284481,https://candywarehouse.com/item-images/128821-01_krackel-candy-bars-18-piece-box.jpg,0,1,1
+22,Hershey's Milk Chocolate,1,0,0,0,0,0,0,1,0,0.43000001,0.91799998,56.490501,https://candywarehouse.com/item-images/132307-01_hersheys-milk-chocolate-snack-size-candy-bars-40-piece-bag.jpg,0,1,1
+23,Hershey's Special Dark,1,0,0,0,0,0,0,1,0,0.43000001,0.91799998,59.236122,https://candywarehouse.com/item-images/131776-01_hersheys-special-dark-chocolate-bars-36-piece-box.jpg,0,1,1
+24,Jaw Busters,0,1,0,0,0,0,1,0,1,0.093000002,0.51099998,28.127439,https://candywarehouse.com/item-images/129315-01_jaw-busters-jawbreaker-candy-mini-packs-24-piece-box.jpg,0,0,0
+25,Junior Mints,1,0,0,0,0,0,0,0,1,0.197,0.51099998,57.21925,https://candywarehouse.com/item-images/130762-01_junior-mints-candy-35-ounce-packs-12-piece-box.jpg,0,0,1
+26,Kit Kat,1,0,0,0,0,1,0,1,0,0.31299999,0.51099998,76.7686,https://www.candywarehouse.com/item-images/133484-01_kit-kat-snack-size-candy-bars-40-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,1,1
+27,Laffy Taffy,0,1,0,0,0,0,0,0,0,0.22,0.116,41.389557,https://www.candywarehouse.com/item-images/130810-01_laffy-taffy-candy-assortment-145-piece-tub.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,1
+28,Lemonhead,0,1,0,0,0,0,1,0,0,0.046,0.104,39.141056,https://www.candywarehouse.com/item-images/127361-01_lemonhead-candy-5-ounce-packs-12-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+29,Lifesavers big ring gummies,0,1,0,0,0,0,0,0,0,0.26699999,0.27900001,52.911392,https://www.candywarehouse.com/item-images/129522-01_lifesavers-5-flavor-big-gummy-rings-30-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+30,Peanut butter M&M's,1,0,0,1,0,0,0,0,1,0.82499999,0.65100002,71.46505,https://www.candywarehouse.com/item-images/127617-01_peanut-butter-mms-candy-packs-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+31,M&M's,1,0,0,0,0,0,0,0,1,0.82499999,0.65100002,66.574585,https://www.candywarehouse.com/item-images/127615-01_milk-chocolate-mms-candy-packs-48-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+32,Mike & Ike,0,1,0,0,0,0,0,0,1,0.87199998,0.32499999,46.411716,https://www.candywarehouse.com/item-images/126098-01_mike-ike-candy-5-ounce-packs-12-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+33,Milk Duds,1,0,1,0,0,0,0,0,1,0.30199999,0.51099998,55.064072,https://www.candywarehouse.com/item-images/128424-01_milk-duds-candy-5-ounce-packs-12-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+34,Milky Way,1,0,1,0,1,0,0,1,0,0.60399997,0.65100002,73.099556,https://www.candywarehouse.com/item-images/127609-01_milky-way-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,1,1
+35,Milky Way Midnight,1,0,1,0,1,0,0,1,0,0.73199999,0.44100001,60.800701,https://www.candywarehouse.com/item-images/127297-01_milky-way-midnight-candy-bars-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,1,1
+36,Milky Way Simply Caramel,1,0,1,0,0,0,0,1,0,0.96499997,0.86000001,64.35334,https://www.candywarehouse.com/item-images/128560-01_milky-way-simply-caramel-candy-bars-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+37,Mounds,1,0,0,0,0,0,0,1,0,0.31299999,0.86000001,47.829754,https://www.candywarehouse.com/item-images/127370-01_mounds-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+38,Mr Good Bar,1,0,0,1,0,0,0,1,0,0.31299999,0.91799998,54.526451,https://www.candywarehouse.com/item-images/128479-01_mr-goodbar-chocolate-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+39,Nerds,0,1,0,0,0,0,1,0,1,0.84799999,0.32499999,55.354046,https://www.candywarehouse.com/item-images/130044-01_strawberry-and-grape-nerds-candy-packs-30-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+40,Nestle Butterfinger,1,0,0,1,0,0,0,1,0,0.60399997,0.76700002,70.735641,https://www.candywarehouse.com/item-images/127971-01_butterfinger-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+41,Nestle Crunch,1,0,0,0,0,1,0,1,0,0.31299999,0.76700002,66.47068,https://www.candywarehouse.com/item-images/127374-01_nestle-crunch-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+42,Nik L Nip,0,1,0,0,0,0,0,0,1,0.197,0.97600001,22.445341,https://www.candywarehouse.com/item-images/127265-01_nik-l-nips-wax-bottles-candy-packs-18-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+43,Now & Later,0,1,0,0,0,0,0,0,1,0.22,0.32499999,39.4468,https://www.candywarehouse.com/item-images/129415-01_now-and-later-classic-fruit-chews-mini-candy-bars-100-piece-tub.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,1
+44,Payday,0,0,0,1,1,0,0,1,0,0.465,0.76700002,46.296597,https://www.candywarehouse.com/item-images/127369-01_payday-candy-bars-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,0
+45,Peanut M&M's,1,0,0,1,0,0,0,0,1,0.59299999,0.65100002,69.483788,https://www.candywarehouse.com/item-images/127616-01_peanut-mms-candy-packs-48-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+46,Pixie Sticks,0,0,0,0,0,0,0,0,1,0.093000002,0.023,37.722336,https://www.mastgeneralstore.com/prodimages/124-DEFAULT-L.jpg,0,0,0
+47,Pop Rocks,0,1,0,0,0,0,1,0,1,0.60399997,0.83700001,41.265511,https://www.candywarehouse.com/item-images/125649-01_fun-size-pop-rocks-candy-packs-100-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+48,Red vines,0,1,0,0,0,0,0,0,1,0.58099997,0.116,37.348522,https://www.candywarehouse.com/item-images/127296-01_red-vines-licorice-whips-2-5-ounce-packs-original-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+49,Reese's Miniatures,1,0,0,1,0,0,0,0,0,0.034000002,0.27900001,81.866257,https://www.candywarehouse.com/item-images/125292-01_reeses-crunchy-peanut-butter-cups-miniatures-18-ounce-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+50,Reese's Peanut Butter cup,1,0,0,1,0,0,0,0,0,0.72000003,0.65100002,84.18029,https://www.candywarehouse.com/item-images/127373-01_reeses-peanut-butter-cups-candy-packs-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+51,Reese's pieces,1,0,0,1,0,0,0,0,1,0.40599999,0.65100002,73.43499,https://www.candywarehouse.com/item-images/127355-01_reeses-pieces-candy-packs-18-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+52,Reese's stuffed with pieces,1,0,0,1,0,0,0,0,0,0.98799998,0.65100002,72.887901,https://www.candywarehouse.com/item-images/128020-01_reeses-peanut-butter-cups-stuffed-with-reeses-pieces-candy-packs-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+53,Ring pop,0,1,0,0,0,0,1,0,0,0.73199999,0.96499997,35.290756,https://www.candywarehouse.com/item-images/130386-01_ring-pop-assorted-candy-44-piece-tub.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+54,Rolo,1,0,1,0,0,0,0,0,1,0.86000001,0.86000001,65.716286,https://www.candywarehouse.com/item-images/128480-01_rolo-candy-rolls-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,1,0,1
+55,Root Beer Barrels,0,0,0,0,0,0,1,0,1,0.73199999,0.068999998,29.703691,https://www.candywarehouse.com/item-images/126901-01_root-beer-barrels-candy-5lb-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+56,Runts,0,1,0,0,0,0,1,0,1,0.87199998,0.27900001,42.849144,https://www.candywarehouse.com/item-images/127451-01_runts-movie-packs.jpg?resizeid=104&resizeh=1000&resizew=1000,0,0,0
+57,Sixlets,1,0,0,0,0,0,0,0,1,0.22,0.081,34.722,https://candywarehouse.com/item-images/132502-01_christmas-sixlets-candy-packets-15-piece-bag.jpg,0,0,0
+58,Skittles original,0,1,0,0,0,0,0,0,1,0.94099998,0.22,63.08514,https://candywarehouse.com/item-images/127624-01_skittles-candy-original-flavors-king-size-packs-24-piece-box.jpg,0,0,0
+59,Skittles wildberry,0,1,0,0,0,0,0,0,1,0.94099998,0.22,55.103695,https://candywarehouse.com/item-images/130234-01_skittles-candy-packs-wild-berry-36-piece-box.jpg,0,0,0
+60,Nestle Smarties,1,0,0,0,0,0,0,0,1,0.26699999,0.97600001,37.887188,https://cdn.shopify.com/s/files/1/0250/7483/products/nestle-smarties-candy-coated-chocolate-candies-45g-candy-funhouse-online-candy-store-canada_480x480.jpg?v=1613961361,1,1,0
+61,Smarties candy,0,1,0,0,0,0,1,0,1,0.26699999,0.116,45.995827,https://candywarehouse.com/item-images/126915-01_smarties-candy-rolls-5lb-bag.jpg,0,0,1
+62,Snickers,1,0,1,1,1,0,0,1,0,0.546,0.65100002,76.673782,https://candywarehouse.com/item-images/127952-01_snickers-candy-bars-48-piece-box.jpg,1,1,0
+63,Snickers Crisper,1,0,1,1,0,1,0,1,0,0.60399997,0.65100002,59.529251,https://candywarehouse.com/item-images/126137-01_snickers-crisper-fun-size-candy-bars-1061-ounce-bag.jpg,1,1,0
+64,Sour Patch Kids,0,1,0,0,0,0,0,0,1,0.068999998,0.116,59.863998,https://candywarehouse.com/item-images/126858-01_sour-patch-kids-candy-2-ounce-packs-24-piece-box.jpg,1,1,1
+65,Sour Patch Tricksters,0,1,0,0,0,0,0,0,1,0.068999998,0.116,52.825947,https://candywarehouse.com/item-images/129105-01_sour-patch-kids-tricksters-candy-packs-15-piece-bag.jpg,1,1,1
+66,Starburst,0,1,0,0,0,0,0,0,1,0.15099999,0.22,67.037628,https://candywarehouse.com/item-images/131811-01_starburst-fruit-chews-candy-king-size-packs-24-piece-box.jpg,1,1,1
+67,Strawberry bon bons,0,1,0,0,0,0,1,0,1,0.56900001,0.057999998,34.578991,https://candywarehouse.com/item-images/130441-01_strawberry-bon-bons-candy-5lb-bag.jpg,1,1,1
+68,Sugar Babies,0,0,1,0,0,0,0,0,1,0.96499997,0.76700002,33.43755,https://candywarehouse.com/item-images/127388-01_sugar-babies-candy-packs-24-piece-box.jpg,0,1,1
+69,Sugar Daddy,0,0,1,0,0,0,0,0,0,0.41800001,0.32499999,32.230995,https://candywarehouse.com/item-images/126971-01_sugar-daddy-pops-caramel-lollipops-24-piece-box.jpg,0,1,1
+70,Super Bubble,0,1,0,0,0,0,0,0,0,0.162,0.116,27.303865,https://candywarehouse.com/item-images/134380-01_apple-super-bubble-gum-300-piece-box.jpg,1,0,1
+71,Swedish Fish,0,1,0,0,0,0,0,0,1,0.60399997,0.755,54.861111,https://candywarehouse.com/item-images/131761-01_swedish-fish-candy-2-ounce-packs-24-piece-box.jpg,1,1,1
+72,Tootsie Pop,1,1,0,0,0,0,1,0,0,0.60399997,0.32499999,48.982651,https://candywarehouse.com/item-images/131741-01_giant-tootsie-pops-72-piece-box.jpg,0,0,1
+73,Tootsie Roll Juniors,1,0,0,0,0,0,0,0,0,0.31299999,0.51099998,43.068897,https://candywarehouse.com/item-images/127386-01_tootsie-rolls-snack-size-bars-96-piece-tub.jpg,1,1,1
+74,Tootsie Roll Midgies,1,0,0,0,0,0,0,0,1,0.17399999,0.011,45.736748,https://candywarehouse.com/item-images/127386-01_tootsie-rolls-snack-size-bars-96-piece-tub.jpg,1,1,1
+75,Tootsie Roll Snack Bars,1,0,0,0,0,0,0,1,0,0.465,0.32499999,49.653503,https://candywarehouse.com/item-images/127386-01_tootsie-rolls-snack-size-bars-96-piece-tub.jpg,1,1,1
+76,Trolli Sour Bites,0,1,0,0,0,0,0,0,1,0.31299999,0.255,47.173229,https://candywarehouse.com/item-images/128314-01_assorted-trolli-sour-brite-bites-9-ounce-bag.jpg,0,0,0
+77,Twix,1,0,1,0,0,1,0,1,0,0.546,0.90600002,81.642914,https://candywarehouse.com/item-images/127612-01_twix-candy-bars-36-piece-box.jpg,1,1,1
+78,Twizzlers,0,1,0,0,0,0,0,0,0,0.22,0.116,45.466282,https://candywarehouse.com/item-images/131787-01_twizzlers-strawberry-licorice-twists-king-size-packs-15-piece-box.jpg,0,0,1
+79,Warheads,0,1,0,0,0,0,1,0,0,0.093000002,0.116,39.011898,https://candywarehouse.com/item-images/161063-01_mega-candy-lunch-box-warheads.jpg,0,0,1
+80,Welch's Fruit Snacks,0,1,0,0,0,0,0,0,1,0.31299999,0.31299999,44.375519,https://www.spanglercandy.com/media/catalog/product/cache/f93d626b5df97b7785a35bf5b2bd3381/c/h/chewy25098_1.jpg,0,1,1
+81,Werther's Original Caramel,0,0,1,0,0,0,1,0,0,0.186,0.26699999,41.904308,https://www.candywarehouse.com/item-images/127855-01_werthers-original-hard-candy-150-piece-bag.jpg?resizeid=104&resizeh=1000&resizew=1000,1,1,1
+82,Whoppers,1,0,0,0,0,1,0,0,1,0.87199998,0.84799999,49.524113,https://www.candywarehouse.com/item-images/127280-01_whoppers-candy-175-ounce-packs-24-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000,0,1,1

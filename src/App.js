@@ -26,12 +26,12 @@ function App (props) {
                   </section>
                 </div>
                 <div className="indv-container">
-                  
+                  <MakeIndv props={props}/>
                 </div>
               </main>
             </div>
             <footer>
-              
+              <MakeFooter/>
             </footer>
 </div>);
 }
@@ -40,7 +40,7 @@ function MakeHeader() {
             <div className="a">
                 <div className="header-row">
                     <div className="header-image">
-                        <img className="logo" src="img/icon.png" alt="candy website logo"/>
+                        <img className="logo" src="../public/img/icon.png" alt="candy website logo"/>
                     </div>
                     <div className="header-text">
                         <h1>Candy Search</h1>
@@ -55,7 +55,7 @@ function MakeNavBar(){
   return (<nav>
             <ul>
                 <li>
-                    <a href="index.html"><img src="img/icon.png" alt="candy website logo"/></a>
+                    <a href="index.html"><img src="../public/img/icon.png" alt="candy website logo"/></a>
                 </li>
                 <li>
                     <a href="index.html">Home</a>
@@ -88,12 +88,13 @@ function MakeButtonsLarge(){
 function MakeForm () {
   // this is where to input the form code
   // this should render the form page - not sure if you actually update the state here
+  return null;
 }
 
 function MakeModal () {
   // this is where to input the modal code
   // this should render the modal page - not sure if you actually update the state here
-  
+  return null;
 }
 
 function MakeButtonsSmall() {
@@ -141,13 +142,17 @@ function MakeCards(props) {
 function MakeCardsListView(props) {
   // the props for this should be the list of current candies to show 
   // this is where the cards code goes
+  return null;
 }
 function MakeCardsGridView(props) {
   // the props for this should be the list of current candies to show
   // this is where the cards code goes
+  return null;
 }
 
 function MakeIndv(props) {
   // the props for this should be the individual candy object
+  return null;
 
 }
+export default App;
