@@ -6,11 +6,9 @@ import {} from "./website-style.css";
 
 import CANDY_DATA from './data/candy-data.json'; 
 
-ReactDOM.render(<App pets={CANDY_DATA} />, document.getElementById('root'));
-
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App data={CANDY_DATA}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,5 +1,8 @@
+import React, {useState} from 'react';
 
 function App (props) {
+  const [gridView, setGridView] = useState(false);
+  console.log(props.data)
   return (<div>
             <div>
               <MakeHeader/>
@@ -20,8 +23,8 @@ function App (props) {
                       <MakeModal/>
                     </div>
                     <br/><br/><br/>
-                    <div id="candy-div" className="cardpoolGrid">
-                      <MakeCards props={props}/>
+                    <div id="candy-div">
+                      <MakeCards currentData={props.data} gridView={gridView}/>
                     </div> 
                   </section>
                 </div>
@@ -130,24 +133,52 @@ function MakeFooter() {
 }
 
 function MakeCards(props) {
-  // the props for this should be the state values
-  // need to figure out how to use state hook for this
+  // the props for this should be the state values, specifically the card object array, and the gridView
+  console.log("MakeCards: " + props.currentData);
   if(props.gridView) {
-    return <MakeCardsGridView props={props.currentData}/>;
+    return props.currentData.map((currentCard) => {
+      return(
+      <div className="cardpoolGrid">
+        <MakeCardGridView card={currentCard}/>
+      </div>);
+    });
   }
   else {
-    return <MakeCardsListView props={props.currentData}/>;
+    return props.currentData.map((currentCard) => {
+      return(
+        <div className="cardpoolList">
+          <MakeCardListView card={currentCard}/>
+        </div>);
+    });
   }
 }
-function MakeCardsListView(props) {
+function MakeCardListView(props) {
   // the props for this should be the list of current candies to show 
   // this is where the cards code goes
-  return null;
+  console.log("MakeCardListView: " + props);
+  return(
+    <div key={props.competitorname} className="card">
+      <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
+      <div className="card-body">
+          <p className="card-title h5">{props.competitorname}</p>
+          <a className="btn btn-primary" href="www.google.com">More Info:</a>
+      </div>
+    </div>
+  );
 }
-function MakeCardsGridView(props) {
+function MakeCardGridView(props) {
   // the props for this should be the list of current candies to show
   // this is where the cards code goes
-  return null;
+  console.log("MakeCardGridView: " +props.name);
+  return(
+    <div  key={props.competitorname} className="card">
+      <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
+      <div className="card-body">
+          <p className="card-title h5">{props.competitorname}</p>
+          <a className="btn btn-primary" href="www.google.com">More Info:</a>
+      </div>
+    </div>
+  );
 }
 
 function MakeIndv(props) {
