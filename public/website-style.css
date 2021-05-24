@@ -117,7 +117,7 @@ nav ul {
 
 /*-- list view --*/
 .cardpoolList {
-    display: grid;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     border-radius: 10px;
@@ -161,6 +161,7 @@ nav ul {
 .cardpoolGrid .card {
     flex: 0 0 225px;
     margin: 0.5rem;
+    flex-direction: column;
 }
 .cardpoolGrid .card img {
     border-radius: 10px;

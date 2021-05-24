@@ -114,16 +114,14 @@ nav ul {
 
 /*-- list view --*/
 .cardpoolList {
-    display: grid;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     border-radius: 10px;
-    width: 100%;
 }
 .cardpoolList .card {
     display:flex;
     flex-direction: row;
-    flex: 0 0 225px;
     margin: 0.5rem;
 }
 .cardpoolList .card img {
@@ -153,10 +151,10 @@ nav ul {
     flex-wrap: wrap;
     justify-content: center;
     border-radius: 10px;
-    width: 100%;
+    
 }
 .cardpoolGrid .card {
-    flex: 0 0 225px;
+    flex-direction: column;
     margin: 0.5rem;
 }
 .cardpoolGrid .card img {

@@ -10,250 +10,35 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="css/website-style.css">
-        <link rel="icon" href="img/icon.png">
+        <link rel="icon" href="../public/img/icon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
-    <body>
-        <!-- header -->
-        <header class="jumbotron jumbotron-fluid bg-secondary text-white">
-            <div class="a">
-                <div class="header-row">
-                    <div class="header-image">
-                        <img class="logo" src="img/icon.png" alt="candy website logo">
-                    </div>
-                    <div class="header-text">
-                        <h1>Candy Search</h1>
-                        <p>Search for your new favorite candy using the candy filter!</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div>
-            <nav>
-                <!-- Nav bar - Roshni -->
-                <ul>
-                    <li>
-                        <a href="index.html"><img src="img/icon.png" alt="candy website logo"></a>
-                    </li>
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                </ul>
-                <div id="search-div" class="search" role="search">
-                    <input id="search-bar" type="text" placeholder="Search for your Candy...">
-                </div>
-            </nav>
-        </div>
-        <div class="outer-box">
-            <main>
-                <div class="container">
-                    <section class="form-column">
-                        <br>
-                        <!-- Form - Victoria -->
-                        <!-- Buttons to choose list or grid view -->
-                            <button id="list-button" class="view" aria-label="List View"> <i class="fa fa-bars"></i>
-                            List</button>
-                        <button id="grid-button" class="view" aria-label="Grid View">
-                            <i class="fa fa-th-large"></i>
-                            Grid</button>
-                        <br><br><br>
-                        <form>
-                            <h2>Filter</h2>
-                            <nobr class="filtertype">Contains:</nobr><br>
-                            <input type="checkbox" id="contains1" name="contains1" value="Chocolate">
-                            <label for="contains1">
-                                Chocolate</label><br>
-                            <input type="checkbox" id="contains2" name="contains2" value="Caramel">
-                            <label for="contains2">
-                                Caramel</label><br>
-                            <input type="checkbox" id="contains3" name="contains3" value="PeanutAlmondy">
-                            <label for="contains3">
-                                Peanuts/Peanut Butter/Almonds</label><br>
-                            <input type="checkbox" id="contains4" name="contains4" value="Nougat">
-                            <label for="contains4">
-                                Nougat</label><br>
-                            <input type="checkbox" id="contains5" name="contains5" value="CrispedRiceWafer">
-                            <label for="contains5">
-                                Crisped Rice/Wafers/Cookie</label><br>
-                            <input type="checkbox" id="contains6" name="contains6" value="Pluribus">
-                            <label for="contains6">
-                                Multiple Candies in Bag/Box</label><br>
-                            <input type="checkbox" id="contains7" name="contains7" value="Egg">
-                            <label for="contains7">
-                                No Egg</label><br>
-                            <input type="checkbox" id="contains8" name="contains8" value="Milk">
-                            <label for="contains8">
-                                No Milk</label><br>
-                            <input type="checkbox" id="contains9" name="contains9" value="Soy">
-                            <label for="contains9">
-                                No Soy</label><br><br>
-                            <nobr class="filtertype">Other Attributes:</nobr><br>
-                            <input type="checkbox" id="other1" name="other1" value="Fruity">
-                            <label for="other1">
-                                Fruit-Flavored</label><br>
-                            <input type="checkbox" id="other2" name="other2" value="Hard">
-                            <label for="other2">
-                                Hard Candy</label><br>
-                            <input type="checkbox" id="other3" name="other3" value="Bar">
-                            <label for="other3">
-                                Candy Bar</label><br><br>
+      <body>
+        <div id="root">
 
-                            <nobr class="filtertype">Sugar Percentile:</nobr><br>
-                            <input class="sugarrange" aria-label="Minimum Sugar Percentile" type="number" id="sugarmin" name="sugarmin" min=0 max=100 placeholder="Min">
-                            <nobr>% to
-                            </nobr>
-                            <input class="sugarrange" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min=0 max=100 placeholder="Max"><nobr>
-                                %</nobr><br>
-                            <nobr id="sugarFeedback"></nobr><br><br>
-                            <label class="filtertype" for="sort">Sort By:</label><br>
-                            <select name="sort" id="sort">
-                                <option value="alphabet">Name A to Z</option>
-                                <option value="sugarasc">Sugar Percentile Low to High</option>
-                                <option value="sugardes">Sugar Percentile High to Low</option>
-                            </select>
-                            <br><br>
-                            <button id="applybutton" type="button">Apply</button>
-                            <input type="reset" value="Reset">
-                        </form>
-                    </section>
-                    <section class="cards-column">
-                        <div class="small-view">
-                            <button id="list-button" aria-label="List View" onclick="renderCardListView()">
-                                <i class="fa fa-bars"></i>
-                                List</button>
-                            <button id="grid-button" aria-label="Grid View" onclick="renderCardGridView()">
-                                <i class="fa fa-th-large"></i>
-                                Grid</button>
-                            <button id="smallfilterbutton" aria-label="Filter and Sort">
-                                <i class="fa fa-filter"></i> Filter and Sort</button>
-                            <!-- The Modal -->
-                            <div id="filtermodal" class="modal">
-                            
-                              <!-- Modal content -->
-                              <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <form>
-                                    <h2>Filter</h2>
-                                    <span class="filtertype">Contains:</span><br>
-                                    <input type="checkbox" id="contains1" name="contains1" value="Chocolate">
-                                    <label for="contains1">
-                                        Chocolate</label><br>
-                                    <input type="checkbox" id="contains2" name="contains2" value="Caramel">
-                                    <label for="contains2">
-                                        Caramel</label><br>
-                                    <input type="checkbox" id="contains3" name="contains3" value="PeanutAlmondy">
-                                    <label for="contains3">
-                                        Peanuts/Peanut Butter/Almonds</label><br>
-                                    <input type="checkbox" id="contains4" name="contains4" value="Nougat">
-                                    <label for="contains4">
-                                        Nougat</label><br>
-                                    <input type="checkbox" id="contains5" name="contains5" value="CrispedRiceWafer">
-                                    <label for="contains5">
-                                        Crisped Rice/Wafers/Cookie</label><br>
-                                    <input type="checkbox" id="contains6" name="contains6" value="Pluribus">
-                                    <label for="contains6">
-                                        Multiple Candies in Bag/Box</label><br>
-                                    <input type="checkbox" id="contains7" name="contains7" value="Egg">
-                                    <label for="contains7">
-                                        No Egg</label><br>
-                                    <input type="checkbox" id="contains8" name="contains8" value="Milk">
-                                    <label for="contains8">
-                                        No Milk</label><br>
-                                    <input type="checkbox" id="contains9" name="contains9" value="Soy">
-                                    <label for="contains9">
-                                        No Soy</label><br><br>
-                                    <nobr class="filtertype">Other Attributes:</nobr><br>
-                                    <input type="checkbox" id="other1" name="other1" value="Fruity">
-                                    <label for="other1">
-                                        Fruit-Flavored</label><br>
-                                    <input type="checkbox" id="other2" name="other2" value="Hard">
-                                    <label for="other2">
-                                        Hard Candy</label><br>
-                                    <input type="checkbox" id="other3" name="other3" value="Bar">
-                                    <label for="other3">
-                                        Candy Bar</label><br><br>
-        
-                                    <nobr class="filtertype">Sugar Percentile:</nobr><br>
-                                    <input class="sugarrange" aria-label="Minimum Sugar Percentile" type="number" id="sugarmin" name="sugarmin" min=0 max=100 placeholder="Min">
-                                    <nobr>% to
-                                    </nobr>
-                                    <input class="sugarrange" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min=0 max=100 placeholder="Max"><nobr>
-                                        %</nobr><br>
-                                    <nobr id="sugarFeedback"></nobr><br><br>
-                                    <label class="filtertype" for="sort">Sort By:</label><br>
-                                    <select name="sort" id="sort">
-                                        <option value="alphabet">Name A to Z</option>
-                                        <option value="sugarasc">Sugar Percentile Low to High</option>
-                                        <option value="sugardes">Sugar Percentile High to Low</option>
-                                    </select>
-                                    <br><br>
-                                    <button id="applybutton" type="button">Apply</button>
-                                    <input type="reset" value="Reset">
-                                </form>
-                              </div>
-                            
-                            </div>
-                        </div>
-                        <br><br><br>
-                        <div id="candy-div" class="cardpoolGrid">
-                            <!-- will be filled with js-->
-                        </div> 
-                    </section>
-                </div>
-                <div class="indv-container">
-                    <nav>
-                        <!-- Nav bar - Roshni -->
-                        <ul>
-                            <li role="button" class="back"><a href="./index.html"><img class="logo" src="./img/back.png" alt="back"></a></li>
-                            <li><a href="./index.html"><img class="logo" src="./img/icon.png" alt="candy website logo"></a></li>
-                            <li><a href="./index.html">Home</a></li>
-                            <li><a href="./about.html">About</a></li>
-                        </ul>
-                    </nav>
-                    <section class="problem">
-                        <!-- Additional Information -->
-                        <h1 id="indv-candy-title">
-                            <!-- this section will be filled by javascript(hopefully) -->
-                        </h1>
-                        <div class="card">
-                            <div class="card-title">
-                                About:
-                            </div>
-                            <div id="indv-candy-img" class="card-img-top">
-                                <!-- this section will be filled by javascript(hopefully) -->
-                            </div>
-                            <div id="indv-candy-detail" class="card-body candy-detail">
-                                <!-- this section will be filled by javascript(hopefully) -->
-                            </div>
-                        </div>
-                    </section>
-                    <section class="problem">
-                        <div class="card">
-                            <div class="card-title">
-                                Nutrition Information:
-                            </div>
-                            <div id="indv-nutrition-img" class="card-img nutrition-info">
-                                <!-- this section will be filled by javascript(hopefully) -->
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </main>
-        </div>
-        <!-- footer -->
-        <footer>
-            <div class="footer">
-                <p>©2021 The WhipperSnappers. All rights reserved.</p>
-                <p>Created by Sachi Figliolini, Victoria Nguyen, and Roshni Srikanth</p>
-                <p>Images taken from
-                    <a href="https://www.candywarehouse.com/">Candy Warehouse</a>
-                </p>
-            </div>
-        </footer>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
-        <script src="javascript/index.js"></script>
+          <div class="outer-box">
+              <main>
+                  <div class="container">
+                      <section class="form-column">
+                          <br>
+                          <!-- Form - Victoria -->
+                          <!-- Buttons to choose list or grid view -->
+                      </section>
+                      <section class="cards-column">
+                          <div id="candy-div" class="cardpoolGrid"> 
+                          </div> 
+                      </section>
+                  </div>
+                  <div class="indv-container">
+                  </div>
+              </main>
+          </div>
+          <!-- footer -->
+          <footer>
+    
+          </footer>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+          <script src="javascript/index.js"></script>
+      </div>
     </body>
 </html>
