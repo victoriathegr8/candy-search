@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import "./website-style.css";
-
+import {} from "./website-style.css";
+import { BrowserRouter } from 'react-router-dom';
 
 import CANDY_DATA from './data/candy-data.json'; 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data={CANDY_DATA}/>
+    <BrowserRouter>
+      <App data={CANDY_DATA}/>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

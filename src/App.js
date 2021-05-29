@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import Heart from "react-heart";
 import ReactStars from "react-rating-stars-component";
+import { Route, Switch, Link, Redirect, NavLink} from 'react-router-dom';
 
 function App (props) {
-  const [gridView, setGridView] = useState(true);
-
+  const [gridView, setGridView] = useState(false);
+  let handleClick = function handleGridFlip(booleanValue) {
+    setGridView(booleanValue);
+    console.log("Set gridView to: ", gridView);
+  }
   console.log(props);
   let [candydata, setCandydata] = useState(props.data);
   function handleLike(name) {
@@ -15,7 +19,6 @@ function App (props) {
       }
     })
     setCandydata(copy);
-  }
   return (<div>
             <div>
               <MakeHeader/>
@@ -25,25 +28,31 @@ function App (props) {
             </div>
             <div className="outer-box">
               <main>
-                <div className="container">
-                  <section className="form-column">
-                    <MakeButtonsLarge/>
-                    <MakeForm/>
-                  </section>
-                  <section className="cards-column">
-                    <div className="small-view">
-                      <MakeButtonsSmall/>
-                      <MakeModal/>
+                <Switch>
+                  <Route exact path="/">
+                    <div className="container">
+                      <section className="form-column">
+                        <MakeButtonsLarge handleClick={handleClick}/>
+                        <MakeForm/>
+                      </section>
+                      <section className="cards-column">
+                        <div className="small-view">
+                          <MakeButtonsSmall/>
+                          <MakeModal/>
+                        </div>
+                        <br/><br/><br/>
+                        <div id="candy-div">
+                          <MakeCards currentData={props.data} gridView={gridView}/>
+                        </div> 
+                      </section>
                     </div>
-                    <br/><br/><br/>
-                    <div id="candy-div">
-                      <MakeCards currentData={props.data} gridView={gridView} likeCallback={handleLike}/>
-                    </div> 
-                  </section>
-                </div>
-                <div className="indv-container">
-                  <MakeIndv props={props}/>
-                </div>
+                  </Route>
+                  <Route path="/indv">
+                    <div className="indv-container">
+                      <MakeIndv props={props}/>
+                    </div>
+                  </Route>
+                </Switch>
               </main>
             </div>
             <footer>
@@ -51,6 +60,7 @@ function App (props) {
             </footer>
 </div>);
 }
+
 function MakeHeader() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
             <div className="a">
@@ -71,13 +81,13 @@ function MakeNavBar(){
   return (<nav>
             <ul>
                 <li>
-                    <a href="index.html"><img src="../public/img/icon.png" alt="candy website logo"/></a>
+                    <Link to="/"><img src="../public/img/icon.png" alt="candy website logo"/></Link>
                 </li>
                 <li>
-                    <a href="index.html">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <a href="about.html">About</a>
+                    <Link to="/about">About</Link>
                 </li>
             </ul>
             <div id="search-div" className="search" role="search">
@@ -85,14 +95,14 @@ function MakeNavBar(){
             </div>
         </nav>);
 }
-function MakeButtonsLarge(){
+function MakeButtonsLarge(props){
   return(
     <div>
-      <button id="list-button" className="view" aria-label="List View">
+      <button id="list-button" className="view" aria-label="List View" onClick={props.handleClick(false)}>
         <i className="fa fa-bars"></i>
         List
       </button>
-      <button id="grid-button" className="view" aria-label="Grid View">
+      <button id="grid-button" className="view" aria-label="Grid View" onClick={props.handleClick(true)}>
         <i className="fa fa-th-large"></i>
         Grid
       </button>
@@ -100,6 +110,7 @@ function MakeButtonsLarge(){
     </div>
   );
 }
+
 
 function MakeForm () {
   // this is where to input the form code
@@ -271,9 +282,10 @@ function MakeFooter() {
 
 function MakeCards(props) {
   // the props for this should be the state values, specifically the card object array, and the gridView
-  console.log("MakeCards: " + props.currentData);
+  
   if(props.gridView) {
     return props.currentData.map((currentCard) => {
+      console.log(currentCard);
       return(
       <div className="cardpoolGrid">
         <MakeCardGridView card={currentCard} likeCallback={props.likeCallback}/>
@@ -294,15 +306,16 @@ function MakeCardListView(props) {
   const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show 
   // this is where the cards code goes
-  console.log("MakeCardListView: " + props);
+  
   return(
-    <div key={props.competitorname} className="card">
-      <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
+    <div key={props.card.competitorname} className="card">
+      <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
       <div className="card-body">
-          <p className="card-title h5">{props.competitorname}</p>
-          <a className="btn btn-primary" href="www.google.com">More Info</a>
-          <i className="fa fa-heart fa-2x nobreak hearts" onClick={handleClick}></i>
-          <Heart isActive={active} onClick={() => setActive(!active)}/>
+          <p className="card-title h5">{props.card.competitorname}</p>
+          <p className="card-title h5">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
+          <p className="card-title h5">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
+          <p className="card-title h5">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
+          <Link to="/indv" className="btn btn-primary">More Info:</Link>
       </div>
     </div>
   );
@@ -315,16 +328,17 @@ function MakeCardGridView(props) {
   const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show
   // this is where the cards code goes
-  console.log("MakeCardGridView: " +props.name);
+  
   return(
-    <div  key={props.competitorname} className="card">
-      <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
+    <div  key={props.card.competitorname} className="card">
+      <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
       <div className="card-body">
           <p className="card-title h5">{props.competitorname}</p>
           <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
           <a className="btn btn-primary" href="www.google.com">More Info</a>
           {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
           <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active)}}/>
+          <Link to="/indv" className="btn btn-primary">More Info:</Link>
       </div>
     </div>
   );
@@ -332,25 +346,27 @@ function MakeCardGridView(props) {
 
 function MakeIndv(props) {
   // the props for this should be the individual candy object
-  return (<div key={props.name}>
+  let candy=props;
+  console.log(candy);
+  return (<div key={candy.competitorname}>
     <div className="card">
       <div className="card-title">
         About:
       </div>
       <div className="card-img-top">
-        <img src={props.imglink} alt={props.name} />
+        <img src={candy.imglink} alt={candy.name} />
       </div>
       <div className="card-body candy-detail">
-        <p>Has Chocolate: <span className="data-ans">{convertToWords(props.chocolate)}</span></p>
-        <p>Is Fruity: <span className="data-ans">{convertToWords(props.fruit)}</span></p>
-        <p>Has Caramel: <span className="data-ans">{convertToWords(props.caramel)}</span></p>
-        <p>Has Peanut, Almond, or Peanut Butter: <span className="data-ans">{convertToWords(props.peanutyalmondy)}</span></p>
-        <p>Has Nougat: <span className="data-ans">{convertToWords(props.nougat)}</span></p>
-        <p>Has Crispy Rice Wafer: <span className="data-ans">{convertToWords(props.crispedricewafer)}</span></p>
-        <p>Is Hard: <span className="data-ans">{convertToWords(props.hard)}</span></p>
-        <p>Is Bar: <span className="data-ans">{convertToWords(props.bar)}</span></p>
-        <p>Pluribus (many candies in 1 package): <span className="data-ans">{convertToWords(props.pluribus)}</span> </p>
-        <p>Sugar Percent: <span className="data-ans">{(props.sugarpercent * 100) + '%'}</span> </p>
+        <p>Has Chocolate: <span className="data-ans">{convertToWords(candy.chocolate)}</span></p>
+        <p>Is Fruity: <span className="data-ans">{convertToWords(candy.fruit)}</span></p>
+        <p>Has Caramel: <span className="data-ans">{convertToWords(candy.caramel)}</span></p>
+        <p>Has Peanut, Almond, or Peanut Butter: <span className="data-ans">{convertToWords(candy.peanutyalmondy)}</span></p>
+        <p>Has Nougat: <span className="data-ans">{convertToWords(candy.nougat)}</span></p>
+        <p>Has Crispy Rice Wafer: <span className="data-ans">{convertToWords(candy.crispedricewafer)}</span></p>
+        <p>Is Hard: <span className="data-ans">{convertToWords(candy.hard)}</span></p>
+        <p>Is Bar: <span className="data-ans">{convertToWords(candy.bar)}</span></p>
+        <p>Pluribus (many candies in 1 package): <span className="data-ans">{convertToWords(candy.pluribus)}</span> </p>
+        <p>Sugar Percent: <span className="data-ans">{(candy.sugarpercent * 100) + '%'}</span> </p>
       </div>
     </div>
     <p/>
@@ -360,15 +376,23 @@ function MakeIndv(props) {
           Nutrition Information:
         </div>
         <div className="card-img nutrition-info">
-          <img src="../img/1_3_Musketeers.JPG" alt={"Nutrition Information about" + props.competitorname}/>
+          <img src={getIndvCandyImgName(props)} alt={"Nutrition Information about" + candy.competitorname}/>
         </div>
       </div>
     </section>
   </div>);
 }
 
+function getIndvCandyImgName(props) {  
+  // the props should be the individual candy object
+  let candy = props.card.indvCandy;
+  let location = candy.competitorname.split(' ').join('_');
+  return "./img/"+candy.candynum+"_"+location+".jpg";
+}
+
+
 function convertToWords(num) {
-  if(num == 0) {
+  if(num === 0) {
     return "no";
   }
   else {

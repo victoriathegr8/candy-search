@@ -110,6 +110,10 @@ nav ul {
 }
 .container {
     display: flex;
+    width: 100%;
+}
+.candy-div {
+    width: 100%;
 }
 
 /*-- list view --*/
@@ -118,11 +122,15 @@ nav ul {
     flex-wrap: wrap;
     justify-content: center;
     border-radius: 10px;
+    width: 100%;
+    
 }
 .cardpoolList .card {
     display:flex;
     flex-direction: row;
     margin: 0.5rem;
+    width: 100%;
+    
 }
 .cardpoolList .card img {
     float:right;
@@ -130,6 +138,7 @@ nav ul {
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+
 }
 .cardpoolList .card-body {
     float:left;
@@ -139,6 +148,7 @@ nav ul {
     background-color: #4b2e83;
     color: #eee;
     text-align: center;
+    width: 100%;
 }
 .cardpoolList .card p {
     font-size: 1rem;
