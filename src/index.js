@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {} from "./website-style.css";
+import "./website-style.css";
 
 
 import CANDY_DATA from './data/candy-data.json'; 

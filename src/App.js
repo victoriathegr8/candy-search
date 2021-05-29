@@ -1,8 +1,21 @@
 import React, {useState} from 'react';
+import Heart from "react-heart";
+import ReactStars from "react-rating-stars-component";
 
 function App (props) {
   const [gridView, setGridView] = useState(true);
+
   console.log(props);
+  let [candydata, setCandydata] = useState(props.data);
+  function handleLike(name) {
+    let copy = candydata.map(x => x);
+    copy.forEach(function(obj) {
+      if (obj.competitorname === name) {
+        obj.liked = true;
+      }
+    })
+    setCandydata(copy);
+  }
   return (<div>
             <div>
               <MakeHeader/>
@@ -24,7 +37,7 @@ function App (props) {
                     </div>
                     <br/><br/><br/>
                     <div id="candy-div">
-                      <MakeCards currentData={props.data} gridView={gridView}/>
+                      <MakeCards currentData={props.data} gridView={gridView} likeCallback={handleLike}/>
                     </div> 
                   </section>
                 </div>
@@ -263,7 +276,7 @@ function MakeCards(props) {
     return props.currentData.map((currentCard) => {
       return(
       <div className="cardpoolGrid">
-        <MakeCardGridView card={currentCard}/>
+        <MakeCardGridView card={currentCard} likeCallback={props.likeCallback}/>
       </div>);
     });
   }
@@ -277,6 +290,8 @@ function MakeCards(props) {
   }
 }
 function MakeCardListView(props) {
+  const [active, setActive] = useState(false);
+  const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show 
   // this is where the cards code goes
   console.log("MakeCardListView: " + props);
@@ -285,12 +300,19 @@ function MakeCardListView(props) {
       <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
       <div className="card-body">
           <p className="card-title h5">{props.competitorname}</p>
-          <a className="btn btn-primary" href="www.google.com">More Info:</a>
+          <a className="btn btn-primary" href="www.google.com">More Info</a>
+          <i className="fa fa-heart fa-2x nobreak hearts" onClick={handleClick}></i>
+          <Heart isActive={active} onClick={() => setActive(!active)}/>
       </div>
     </div>
   );
 }
 function MakeCardGridView(props) {
+  const [active, setActive] = useState(false);
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+  const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show
   // this is where the cards code goes
   console.log("MakeCardGridView: " +props.name);
@@ -299,7 +321,10 @@ function MakeCardGridView(props) {
       <img className="card-img-top" src={props.imglink} alt={props.competitorname}/>
       <div className="card-body">
           <p className="card-title h5">{props.competitorname}</p>
-          <a className="btn btn-primary" href="www.google.com">More Info:</a>
+          <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
+          <a className="btn btn-primary" href="www.google.com">More Info</a>
+          {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
+          <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active)}}/>
       </div>
     </div>
   );
