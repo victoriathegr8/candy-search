@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Route, Switch, Link, Redirect, NavLink} from 'react-router-dom';
+import { Route, Switch, Link, Redirect, NavLink, useParams} from 'react-router-dom';
+import CANDY_DATA from './data/candy-data.json'; 
 
 function App (props) {
   const [gridView, setGridView] = useState(false);
@@ -323,8 +324,12 @@ function MakeCardGridView(props) {
 
 function MakeIndv(props) {
   // the props for this should be the individual candy object
-  let candy=props;
+  let urlParams = useParams();
+  let candyName = urlParams.candyName; 
+  let candy =  CANDY_DATA.find(CANDY_DATA, {competitorname: candyName}); 
+  if(!candy) return <h2>Candy not specified</h2> 
   console.log(candy);
+
   return (<div key={candy.competitorname}>
     <div className="card">
       <div className="card-title">
