@@ -1,12 +1,26 @@
 import React, {useState} from 'react';
 import { Route, Switch, Link, Redirect, NavLink, useParams} from 'react-router-dom';
 import CANDY_DATA from './data/candy-data.json'; 
+import Heart from "react-heart";
+import ReactStars from "react-rating-stars-component";
+
 
 function App (props) {
   const [gridView, setGridView] = useState(false);
   let handleClick = function handleGridFlip(booleanValue) {
     setGridView(booleanValue);
     console.log("Set gridView to: ", gridView);
+  }
+  console.log(props);
+  let [candydata, setCandydata] = useState(props.data);
+  function handleLike(name) {
+    let copy = candydata.map(x => x);
+    copy.forEach(function(obj) {
+      if (obj.competitorname === name) {
+        obj.liked = true;
+      }
+    })
+    setCandydata(copy);
   }
   return (<div>
             <div>
@@ -48,6 +62,7 @@ function App (props) {
               <MakeFooter/>
             </footer>
 </div>);
+
 }
 
 function MakeHeader() {
@@ -277,7 +292,7 @@ function MakeCards(props) {
       console.log(currentCard);
       return(
       <div className="cardpoolGrid">
-        <MakeCardGridView card={currentCard}/>
+        <MakeCardGridView card={currentCard} likeCallback={props.likeCallback}/>
       </div>);
     });
   }
@@ -291,6 +306,8 @@ function MakeCards(props) {
   }
 }
 function MakeCardListView(props) {
+  const [active, setActive] = useState(false);
+  const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show 
   // this is where the cards code goes
   
@@ -308,6 +325,11 @@ function MakeCardListView(props) {
   );
 }
 function MakeCardGridView(props) {
+  const [active, setActive] = useState(false);
+  const ratingChanged = (newRating) => {
+    console.log(newRating);
+  };
+  const handleClick = () => {props.likeCallback(props.competitorname)};
   // the props for this should be the list of current candies to show
   // this is where the cards code goes
   
@@ -315,7 +337,10 @@ function MakeCardGridView(props) {
     <div  key={props.card.competitorname} className="card">
       <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
       <div className="card-body">
-          <p className="card-title h5">{props.card.competitorname}</p>
+          <p className="card-title h5">{props.competitorname}</p>
+          <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
+          {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
+          <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active)}}/>
           <Link to="/indv" className="btn btn-primary">More Info:</Link>
       </div>
     </div>
