@@ -247,6 +247,7 @@ h3 {
 .card-title {
     font-weight: bold;
     font-size: 1.7rem;
+    padding-left: 1rem;
 }
 .candy-detail {
     background-color: #A1C3D1;
@@ -267,13 +268,18 @@ h3 {
     align-content: center;
     width: 400px;
     height: fit-content;
-    display: none;
+    
 }
-.indv-filters {
-    display: none;
-}
+
 .indv-container {
-    display: none;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+}
+.indv-candy-img {
+    display: block;
+    justify-content: space-around;
+    align-content: center;
 }
 
 /*-- header --*/
