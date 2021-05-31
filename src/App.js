@@ -4,18 +4,22 @@ import { Route, Switch, Link} from 'react-router-dom';
 
 
 // importing the right components
-import {MakeCardGridView, MakeCardListView} from './cards.js';
+import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
 import {MakeForm, MakeModal} from './formComponents.js';
+import CANDY_DATA from './data/candy-data.json';
 
 function App (props) {
+
   const [gridView, setGridView] = useState(false);
+
   let handleClick = function handleGridFlip(booleanValue) {
     setGridView(booleanValue);
     console.log("Set gridView to: ", gridView);
   }
-  console.log(props);
+  
   let [candydata, setCandydata] = useState(props.data);
+
   function handleLike(name) {
     let copy = candydata.map(x => x);
     copy.forEach(function(obj) {
@@ -25,6 +29,7 @@ function App (props) {
     })
     setCandydata(copy);
   }
+
   return (<div>
             <div>
               <MakeHeader/>
@@ -48,7 +53,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={props.data} gridView={gridView}/>
+                          <MakeCards currentData={props.data} gridView={gridView} likeCallBack={handleLike}/>
                         </div> 
                       </section>
                     </div>
@@ -58,14 +63,34 @@ function App (props) {
                       <MakeIndv props={props}/>
                     </div>
                   </Route>
+                  <Route path="/about" >
+                    {/*make about page here*/}
+                  </Route>
+                  <Route path="/">
+                    <div className="container">
+                      <section className="form-column">
+                        <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
+                        <MakeForm/>
+                      </section>
+                      <section className="cards-column">
+                        <div className="small-view">
+                          <MakeButtonsSmall likeCallBack={handleLike}/>
+                          <MakeModal/>
+                        </div>
+                        <br/><br/><br/>
+                        <div id="candy-div">
+                          <MakeCards currentData={props.data} gridView={gridView}/>
+                        </div> 
+                      </section>
+                    </div>
+                  </Route>
                 </Switch>
               </main>
             </div>
             <footer>
               <MakeFooter/>
             </footer>
-</div>);
-
+          </div>);
 }
 
 function MakeHeader() {
@@ -85,6 +110,22 @@ function MakeHeader() {
 }
 
 function MakeNavBar(){
+
+  let handleSearch = function(props) {
+    console.log("inside handleSearch");
+      let candyArray = props.data.filter(function(candyObj) {
+      let candyObjStr =  (candyObj.competitorname.toLowerCase());
+      let stateSearchStr = (props.searchTerm.toLowerCase());
+      // if the candy name string contains the search term
+      if (candyObjStr.indexOf(stateSearchStr) !== -1) {
+          console.log("found match");
+          // return that object to the candy array
+          return candyObj;
+      }
+    });
+    return(<App data={candyArray}/>);
+  }
+
   return (<nav>
             <ul>
                 <li>
@@ -98,7 +139,8 @@ function MakeNavBar(){
                 </li>
             </ul>
             <div id="search-div" className="search" role="search">
-                <input id="search-bar" type="text" placeholder="Search for your Candy..."></input>
+                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {let props = {data: CANDY_DATA, searchTerm: event.target.value}; 
+                handleSearch(props)}}></input>
             </div>
         </nav>);
 }
@@ -119,14 +161,22 @@ function MakeButtonsLarge(props){
 }
 
 
-function MakeButtonsSmall() {
+function MakeButtonsSmall(props) {
+  let handleListCallBack = function() {
+    return (<MakeCards currentData={CANDY_DATA}  gridView="false" likeCallback={props.likeCallBack}/>);
+  } 
+
+  let handleGridCallBack = function() {
+    return (<MakeCards currentData={CANDY_DATA} gridView="true" likeCallback={props.likeCallBack}/>);
+  } 
+
   return(
     <div>
-      <button id="list-button" aria-label="List View" onclick="renderCardListView()">
+      <button id="list-button" aria-label="List View" onClick={handleListCallBack}>
         <i className="fa fa-bars"></i>
         List
       </button>
-      <button id="grid-button" aria-label="Grid View" onclick="renderCardGridView()">
+      <button id="grid-button" aria-label="Grid View" onClick={handleGridCallBack}>
         <i className="fa fa-th-large"></i>
         Grid
       </button>
@@ -151,26 +201,7 @@ function MakeFooter() {
   );
 }
 
-function MakeCards(props) {
-  // the props for this should be the state values, specifically the card object array, and the gridView
-  if(props.gridView) {
-    return props.currentData.map((currentCard) => {
-      console.log(currentCard);
-      return(
-      <div className="cardpoolGrid">
-        <MakeCardGridView card={currentCard} likeCallback={props.likeCallback}/>
-      </div>);
-    });
-  }
-  else {
-    return props.currentData.map((currentCard) => {
-      return(
-        <div className="cardpoolList">
-          <MakeCardListView card={currentCard} likeCallback={props.likeCallback}/>
-        </div>);
-    });
-  }
-}
+
 
 
 

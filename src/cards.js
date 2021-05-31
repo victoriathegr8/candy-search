@@ -3,7 +3,28 @@ import ReactStars from "react-rating-stars-component";
 import React, {useState} from 'react';
 import { Redirect, Link} from 'react-router-dom';
 
-export function MakeCardGridView(props) {
+export function MakeCards(props) {
+    // the props for this should be the state values, specifically the card object array, and the gridView
+    if(props.gridView) {
+      return props.currentData.map((currentCard) => {
+        return(
+        <div className="cardpoolGrid">
+          <MakeCardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallback}/>
+        </div>);
+      });
+    }
+    else {
+      return props.currentData.map((currentCard) => {
+        return(
+          <div className="cardpoolList">
+            <MakeCardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallback}/>
+          </div>);
+      });
+    }
+  }
+
+
+function MakeCardGridView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
   
@@ -37,7 +58,7 @@ export function MakeCardGridView(props) {
 
   
   
-export function MakeCardListView(props) {
+function MakeCardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
   
