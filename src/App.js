@@ -11,15 +11,15 @@ import CANDY_DATA from './data/candy-data.json';
 
 function App (props) {
 
+  
   const [gridView, setGridView] = useState(false);
+  let [candydata, setCandydata] = useState(props.data);
 
   let handleClick = function handleGridFlip(booleanValue) {
     setGridView(booleanValue);
     console.log("Set gridView to: ", gridView);
   }
   
-  let [candydata, setCandydata] = useState(props.data);
-
   function handleLike(name) {
     let copy = candydata.map(x => x);
     copy.forEach(function(obj) {
@@ -30,12 +30,27 @@ function App (props) {
     setCandydata(copy);
   }
 
+  function handleSearch(inputStr) {
+      console.log("inside handleSearch");
+      let candyArray = candydata.filter(function(candyObj) {
+      let candyObjStr =  (candyObj.competitorname.toLowerCase());
+      let stateSearchStr = (inputStr.toLowerCase());
+      // if the candy name string contains the search term
+      if (candyObjStr.indexOf(stateSearchStr) !== -1) {
+          console.log("found match");
+          // return that object to the candy array
+          return candyObj;
+      }
+      });
+      setCandydata(candyArray);  
+  }
+
   return (<div>
             <div>
               <MakeHeader/>
             </div>
             <div>
-              <MakeNavBar/>
+              <MakeNavBar searchCallBack={handleSearch}/>
             </div>
             <div className="outer-box">
               <main>
@@ -53,7 +68,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={props.data} gridView={gridView} likeCallBack={handleLike}/>
+                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
                         </div> 
                       </section>
                     </div>
@@ -79,7 +94,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={props.data} gridView={gridView}/>
+                          <MakeCards currentData={candydata} gridView={gridView}/>
                         </div> 
                       </section>
                     </div>
@@ -109,23 +124,7 @@ function MakeHeader() {
           </header>);
 }
 
-function MakeNavBar(){
-
-  let handleSearch = function(props) {
-    console.log("inside handleSearch");
-      let candyArray = props.data.filter(function(candyObj) {
-      let candyObjStr =  (candyObj.competitorname.toLowerCase());
-      let stateSearchStr = (props.searchTerm.toLowerCase());
-      // if the candy name string contains the search term
-      if (candyObjStr.indexOf(stateSearchStr) !== -1) {
-          console.log("found match");
-          // return that object to the candy array
-          return candyObj;
-      }
-    });
-    return(<App data={candyArray}/>);
-  }
-
+function MakeNavBar(props){
   return (<nav>
             <ul>
                 <li>
@@ -139,8 +138,7 @@ function MakeNavBar(){
                 </li>
             </ul>
             <div id="search-div" className="search" role="search">
-                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {let props = {data: CANDY_DATA, searchTerm: event.target.value}; 
-                handleSearch(props)}}></input>
+                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
             </div>
         </nav>);
 }
