@@ -16,8 +16,8 @@ function App (props) {
   let [candydata, setCandydata] = useState(props.data);
 
   let handleClick = function handleGridFlip(booleanValue) {
+    console.log("calling handleClick, setting gridView to ", booleanValue);
     setGridView(booleanValue);
-    console.log("Set gridView to: ", gridView);
   }
   
   function handleLike(name) {
@@ -58,12 +58,12 @@ function App (props) {
                   <Route exact path="/">
                     <div className="container">
                       <section className="form-column">
-                        <MakeButtonsLarge handleClick={handleClick}/>
+                        <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
                         <MakeForm/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <MakeButtonsSmall/>
+                          <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
                           <MakeModal/>
                         </div>
                         <br/><br/><br/>
@@ -89,7 +89,7 @@ function App (props) {
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <MakeButtonsSmall likeCallBack={handleLike}/>
+                          <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
                           <MakeModal/>
                         </div>
                         <br/><br/><br/>
@@ -145,11 +145,11 @@ function MakeNavBar(props){
 function MakeButtonsLarge(props){
   return(
     <div>
-      <button id="list-button" className="view" aria-label="List View" onClick={props.handleClick(false)}>
+      <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Large List");}}>
         <i className="fa fa-bars"></i>
         List
       </button>
-      <button id="grid-button" className="view" aria-label="Grid View" onClick={props.handleClick(true)}>
+      <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Large Grid");}}>
         <i className="fa fa-th-large"></i>
         Grid
       </button>
@@ -160,21 +160,13 @@ function MakeButtonsLarge(props){
 
 
 function MakeButtonsSmall(props) {
-  let handleListCallBack = function() {
-    return (<MakeCards currentData={CANDY_DATA}  gridView="false" likeCallback={props.likeCallBack}/>);
-  } 
-
-  let handleGridCallBack = function() {
-    return (<MakeCards currentData={CANDY_DATA} gridView="true" likeCallback={props.likeCallBack}/>);
-  } 
-
-  return(
+    return(
     <div>
-      <button id="list-button" aria-label="List View" onClick={handleListCallBack}>
+      <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Small List");}}>
         <i className="fa fa-bars"></i>
         List
       </button>
-      <button id="grid-button" aria-label="Grid View" onClick={handleGridCallBack}>
+      <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Small Grid");}}>
         <i className="fa fa-th-large"></i>
         Grid
       </button>
