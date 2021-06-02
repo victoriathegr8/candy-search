@@ -114,6 +114,11 @@ nav ul {
 }
 .candy-div {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-radius: 10px;
+    flex-direction: row;
 }
 .form-column {
     width: 25%;
@@ -171,18 +176,20 @@ nav ul {
 
 /*-- grid view --*/
 .cardpoolGrid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-radius: 10px;
-    
+    display: inline-flex;
 }
 .cardpoolGrid .card {
-    flex-direction: column;
+    flex:1;
     margin: 0.5rem;
 }
 .cardpoolGrid .card img {
     border-radius: 10px;
+}
+.cardpoolGrid .card-img-top {
+    width: auto;
+}
+.cardpoolGrid .stars {
+    padding-left: 1%;
 }
 .cardpoolGrid .card-body {
     border-bottom-left-radius: 10px;

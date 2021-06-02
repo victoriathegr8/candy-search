@@ -85,9 +85,9 @@ function MakeCardListView(props) {
             
             <p className="card-title h5">{props.competitorname}</p>
             <p className="card-title h5">{props.card.competitorname}</p>
-            <p className="card-title h6">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
-            <p className="card-title h6">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
-            <p className="card-title h6">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
+            <p className="card-text">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
+            <p className="card-text">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
+            <p className="card-text">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
             <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
             {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active); handleClickHeart()}}/>
@@ -99,9 +99,9 @@ function MakeCardListView(props) {
 
 export function convertToWords(num) {
     if(num === 0) {
-      return "no";
+      return "No";
     }
     else {
-      return "yes";
+      return "Yes";
     }
   }

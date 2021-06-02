@@ -12,7 +12,7 @@ export function MakeForm () {
         Caramel</label><br />
       <input type="checkbox" id="contains3" name="contains3" defaultValue="PeanutAlmondy" />
       <label htmlFor="contains3">
-        Peanuts/Peanut Butter/Almonds</label><br />
+        Peanuts/ Peanut Butter/ Almonds</label><br />
       <input type="checkbox" id="contains4" name="contains4" defaultValue="Nougat" />
       <label htmlFor="contains4">
         Nougat</label><br />
@@ -81,7 +81,7 @@ export function MakeModal () {
             Caramel</label><br />
           <input type="checkbox" id="contains3" name="contains3" defaultValue="PeanutAlmondy" />
           <label htmlFor="contains3">
-            Peanuts/Peanut Butter/Almonds</label><br />
+            Peanuts/ Peanut Butter/ Almonds</label><br />
           <input type="checkbox" id="contains4" name="contains4" defaultValue="Nougat" />
           <label htmlFor="contains4">
             Nougat</label><br />
