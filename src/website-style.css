@@ -115,7 +115,21 @@ nav ul {
 .candy-div {
     width: 100%;
 }
+.form-column {
+    width: 25%;
+}
 
+.cards-column {
+    width: 100%;
+}
+.heart {
+    width: 50px;
+    padding-right: 1rem;
+}
+.stars {
+    align-content: center;
+    padding-left: 38%;
+}
 /*-- list view --*/
 .cardpoolList {
     display: flex;
@@ -326,9 +340,6 @@ h3 {
 
 /*-- media queries --*/
 @media (min-width: 768px) {
-    .card {
-        flex-basis: 250px;
-    }
     header {
         background-image: url('./data/img/candygif.gif');
         background-size:cover;

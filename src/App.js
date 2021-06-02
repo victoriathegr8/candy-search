@@ -7,8 +7,7 @@ import { Route, Switch, Link} from 'react-router-dom';
 import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
 import {MakeForm, MakeModal} from './formComponents.js';
-import CANDY_DATA from './data/candy-data.json';
-
+import {About} from './about.js';
 function App (props) {
 
   
@@ -79,7 +78,7 @@ function App (props) {
                     </div>
                   </Route>
                   <Route path="/about" >
-                    {/*make about page here*/}
+                    <About/>
                   </Route>
                   <Route path="/">
                     <div className="container">
@@ -94,7 +93,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={candydata} gridView={gridView}/>
+                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
                         </div> 
                       </section>
                     </div>
