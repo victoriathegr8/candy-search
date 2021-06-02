@@ -112,7 +112,7 @@ function MakeHeader() {
             <div className="a">
                 <div className="header-row">
                     <div className="header-image">
-                        <img className="logo" src="../public/img/icon.png" alt="candy website logo"/>
+                        <img className="logo" src="img/icon.png" alt="candy website logo"/>
                     </div>
                     <div className="header-text">
                         <h1>Candy Search</h1>
@@ -127,7 +127,7 @@ function MakeNavBar(props){
   return (<nav>
             <ul>
                 <li>
-                    <Link to="/"><img src="../public/img/icon.png" alt="candy website logo"/></Link>
+                    <Link to="/"><img src="img/icon.png" alt="candy website logo"/></Link>
                 </li>
                 <li>
                     <Link to="/">Home</Link>

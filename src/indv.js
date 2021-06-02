@@ -5,7 +5,7 @@ import {convertToWords} from './cards.js';
 function getIndvCandyImgName(candy) {  
     // the props should be the individual candy object
     let location = candy.competitorname.split(' ').join('_');
-    return "./img/"+candy.candynum+"_"+location+".jpg";
+    return "img/"+candy.candynum+"_"+location+".jpg";
 }
 
 export function MakeIndv(props) {
@@ -48,7 +48,7 @@ export function MakeIndv(props) {
             Nutrition Information:
           </div>
           <div className="card-img nutrition-info">
-            <img src={getIndvCandyImgName(candy)} alt={"Nutrition Information about" + candy.competitorname}/>
+            <img src={"../" + getIndvCandyImgName(candy)} alt={"Nutrition Information about" + candy.competitorname}/>
           </div>
         </div>
       </section>
