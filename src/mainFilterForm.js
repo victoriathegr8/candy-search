@@ -145,25 +145,19 @@ function validateSugar() {
 //     if (sortElem.value == "alphabet") return data.sort((a, b) => (a.competitorname > b.competitorname) ? 1 : -1)
 //     else if (sortElem.value == "sugarasc") return data.sort((a, b) => (a.sugarpercent > b.sugarpercent) ? 1 : -1)
 //     else if (sortElem.value == "sugardes") return data.sort((a, b) => (a.sugarpercent > b.sugarpercent) ? -1 : 1)
-
-
-
-function submitForm() {
-    // only if the sugar input is valid
-    if(validateSugar() == false) return;
-
-    else {
-        let copy = CANDY_DATA;
-        setCheckboxes(getCheckboxValues);
-        // get the filtered data
-        let filteredData = copy.filter(candyCombinedFilter);
-        setCandydata(filteredData);
-        console.log(filteredData);
-         // changing state and re-rendering the data
-        //console.log(sortCandy(filteredData));
+    function handleFormSubmit() {
+      if(!validateSugar()) {
+        return;
+      }
+      else {
+          let copy = CANDY_DATA;
+          setCheckboxes(getCheckboxValues);
+          // get the filtered data
+          let filteredData = copy.filter(candyCombinedFilter);
+          setCandydata(filteredData);
+          console.log(filteredData);
+      }
     }
-    //renderCandy(STATE);
-}
     // this is where to input the form code
     // this should render the form page - not sure if you actually update the state here
     return (<form>
@@ -221,7 +215,7 @@ function submitForm() {
         <option value="sugardes">Sugar Percentile High to Low</option>
       </select>
       <br /><br />
-      <button id="applybutton" type="button" onClick={submitForm}>Apply</button>
+      <button id="applybutton" type="button" onClick={handleFormSubmit}>Apply</button>
       <input type="reset" defaultValue="Reset" />
     </form>);
   }

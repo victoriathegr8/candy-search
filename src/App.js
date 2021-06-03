@@ -8,7 +8,7 @@ import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
 import {MakeForm, MakeModal} from './mainFilterForm.js';
 import {About} from "./about.js";
-import CANDY_DATA from './data/candy-data.json';
+
 
 function App (props) {
 
@@ -16,7 +16,7 @@ function App (props) {
   const [gridView, setGridView] = useState(false);
   let [candydata, setCandydata] = useState(props.data);
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
   let handleClick = function handleGridFlip(booleanValue) {
     console.log("calling handleClick, setting gridView to ", booleanValue);
     setGridView(booleanValue);
@@ -33,6 +33,9 @@ function App (props) {
   }
 
   function handleSearch(inputStr) {
+      if(inputStr === undefined) {
+        inputStr = "";
+      }
       console.log("inside handleSearch");
       let candyArray = candydata.filter(function(candyObj) {
       let candyObjStr =  (candyObj.competitorname.toLowerCase());
@@ -46,7 +49,8 @@ function App (props) {
       });
       setCandydata(candyArray);  
   }
-
+// Roshni to be moving a bunch of functions between the //s
+//////////////////////////////////////////////////////////////////////////////////////////////////
   return (<div>
             <div>
               <MakeHeader/>
