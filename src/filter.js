@@ -1,5 +1,5 @@
 import CANDY_DATA from './data/candy-data.json'; 
-
+const [checkboxes, setCheckboxes] = useState([]);
 //get checkboxes as array
 let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
 function getCheckboxValues() {
@@ -8,7 +8,7 @@ function getCheckboxValues() {
           if (checkbox.checked) checkboxValues.push(1);
           else checkboxValues.push(0)
     });
-    STATE.checkboxes = checkboxValues;
+    checkboxes = checkboxValues;
     return checkboxValues;
 }
 
@@ -18,52 +18,52 @@ let sugarMaxElem = document.querySelector('#sugarmax');
 // filter candies against checkboxes array
 function filterCandies(candies2) {
     let bools = [];
-    if (STATE.checkboxes[0] === 1) {
-        if (candies2.chocolate === STATE.checkboxes[0]) bools.push(true);
+    if (checkboxes[0] === 1) {
+        if (candies2.chocolate === checkboxes[0]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[1] === 1) {
-        if (candies2.caramel === STATE.checkboxes[1]) bools.push(true);
+    if (checkboxes[1] === 1) {
+        if (candies2.caramel === checkboxes[1]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[2] === 1) {
-        if (candies2.peanutyalmondy === STATE.checkboxes[2]) bools.push(true);
+    if (checkboxes[2] === 1) {
+        if (candies2.peanutyalmondy === checkboxes[2]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[3] === 1) {
-        if (candies2.nougat === STATE.checkboxes[3]) bools.push(true);
+    if (checkboxes[3] === 1) {
+        if (candies2.nougat === checkboxes[3]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[4] === 1) {
-        if (candies2.crispedricewafer === STATE.checkboxes[4]) bools.push(true);
+    if (checkboxes[4] === 1) {
+        if (candies2.crispedricewafer === checkboxes[4]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[5] === 1) {
-        if (candies2.pluribus === STATE.checkboxes[5]) bools.push(true);
+    if (checkboxes[5] === 1) {
+        if (candies2.pluribus === checkboxes[5]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[6] === 1) {
-        if (candies2.hasegg !== STATE.checkboxes[6]) bools.push(true);
+    if (checkboxes[6] === 1) {
+        if (candies2.hasegg !== checkboxes[6]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[7] === 1) {
-        if (candies2.hasmilk !== STATE.checkboxes[7]) bools.push(true);
+    if (checkboxes[7] === 1) {
+        if (candies2.hasmilk !== checkboxes[7]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[8] === 1) {
-        if (candies2.hassoy !== STATE.checkboxes[8]) bools.push(true);
+    if (checkboxes[8] === 1) {
+        if (candies2.hassoy !== checkboxes[8]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[9] === 1) {
-        if( candies2.fruity === STATE.checkboxes[9]) bools.push(true);
+    if (checkboxes[9] === 1) {
+        if( candies2.fruity === checkboxes[9]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[10] === 1) {
-        if (candies2.hard === STATE.checkboxes[10]) bools.push(true);
+    if (checkboxes[10] === 1) {
+        if (candies2.hard === checkboxes[10]) bools.push(true);
         else bools.push(false);
     }
-    if (STATE.checkboxes[11] === 1) {
-        if (candies2.bar === STATE.checkboxes[11]) bools.push(true);
+    if (checkboxes[11] === 1) {
+        if (candies2.bar === checkboxes[11]) bools.push(true);
         else bools.push(false);
     }
     let checker = arr => arr.every(Boolean);
@@ -112,9 +112,24 @@ function sortCandy(data) {
     else if (sortElem.value == "sugardes") return data.sort((a, b) => (a.sugarpercent > b.sugarpercent) ? -1 : 1)
 }
 
-// filter and sort everything after hitting apply button
-let submitElem = document.querySelector('#applybutton');
-submitElem.addEventListener('click', function() {
+// // filter and sort everything after hitting apply button
+// let submitElem = document.querySelector('#applybutton');
+// submitElem.addEventListener('click', function() {
+//     // only if the sugar input is valid
+//     if(validateSugar() == false) return;
+
+//     else {
+//         setCandydata(CANDY_DATA);
+//         STATE.checkboxes = getCheckboxValues();
+//         // get the filtered data
+//         let filteredData = STATE.currentData.filter(candyCombinedFilter);
+//          // changing state and re-rendering the data
+//         STATE.currentData = sortCandy(filteredData);
+//     }
+//     renderCandy(STATE);
+// });
+
+function submitForm() {
     // only if the sugar input is valid
     if(validateSugar() == false) return;
 
@@ -127,4 +142,4 @@ submitElem.addEventListener('click', function() {
         STATE.currentData = sortCandy(filteredData);
     }
     renderCandy(STATE);
-})
+}

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { Route, Switch, Link} from 'react-router-dom';
-
+import "./website-style.css";
 
 
 // importing the right components
 import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
-import {MakeForm, MakeModal} from './formComponents.js';
+import {MakeForm, MakeModal} from './mainFilterForm.js';
 import CANDY_DATA from './data/candy-data.json';
 
 function App (props) {
@@ -14,6 +14,7 @@ function App (props) {
   
   const [gridView, setGridView] = useState(false);
   let [candydata, setCandydata] = useState(props.data);
+
 
   let handleClick = function handleGridFlip(booleanValue) {
     console.log("calling handleClick, setting gridView to ", booleanValue);
@@ -59,7 +60,7 @@ function App (props) {
                     <div className="container">
                       <section className="form-column">
                         <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <MakeForm/>
+                        <MakeForm data={candydata}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
