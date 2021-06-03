@@ -9,7 +9,7 @@ export function MakeCards(props) {
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
-        <div className="cardpoolGrid">
+        <div className="cardpoolGrid" key={currentCard.competitorname}>
           <MakeCardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
         </div>);
       });
@@ -17,7 +17,7 @@ export function MakeCards(props) {
     else {
       return props.currentData.map((currentCard) => {
         return(
-          <div className="cardpoolList">
+          <div className="cardpoolList" key={currentCard.competitorname}>
             <MakeCardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
           </div>);
       });

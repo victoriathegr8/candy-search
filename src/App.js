@@ -27,7 +27,10 @@ function App (props) {
 
   
   const [gridView, setGridView] = useState(false);
-  let [candydata, setCandydata] = useState(props.data);
+  const [candydata, setCandydata] = useState(props.data);
+  
+  const [sugarMinElem, setSugarmin] = useState(null);
+  const [sugarMaxElem, setSugarmax] = useState(null);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
   let handleClick = function handleGridFlip(booleanValue) {
@@ -62,6 +65,173 @@ function App (props) {
       });
       setCandydata(candyArray);  
   }
+
+  //get checkboxes as array
+ const [checkboxes, setCheckboxes] = useState([]);
+ function getCheckboxValues() {
+      let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
+      let checkboxValues = [];
+      allCheckboxes.forEach((checkbox) => {
+            if (checkbox.checked) checkboxValues.push(1);
+            else checkboxValues.push(0)
+      });
+      console.log("checkboxValues 1", checkboxValues);
+      setCheckboxes(checkboxValues);
+      console.log(checkboxes);
+      return checkboxValues;
+  }
+  
+  // filter candies against checkboxes array
+  function filterCandies(candies2) {
+    console.log("checkboxes", checkboxes);
+    let bools = [];
+    console.log("Filtering Candy: ", candies2);
+    console.log("Checkboxes[0]", checkboxes[0]);
+    if (checkboxes[0] === 1) {
+        if (candies2.chocolate === checkboxes[0]) {
+          console.log('pushing true');
+          bools.push(true);
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[1] === 1) {
+        if (candies2.caramel === checkboxes[1]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[2] === 1) {
+        if (candies2.peanutyalmondy === checkboxes[2]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[3] === 1) {
+        if (candies2.nougat === checkboxes[3]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[4] === 1) {
+        if (candies2.crispedricewafer === checkboxes[4]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[5] === 1) {
+        if (candies2.pluribus === checkboxes[5]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[6] === 1) {
+        if (candies2.hasegg !== checkboxes[6]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[7] === 1) {
+        if (candies2.hasmilk !== checkboxes[7]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[8] === 1) {
+        if (candies2.hassoy !== checkboxes[8]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[9] === 1) {
+        if( candies2.fruity === checkboxes[9]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[10] === 1) {
+        if (candies2.hard === checkboxes[10]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    if (checkboxes[11] === 1) {
+        if (candies2.bar === checkboxes[11]) {
+          bools.push(true);
+          console.log('pushing true');
+        }
+        else {bools.push(false);}
+    }
+    console.log("bools" , bools);
+    let checker = (arr) => {arr.every(Boolean)};
+    return checker(bools);
+  }
+  // filter candies against sugar percent range
+  function sugarFilter(candies) {
+    if (sugarMinElem > 0 && sugarMaxElem> 0) return (candies.sugarpercent) * 100 > sugarMinElem && (candies.sugarpercent) * 100 < sugarMaxElem;
+    else if (sugarMinElem > 0) return (candies.sugarpercent) * 100 > sugarMinElem;
+    else if (sugarMaxElem > 0) return (candies.sugarpercent) * 100 < sugarMaxElem;
+    else return true;
+  }
+
+  //combine characteristics and sugar range filters
+  function makeCombinedFilter(func1, func2) {
+    return function combinedFilter(filters) {
+      let filtered1 = func1(filters);
+      console.log("Filtered1", filtered1);
+
+      let filtered2 = func2(filters);
+      console.log("Filtered2", filtered1);
+
+      return filtered1 && filtered2;
+    };
+  }
+  let candyCombinedFilter = makeCombinedFilter(filterCandies, sugarFilter);
+  
+  // input validation for sugar range
+  function validateSugar() {
+    if (sugarMinElem < 0 || sugarMaxElem < 0 || sugarMinElem > 100 || sugarMaxElem > 100 ) {
+        setSugarmax("Number must be between 0 and 100.");
+        setSugarmin("Number must be between 0 and 100.");
+        console.log("TEST FAILED");
+        return false;
+    } 
+    else {
+        console.log("passed ValidateSugar");
+        return true;
+    }
+  }
+
+  function handleSugarMin(input) {
+    setSugarmin(input);
+  }
+  function handleSugarMax(input) {
+    setSugarmax(input);
+  }
+  function handleFormSubmit() {
+    console.log("Inside handleFormSubmit");
+    // should have validateSugar, currentData
+    if(!validateSugar()) {
+      return;
+    }
+    else {
+        let copy = candydata;
+        console.log("data", copy);
+        getCheckboxValues();
+        let filteredData = copy.filter(candyCombinedFilter);
+        console.log("filtered data" , filteredData);
+        setCandydata(filteredData);
+    }
+  }
 // Roshni to be moving a bunch of functions between the //s
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -81,10 +251,10 @@ function App (props) {
     })
   });
 
-  const handleSignOut = () => {
-    //setErrorMessage(null);
-    firebase.auth().signOut();
-  }
+  // const handleSignOut = () => {
+  //   //setErrorMessage(null);
+  //   firebase.auth().signOut();
+  // }
 
   if (!user) {
     return (
@@ -109,12 +279,12 @@ function App (props) {
                     <div className="container">
                       <section className="form-column">
                         <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <MakeForm data={candydata}/>
+                        <MakeForm handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
                           <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <MakeModal/>
+                          <MakeModal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
@@ -135,12 +305,12 @@ function App (props) {
                     <div className="container">
                       <section className="form-column">
                         <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <MakeForm/>
+                        <MakeForm handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
                           <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <MakeModal/>
+                          <MakeModal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
