@@ -6,7 +6,8 @@ import "./website-style.css";
 // importing the right components
 import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
-import {MakeForm, MakeModal} from './mainFilterForm.js';
+import {MakeForm} from './mainFilterForm.js';
+import {MakeModal} from './modalFilterForm.js';
 import {About} from "./about.js";
 
 
