@@ -192,13 +192,15 @@ function MakeNavBar(props){
                 <li>
                     <Link to="/fav">Favorites</Link>
                 </li>
+                <li>
+                  
+                </li>
             </ul>
             <div id="search-div" className="search" role="search">
                 <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
+                <button className="navLink" type="button" onClick={handleSignOut}>Log Out</button>
             </div>
-            <nobr><div>
-              <button type="button" onClick={handleSignOut}>Log Out</button>
-            </div></nobr>
+            
         </nav>);
 }
 function MakeButtonsLarge(props){

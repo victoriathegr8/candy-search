@@ -18,6 +18,7 @@ nav {
     background-color: #4b2e83;
     padding: 0.75rem 0.75rem 0;
     z-index: 300;
+    display: inline;
 }
 nav img {
     width: 40px;
@@ -29,6 +30,18 @@ nav a {
     font-size: 1.5rem;
     color: white;
     text-decoration: none;
+}
+.navLink {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    padding-left: 1rem;;
+}
+.navLink:hover {
+    color: #CAC4CE;
+    text-decoration: underline;
 }
 li {
     display: inline;
@@ -55,6 +68,7 @@ nav ul {
 .search input {
     height: 2.5rem;
     font-size: 1.5rem;
+    margin-right: 1rem;
 }
 
 /*-- form --*/
