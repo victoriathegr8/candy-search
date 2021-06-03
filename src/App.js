@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Switch, Link} from 'react-router-dom';
 import "./website-style.css";
-
+import firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 // importing the right components
 import {MakeCards} from './cards.js';
@@ -10,6 +11,17 @@ import {MakeForm} from './mainFilterForm.js';
 import {MakeModal} from './modalFilterForm.js';
 import {About} from "./about.js";
 
+const uiConfig = {
+  signInOptions: [
+    {provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    requireDisplayName: true}
+  ],
+  credentialHelper: 'none', 
+  signInFlow: 'popup',
+  callbacks: {
+    signInSuccessWithAuthResult: () => false,
+  }
+};
 
 function App (props) {
 
@@ -52,7 +64,38 @@ function App (props) {
   }
 // Roshni to be moving a bunch of functions between the //s
 //////////////////////////////////////////////////////////////////////////////////////////////////
-  return (<div>
+
+  const [user, setUser] = useState(undefined);
+  console.log(user);
+  let content = null;
+
+  //auth state event listener
+  useEffect( () => {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser)
+      } else {
+        setUser(null)
+      }
+        
+    })
+  });
+
+  const handleSignOut = () => {
+    //setErrorMessage(null);
+    firebase.auth().signOut();
+  }
+
+  if (!user) {
+    return (
+      <div className="container">
+        
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      </div>
+    );
+    } else {
+        return (
+          <div>
             <div>
               <MakeHeader/>
             </div>
@@ -113,7 +156,7 @@ function App (props) {
               <MakeFooter/>
             </footer>
           </div>);
-}
+}}
 
 function MakeHeader() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
@@ -132,6 +175,9 @@ function MakeHeader() {
 }
 
 function MakeNavBar(props){
+  const handleSignOut = () => {
+    firebase.auth().signOut();
+  }
   return (<nav>
             <ul>
                 <li>
@@ -150,6 +196,9 @@ function MakeNavBar(props){
             <div id="search-div" className="search" role="search">
                 <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
             </div>
+            <nobr><div>
+              <button type="button" onClick={handleSignOut}>Log Out</button>
+            </div></nobr>
         </nav>);
 }
 function MakeButtonsLarge(props){

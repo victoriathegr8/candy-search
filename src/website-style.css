@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
 }
+.nowrap {
+    white-space: nowrap;
+}
 /*-- author pictures --*/
 img {
     width: 200px;
