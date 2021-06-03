@@ -7,6 +7,7 @@ import "./website-style.css";
 import {MakeCards} from './cards.js';
 import {MakeIndv} from './indv.js';
 import {MakeForm, MakeModal} from './mainFilterForm.js';
+import {About} from "./about.js";
 import CANDY_DATA from './data/candy-data.json';
 
 function App (props) {
