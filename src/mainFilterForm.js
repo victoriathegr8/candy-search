@@ -22,6 +22,7 @@ import setCandydata from './App.js';
 // }
 
 export function MakeForm(props) {
+let [candydata, setCandydata] = useState(props.data);
 const [checkboxes, setCheckboxes] = useState([]);
 const [sugarMinElem, setSugarmin] = useState(null);
 const [sugarMaxElem, setSugarmax] = useState(null);
@@ -156,6 +157,7 @@ function submitForm() {
         setCheckboxes(getCheckboxValues);
         // get the filtered data
         let filteredData = copy.filter(candyCombinedFilter);
+        setCandydata(filteredData);
         console.log(filteredData);
          // changing state and re-rendering the data
         //console.log(sortCandy(filteredData));

@@ -1,14 +1,7 @@
 import React from 'react';
 
-function about (props) {
-  console.log(props.data)
+export function About() {
   return (<div>
-            <div>
-              <MakeHeader/>
-            </div>
-            <div>
-              <MakeNavBar/>
-            </div>
             <div className="problem">
               <MakeStatement/>
             </div>
@@ -21,45 +14,11 @@ function about (props) {
                     <MakeAuthors/>
                 </div>
             </div>
-            <footer>
-              <MakeFooter/>
-            </footer>
 </div>);
 }
-function MakeHeader() {
-  return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
-            <div className="a">
-                <div className="header-row">
-                    <div className="header-image">
-                        <img className="logo" src="../public/img/icon.png" alt="candy website logo"/>
-                    </div>
-                    <div className="header-text">
-                        <h1>Candy Search</h1>
-                        <p>Search for your new favorite candy using the candy filter!</p>
-                    </div>
-                </div>
-            </div>
-          </header>);
-}
 
-function MakeNavBar(){
-  return (<nav>
-            <ul>
-                <li>
-                    <a href="index.html"><img src="../public/img/icon.png" alt="candy website logo"/></a>
-                </li>
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-            </ul>
-            <div id="search-div" className="search" role="search">
-                <input id="search-bar" type="text" placeholder="Search for your Candy..."></input>
-            </div>
-        </nav>);
-}
+
+
 
 function MakeStatement() {
     return(
@@ -118,17 +77,3 @@ function MakeAuthors() {
         </div>
     );
 }
-
-function MakeFooter() {
-  return (
-    <div className="footer">
-      <p>©2021 The WhipperSnappers. All rights reserved.</p>
-      <p>Created by Sachi Figliolini, Victoria Nguyen, and Roshni Srikanth</p>
-      <p>Images taken from
-        <a href="https://www.candywarehouse.com/">Candy Warehouse</a>
-      </p>
-    </div>
-  );
-}
-
-export default about;
