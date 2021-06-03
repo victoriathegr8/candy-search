@@ -135,6 +135,9 @@ function MakeNavBar(props){
                 <li>
                     <Link to="/about">About</Link>
                 </li>
+                <li>
+                    <Link to="/fav">Favorites</Link>
+                </li>
             </ul>
             <div id="search-div" className="search" role="search">
                 <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
