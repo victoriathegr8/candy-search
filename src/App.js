@@ -81,11 +81,6 @@ function App (props) {
     })
   });
 
-  const handleSignOut = () => {
-    //setErrorMessage(null);
-    firebase.auth().signOut();
-  }
-
   if (!user) {
     return (
       <div className="container">
@@ -118,7 +113,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
+                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
                         </div> 
                       </section>
                     </div>
@@ -149,6 +144,12 @@ function App (props) {
                       </section>
                     </div>
                   </Route>
+                  <Route exact path="/signin">
+                    <MakeSignIn currentUser={user}/>
+                  </Route>
+                  <Route exact path="/fav">
+                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
+                  </Route>
                 </Switch>
               </main>
             </div>
@@ -156,7 +157,7 @@ function App (props) {
               <MakeFooter/>
             </footer>
           </div>);
-}}
+}} // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
 
 function MakeHeader() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
@@ -201,6 +202,49 @@ function MakeNavBar(props){
             </div></nobr>
         </nav>);
 }
+
+function MakeSignIn(props) {
+    //if (!props.currentUser) {
+    return (
+      <div className="container">
+        
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      </div>
+    );
+    // } else {
+    //   return (
+    //     <h1>You're already signed in</h1>
+    //   )
+    // }
+}
+
+function FavoritesPage(props) {
+  let candiesArray;
+  useEffect(() => {
+    const favsRef = firebase.database().ref('favs');
+    favsRef.on('value', (snapshot) => {
+      const candiesObjs = snapshot.val();
+      console.log(candiesObjs);
+      let objectKeyArray = Object.keys(candiesObjs);
+      candiesArray = objectKeyArray.map((key) => {
+        let singleCandyObj = candiesObjs[key];
+        singleCandyObj.key = key;
+        return singleCandyObj;
+      })
+      console.log(candiesArray);
+    })
+  })
+  return (
+    <div className="container">
+      <section className="cards-column">
+        <div id="candy-div">
+          <MakeCards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
+        </div> 
+      </section>
+    </div>
+  )
+}
+
 function MakeButtonsLarge(props){
   return(
     <div>
