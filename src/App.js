@@ -202,45 +202,33 @@ function App (props) {
   // input validation for sugar range
   function validateSugar() {
     if (sugarMinElem < 0 || sugarMaxElem < 0 || sugarMinElem > 100 || sugarMaxElem > 100 ) {
-        // setSugarmax("Number must be between 0 and 100.");
-        // setSugarmin("Number must be between 0 and 100.");
-        console.log("TEST FAILED");
-        return false;
+      document.querySelector(".error-message").style.display="block";
+      return false;
     } 
     else {
-        return true;
+      document.querySelector(".error-message").style.display="none";
+      return true;
     }
   }
 
   function handleSugarMin(input) {
-    console.log("setting sugar min");
     setSugarmin(input);
-    console.log("sugar min", sugarMinElem);
   }
   function handleSugarMax(input) {
-    console.log("setting sugar max");
     setSugarmax(input);
-    console.log("sugar max", sugarMaxElem);
   }
 
 
   function handleFormSubmit() {
-    
     let copy = candydata;
-    let filteredData = copy
     if(!validateSugar()) {
       return;
     }
     else {
-        //copy
-        //candyCombinedFilter
-        filteredData = copy.filter(candyCombinedFilter);
-        console.log("filtered data" , filteredData);
-        
+        let filteredData = copy.filter(candyCombinedFilter);
+        setCandydata(filteredData);
     }
-    setCandydata(filteredData);
   }
-// Roshni to be moving a bunch of functions between the //s
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
   const [user, setUser] = useState(undefined);
@@ -410,7 +398,7 @@ function ButtonsSmall(props) {
         <i className="fa fa-th-large"></i>
         Grid
       </button>
-      <button id="smallfilterbutton" aria-label="Filter and Sort">
+      <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {}}>
         <i className="fa fa-filter"></i>
         Filter and Sort
       </button>
