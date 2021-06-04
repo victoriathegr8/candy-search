@@ -34,7 +34,6 @@ function App (props) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
   let handleClick = function handleGridFlip(booleanValue) {
-    console.log("calling handleClick, setting gridView to ", booleanValue);
     setGridView(booleanValue);
   }
   
@@ -52,7 +51,6 @@ function App (props) {
       if(inputStr === undefined) {
         inputStr = "";
       }
-      console.log("inside handleSearch");
       let candyArray = candydata.filter(function(candyObj) {
       let candyObjStr =  (candyObj.competitorname.toLowerCase());
       let stateSearchStr = (inputStr.toLowerCase());
@@ -67,170 +65,180 @@ function App (props) {
   }
 
   //get checkboxes as array
+  function getCheckboxValues() {
+    let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
+    let checkboxValues = [];
+    allCheckboxes.forEach((checkbox) => {
+          if (checkbox.checked) checkboxValues.push(1);
+          else checkboxValues.push(0)
+    });
+    setCheckboxes(checkboxValues);
+    return checkboxValues;
+}
  
- function getCheckboxValues() {
-      let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
-      let checkboxValues = [];
-      allCheckboxes.forEach((checkbox) => {
-            if (checkbox.checked) checkboxValues.push(1);
-            else checkboxValues.push(0)
-      });
-      console.log("checkboxValues 1", checkboxValues);
-      setCheckboxes(checkboxValues);
-      return checkboxValues;
-  }
   
   // filter candies against checkboxes array
   function filterCandies(candies2) {
-    
+    console.log(checkboxes); // this value is not being updated
+    let checkboxV = getCheckboxValues();
     let bools = [];
-    console.log("Filtering Candy: ", candies2);
-    console.log("Checkboxes[0]", checkboxes[0]);
-    if (checkboxes[0] === 1) {
-        if (candies2.chocolate === checkboxes[0]) {
+    if (checkboxV[0] === 1) {
+        if (candies2.chocolate === checkboxV[0]) {
           console.log('pushing true');
           bools.push(true);
         }
         else {bools.push(false);}
     }
-    if (checkboxes[1] === 1) {
-        if (candies2.caramel === checkboxes[1]) {
+    if (checkboxV[1] === 1) {
+        if (candies2.caramel === checkboxV[1]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[2] === 1) {
-        if (candies2.peanutyalmondy === checkboxes[2]) {
+    if (checkboxV[2] === 1) {
+        if (candies2.peanutyalmondy === checkboxV[2]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[3] === 1) {
-        if (candies2.nougat === checkboxes[3]) {
+    if (checkboxV[3] === 1) {
+        if (candies2.nougat === checkboxV[3]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[4] === 1) {
-        if (candies2.crispedricewafer === checkboxes[4]) {
+    if (checkboxV[4] === 1) {
+        if (candies2.crispedricewafer === checkboxV[4]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[5] === 1) {
-        if (candies2.pluribus === checkboxes[5]) {
+    if (checkboxV[5] === 1) {
+        if (candies2.pluribus === checkboxV[5]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[6] === 1) {
-        if (candies2.hasegg !== checkboxes[6]) {
+    if (checkboxV[6] === 1) {
+        if (candies2.hasegg !== checkboxV[6]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[7] === 1) {
-        if (candies2.hasmilk !== checkboxes[7]) {
+    if (checkboxV[7] === 1) {
+        if (candies2.hasmilk !== checkboxV[7]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[8] === 1) {
-        if (candies2.hassoy !== checkboxes[8]) {
+    if (checkboxV[8] === 1) {
+        if (candies2.hassoy !== checkboxV[8]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[9] === 1) {
-        if( candies2.fruity === checkboxes[9]) {
+    if (checkboxV[9] === 1) {
+        if( candies2.fruity === checkboxV[9]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[10] === 1) {
-        if (candies2.hard === checkboxes[10]) {
+    if (checkboxV[10] === 1) {
+        if (candies2.hard === checkboxV[10]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    if (checkboxes[11] === 1) {
-        if (candies2.bar === checkboxes[11]) {
+    if (checkboxV[11] === 1) {
+        if (candies2.bar === checkboxV[11]) {
           bools.push(true);
           console.log('pushing true');
         }
         else {bools.push(false);}
     }
-    console.log("bools" , bools);
-    let checker = (arr) => {arr.every(Boolean)};
-    return checker(bools);
+    let isTrue = function(elem) {return (elem === true)};
+    return bools.every(isTrue); // returns true if every element in the bool array is true and false otherwise
   }
   // filter candies against sugar percent range
   function sugarFilter(candies) {
-    if (sugarMinElem > 0 && sugarMaxElem> 0) return (candies.sugarpercent) * 100 > sugarMinElem && (candies.sugarpercent) * 100 < sugarMaxElem;
-    else if (sugarMinElem > 0) return (candies.sugarpercent) * 100 > sugarMinElem;
-    else if (sugarMaxElem > 0) return (candies.sugarpercent) * 100 < sugarMaxElem;
-    else return true;
+    console.log("inside sugar filter");
+    console.log("sugarMinElem", sugarMinElem);
+    console.log("sugarMaxElem", sugarMaxElem);
+    console.log("candy sugar percent", candies.sugarpercent);
+    if (sugarMinElem > 0 && sugarMaxElem> 0) {
+      return (candies.sugarpercent) * 100 > sugarMinElem && (candies.sugarpercent) * 100 < sugarMaxElem;
+    }
+    else if (sugarMinElem > 0) {
+      return (candies.sugarpercent) * 100 > sugarMinElem;
+    }
+    else if (sugarMaxElem > 0) {
+      return (candies.sugarpercent) * 100 < sugarMaxElem;
+    }
+    else {
+      return true;
+    }
   }
 
   //combine characteristics and sugar range filters
-  function makeCombinedFilter(func1, func2) {
-    return function combinedFilter(filters) {
-      let filtered1 = func1(filters);
-      console.log("Filtered1", filtered1);
-
-      let filtered2 = func2(filters);
-      console.log("Filtered2", filtered1);
-
+  function makeCombinedFilter() {
+    return function combinedFilter(candyObj) {
+      let filtered1 = filterCandies(candyObj);
+      let filtered2 = sugarFilter(candyObj);
       return filtered1 && filtered2;
     };
   }
-  let candyCombinedFilter = makeCombinedFilter(filterCandies, sugarFilter);
+  let candyCombinedFilter = makeCombinedFilter();
   
   // input validation for sugar range
   function validateSugar() {
     if (sugarMinElem < 0 || sugarMaxElem < 0 || sugarMinElem > 100 || sugarMaxElem > 100 ) {
-        setSugarmax("Number must be between 0 and 100.");
-        setSugarmin("Number must be between 0 and 100.");
+        // setSugarmax("Number must be between 0 and 100.");
+        // setSugarmin("Number must be between 0 and 100.");
         console.log("TEST FAILED");
         return false;
     } 
     else {
-        console.log("passed ValidateSugar");
         return true;
     }
   }
 
   function handleSugarMin(input) {
+    console.log("setting sugar min");
     setSugarmin(input);
+    console.log("sugar min", sugarMinElem);
   }
   function handleSugarMax(input) {
+    console.log("setting sugar max");
     setSugarmax(input);
+    console.log("sugar max", sugarMaxElem);
   }
+
+
   function handleFormSubmit() {
-    console.log("Inside handleFormSubmit");
-    // should have validateSugar, currentData
+    
+    let copy = candydata;
+    let filteredData = copy
     if(!validateSugar()) {
       return;
     }
     else {
-        let copy = candydata;
-        console.log("data", copy);
-        let cbv = getCheckboxValues();
-        setCheckboxes(cbv);
-        let filteredData = copy.filter(candyCombinedFilter);
+        //copy
+        //candyCombinedFilter
+        filteredData = copy.filter(candyCombinedFilter);
         console.log("filtered data" , filteredData);
-        setCandydata(filteredData);
+        
     }
+    setCandydata(filteredData);
   }
 // Roshni to be moving a bunch of functions between the //s
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -326,7 +334,8 @@ function App (props) {
               <Footer/>
             </footer>
           </div>);
-}}
+  }
+}
 
 function Header() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
