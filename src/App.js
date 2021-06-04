@@ -406,7 +406,7 @@ function FavoritesPage(props) {
     <div className="container">
       <section className="cards-column">
         <div id="candy-div">
-          <MakeCards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
+          <Cards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
         </div> 
       </section>
     </div>
