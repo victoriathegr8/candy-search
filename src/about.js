@@ -49,7 +49,7 @@ function MakeDescription() {
 }
 function MakeAuthors() {
     return(
-        <div>
+        <div className="authors-about">
             <div className="author-col">
                 <img src="./img/sachi.JPG" alt="Sachi Figliolini"></img>
                 <h3>Sachi Figliolini</h3>

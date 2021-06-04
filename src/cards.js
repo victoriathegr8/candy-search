@@ -4,29 +4,29 @@ import React, {useState} from 'react';
 import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
-export function MakeCards(props) {
+export function Cards(props) {
     // the props for this should be the state values, specifically the card object array, and the gridView
    
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
-        <div className="cardpoolGrid">
-          <MakeCardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
+        <div className="cardpoolGrid" key={currentCard.competitorname}>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
         </div>);
       });
     }
     else {
       return props.currentData.map((currentCard) => {
         return(
-          <div className="cardpoolList">
-            <MakeCardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} currentUser={props.currentUser}/>
+          <div className="cardpoolList" key={currentCard.competitorname}>
+            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} currentUser={props.currentUser}/>
           </div>);
       });
     }
   }
 
 
-function MakeCardGridView(props) {
+function CardGridView(props) {
     
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
@@ -62,7 +62,7 @@ function MakeCardGridView(props) {
 
   
   
-function MakeCardListView(props) {
+function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
   
