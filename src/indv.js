@@ -8,7 +8,7 @@ function getIndvCandyImgName(candy) {
     return "img/"+candy.candynum+"_"+location+".jpg";
 }
 
-export function MakeIndv(props) {
+export function Indv(props) {
     // the props for this should be the individual candy object
     let urlParams = useParams();
     let candyName = urlParams.candyname; 
@@ -20,8 +20,8 @@ export function MakeIndv(props) {
     if(!candy) return <h2>Candy not specified</h2> 
     console.log("CANDY INDV PAGE: " , candy);
   
-    return (<div key={candy.competitorname}>
-      <div className="card">
+    return (<div className="indv-info" key={candy.competitorname}>
+      <div className="card indv-col">
         <div className="card-title">
           About:
         </div>
@@ -41,8 +41,7 @@ export function MakeIndv(props) {
           <p>Sugar Percent: <span className="data-ans">{(candy.sugarpercent * 100) + '%'}</span> </p>
         </div>
       </div>
-      <p/>
-      <section>
+      <div className="indv-col">
         <div className="card">
           <div className="card-title">
             Nutrition Information:
@@ -51,7 +50,7 @@ export function MakeIndv(props) {
             <img src={"../" + getIndvCandyImgName(candy)} alt={"Nutrition Information about" + candy.competitorname}/>
           </div>
         </div>
-      </section>
+      </div>
     </div>);
   }
   

@@ -5,10 +5,10 @@ import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 // importing the right components
-import {MakeCards} from './cards.js';
-import {MakeIndv} from './indv.js';
-import {MakeForm} from './mainFilterForm.js';
-import {MakeModal} from './modalFilterForm.js';
+import {Cards} from './cards.js';
+import {Indv} from './indv.js';
+import {Form} from './mainFilterForm.js';
+import {Modal} from './modalFilterForm.js';
 import {About} from "./about.js";
 
 const uiConfig = {
@@ -25,10 +25,10 @@ const uiConfig = {
 
 function App (props) {
 
-  
+  let temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   const [gridView, setGridView] = useState(false);
   const [candydata, setCandydata] = useState(props.data);
-  
+  const [checkboxes, setCheckboxes] = useState(temp);
   const [sugarMinElem, setSugarmin] = useState(null);
   const [sugarMaxElem, setSugarmax] = useState(null);
 
@@ -67,7 +67,7 @@ function App (props) {
   }
 
   //get checkboxes as array
- const [checkboxes, setCheckboxes] = useState([]);
+ 
  function getCheckboxValues() {
       let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
       let checkboxValues = [];
@@ -77,13 +77,12 @@ function App (props) {
       });
       console.log("checkboxValues 1", checkboxValues);
       setCheckboxes(checkboxValues);
-      console.log(checkboxes);
       return checkboxValues;
   }
   
   // filter candies against checkboxes array
   function filterCandies(candies2) {
-    console.log("checkboxes", checkboxes);
+    
     let bools = [];
     console.log("Filtering Candy: ", candies2);
     console.log("Checkboxes[0]", checkboxes[0]);
@@ -226,7 +225,8 @@ function App (props) {
     else {
         let copy = candydata;
         console.log("data", copy);
-        getCheckboxValues();
+        let cbv = getCheckboxValues();
+        setCheckboxes(cbv);
         let filteredData = copy.filter(candyCombinedFilter);
         console.log("filtered data" , filteredData);
         setCandydata(filteredData);
@@ -267,10 +267,10 @@ function App (props) {
         return (
           <div>
             <div>
-              <MakeHeader/>
+              <Header/>
             </div>
             <div>
-              <MakeNavBar searchCallBack={handleSearch}/>
+              <NavBar searchCallBack={handleSearch}/>
             </div>
             <div className="outer-box">
               <main>
@@ -278,24 +278,24 @@ function App (props) {
                   <Route exact path="/">
                     <div className="container">
                       <section className="form-column">
-                        <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <MakeForm handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
+                        <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
+                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <MakeModal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
+                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
+                          <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
+                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
                         </div> 
                       </section>
                     </div>
                   </Route>
                   <Route exact path="/indv/:candyname">
                     <div className="indv-container">
-                      <MakeIndv props={props}/>
+                      <Indv props={props}/>
                     </div>
                   </Route>
                   <Route path="/about" >
@@ -304,17 +304,17 @@ function App (props) {
                   <Route path="/">
                     <div className="container">
                       <section className="form-column">
-                        <MakeButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <MakeForm handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
+                        <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
+                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <MakeButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <MakeModal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
+                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
+                          <Modal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
-                          <MakeCards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
+                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
                         </div> 
                       </section>
                     </div>
@@ -323,12 +323,12 @@ function App (props) {
               </main>
             </div>
             <footer>
-              <MakeFooter/>
+              <Footer/>
             </footer>
           </div>);
 }}
 
-function MakeHeader() {
+function Header() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
             <div className="a">
                 <div className="header-row">
@@ -344,7 +344,7 @@ function MakeHeader() {
           </header>);
 }
 
-function MakeNavBar(props){
+function NavBar(props){
   const handleSignOut = () => {
     firebase.auth().signOut();
   }
@@ -373,7 +373,7 @@ function MakeNavBar(props){
             
         </nav>);
 }
-function MakeButtonsLarge(props){
+function ButtonsLarge(props){
   return(
     <div>
       <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Large List");}}>
@@ -390,7 +390,7 @@ function MakeButtonsLarge(props){
 }
 
 
-function MakeButtonsSmall(props) {
+function ButtonsSmall(props) {
     return(
     <div>
       <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Small List");}}>
@@ -409,7 +409,7 @@ function MakeButtonsSmall(props) {
   );
 }
 
-function MakeFooter() {
+function Footer() {
 
   return (
     <div className="footer">

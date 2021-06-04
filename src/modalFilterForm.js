@@ -1,6 +1,6 @@
 
 import {RenderForm} from "./mainFilterForm.js";
-export function MakeModal(props) {
+export function Modal(props) {
   //should have:
   //  currentData
   //  handleSubmit

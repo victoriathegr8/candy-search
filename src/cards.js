@@ -3,14 +3,14 @@ import ReactStars from "react-rating-stars-component";
 import React, {useState} from 'react';
 import { Redirect, Link} from 'react-router-dom';
 
-export function MakeCards(props) {
+export function Cards(props) {
     // the props for this should be the state values, specifically the card object array, and the gridView
    
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
-          <MakeCardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
         </div>);
       });
     }
@@ -18,14 +18,14 @@ export function MakeCards(props) {
       return props.currentData.map((currentCard) => {
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
-            <MakeCardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
+            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
           </div>);
       });
     }
   }
 
 
-function MakeCardGridView(props) {
+function CardGridView(props) {
     
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
@@ -61,7 +61,7 @@ function MakeCardGridView(props) {
 
   
   
-function MakeCardListView(props) {
+function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
   

@@ -1,5 +1,5 @@
 
-export function MakeForm(props) {
+export function Form(props) {
   //should have:
   //  currentData
   //  handleSubmit

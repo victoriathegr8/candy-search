@@ -256,10 +256,11 @@ body {
     text-align: center;
 }
 /*-- author row --*/
-.row {
+.authors-about {
     display: flex;
     justify-content: space-between;
 }
+
 /*-- author info box  --*/
 .author-col {
     flex-basis: 31%;
@@ -308,7 +309,17 @@ h3 {
     height: fit-content;
     
 }
-
+.indv-info {
+    display: flex;
+    justify-content: space-around;
+}
+.indv-col{
+    flex-basis: 1;
+    background: #8b71be;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
 .indv-container {
     display: flex;
     align-content: center;
