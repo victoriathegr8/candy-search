@@ -10,6 +10,8 @@ import {Indv} from './indv.js';
 import {Form} from './mainFilterForm.js';
 import {Modal} from './modalFilterForm.js';
 import {About} from "./about.js";
+import {checkCheckboxesForm, checkCheckboxesModal} from './form_modal_filters.js';
+
 
 const uiConfig = {
   signInOptions: [
@@ -79,102 +81,14 @@ function App (props) {
   
   // filter candies against checkboxes array
   function filterCandies(candies2) {
-    console.log(checkboxes); // this value is not being updated
+    // console.log(checkboxes); // this value is not being updated
     let checkboxV = getCheckboxValues();
-    let bools = [];
-    if (checkboxV[0] === 1) {
-        if (candies2.chocolate === checkboxV[0]) {
-          console.log('pushing true');
-          bools.push(true);
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[1] === 1) {
-        if (candies2.caramel === checkboxV[1]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[2] === 1) {
-        if (candies2.peanutyalmondy === checkboxV[2]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[3] === 1) {
-        if (candies2.nougat === checkboxV[3]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[4] === 1) {
-        if (candies2.crispedricewafer === checkboxV[4]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[5] === 1) {
-        if (candies2.pluribus === checkboxV[5]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[6] === 1) {
-        if (candies2.hasegg !== checkboxV[6]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[7] === 1) {
-        if (candies2.hasmilk !== checkboxV[7]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[8] === 1) {
-        if (candies2.hassoy !== checkboxV[8]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[9] === 1) {
-        if( candies2.fruity === checkboxV[9]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[10] === 1) {
-        if (candies2.hard === checkboxV[10]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    if (checkboxV[11] === 1) {
-        if (candies2.bar === checkboxV[11]) {
-          bools.push(true);
-          console.log('pushing true');
-        }
-        else {bools.push(false);}
-    }
-    let isTrue = function(elem) {return (elem === true)};
-    return bools.every(isTrue); // returns true if every element in the bool array is true and false otherwise
+    return (checkCheckboxesForm(checkboxV, candies2) && checkCheckboxesModal(checkboxV, candies2));
+     // returns true if every element in the bool array is true and false otherwise
   }
   // filter candies against sugar percent range
   function sugarFilter(candies) {
     console.log("inside sugar filter");
-    console.log("sugarMinElem", sugarMinElem);
-    console.log("sugarMaxElem", sugarMaxElem);
-    console.log("candy sugar percent", candies.sugarpercent);
     if (sugarMinElem > 0 && sugarMaxElem> 0) {
       return (candies.sugarpercent) * 100 > sugarMinElem && (candies.sugarpercent) * 100 < sugarMaxElem;
     }
@@ -216,6 +130,22 @@ function App (props) {
   }
   function handleSugarMax(input) {
     setSugarmax(input);
+  }
+
+  function handleModalPopup() {
+    let modal = document.querySelector(".modal");
+    modal.style.display="block";
+
+    let cards = document.querySelector("#candy-div");
+    cards.style.display="none";
+  }
+
+  function handleModalClose() {
+    let modal = document.querySelector(".modal");
+    modal.style.display="none";
+
+    let cards = document.querySelector("#candy-div");
+    cards.style.display="block";
   }
 
 
@@ -270,12 +200,12 @@ function App (props) {
                     <div className="container">
                       <section className="form-column">
                         <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
+                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
+                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
+                          <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
@@ -296,12 +226,12 @@ function App (props) {
                     <div className="container">
                       <section className="form-column">
                         <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} currentData={candydata}/>
+                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit}/>
                       </section>
                       <section className="cards-column">
                         <div className="small-view">
-                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike}/>
-                          <Modal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} currentData={candydata}/>
+                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
+                          <Modal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
@@ -431,6 +361,7 @@ function ButtonsLarge(props){
 
 
 function ButtonsSmall(props) {
+
     return(
     <div>
       <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Small List");}}>
@@ -441,7 +372,7 @@ function ButtonsSmall(props) {
         <i className="fa fa-th-large"></i>
         Grid
       </button>
-      <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {}}>
+      <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {props.filterButtonCallBack(); console.log("opening filter button");}}>
         <i className="fa fa-filter"></i>
         Filter and Sort
       </button>
