@@ -284,7 +284,7 @@ function App (props) {
                       </section>
                     </div>
                   </Route>
-                  <Route exact path="/indv/:candyname">
+                  <Route path="/indv/:candyname">
                     <div className="indv-container">
                       <Indv props={props}/>
                     </div>
