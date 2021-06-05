@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Route, Switch, Link} from 'react-router-dom';
+import { Route, Switch, Link, NavLink, Redirect} from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
@@ -278,7 +278,7 @@ function NavBar(props){
             </ul>
             <div id="search-div" className="search" role="search">
                 <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
-                <button className="navLink" type="button" onClick={handleSignOut}>Log Out</button>
+                <NavLink to="/signin" className="navLink" type="button" onClick={handleSignOut}>Log Out</NavLink>
             </div>
             
         </nav>);
@@ -288,7 +288,6 @@ function MakeSignIn(props) {
     //if (!props.currentUser) {
     return (
       <div className="container">
-        
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );
