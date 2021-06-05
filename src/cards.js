@@ -33,6 +33,7 @@ function CardGridView(props) {
     
   
     const handleClickIndv = () => {
+      console.log("handleClickIndv", props.card.competitorname);
       setRedirect("/indv/" + props.card.competitorname);
     }
     const ratingChanged = (newRating) => {
@@ -53,7 +54,7 @@ function CardGridView(props) {
             <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
             {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active); handleClickHeart()}}/>
-            <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info:</Link>
+            <Link to={redirectTo} className="btn btn-primary" onClick={() => {handleClickIndv()}}>More Info:</Link>
         </div>
       </div>
     );
@@ -67,6 +68,7 @@ function CardListView(props) {
     const[redirectTo, setRedirect] = useState(undefined);
   
     const handleClickIndv = () => {
+      console.log("handleClickIndv", props.card.competitorname);
       setRedirect("/indv/" + props.card.competitorname);
     }
     const ratingChanged = (newRating) => {
@@ -123,7 +125,7 @@ function CardListView(props) {
             <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
             {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {handleClickHeart()}}/>
-            <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info:</Link>
+            <Link to={redirectTo} className="btn btn-primary" onClick={() => {handleClickIndv()}}>More Info:</Link>
         </div>
       </div>
     );
