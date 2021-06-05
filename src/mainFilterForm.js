@@ -79,6 +79,9 @@ export function RenderForm (props) {
     {/* {onClick={props.handleSubmit()}} */}
     <button id="applybutton" type="button" onClick={() => props.handleSubmit()} >Apply</button>
     <input type="reset" defaultValue="Reset" />
+    <div className="error-message">
+      <p className="text-danger">Values in sugar percent ranges must be between 0 and 100.</p>
+    </div>
   </form>);
 }
 
