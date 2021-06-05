@@ -197,7 +197,21 @@ function App (props) {
             <div className="outer-box">
               <main>
                 <Switch>
-                  <Route exact path="/">
+                  <Route exact path="/indv/:candyname">
+                    <div className="indv-container">
+                      <Indv props={props}/>
+                    </div>
+                  </Route>
+                  <Route path="/about" >
+                    <About/>
+                  </Route>
+                  <Route exact path="/signin">
+                    <MakeSignIn currentUser={user}/>
+                  </Route>
+                  <Route exact path="/fav">
+                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
+                  </Route>
+                  <Route path="/">
                     <div className="container">
                       <section className="form-column">
                         <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
@@ -214,38 +228,6 @@ function App (props) {
                         </div> 
                       </section>
                     </div>
-                  </Route>
-                  <Route exact path="/indv/:candyname">
-                    <div className="indv-container">
-                      <Indv props={props}/>
-                    </div>
-                  </Route>
-                  <Route path="/about" >
-                    <About/>
-                  </Route>
-                  {/* <Route path="/">
-                    <div className="container">
-                      <section className="form-column">
-                        <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit}/>
-                      </section>
-                      <section className="cards-column">
-                        <div className="small-view">
-                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
-                          <Modal handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
-                        </div>
-                        <br/><br/><br/>
-                        <div id="candy-div">
-                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike}/>
-                        </div> 
-                      </section>
-                    </div>
-                  </Route> */}
-                  <Route exact path="/signin">
-                    <MakeSignIn currentUser={user}/>
-                  </Route>
-                  <Route exact path="/fav">
-                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
                   </Route>
                 </Switch>
               </main>
@@ -330,7 +312,7 @@ function FavoritesPage(props) {
         singleCandyObj.key = key;
         return singleCandyObj;
       })
-      console.log(candiesArray);
+      console.log("candiesArray", candiesArray);
     })
   })
   return (
