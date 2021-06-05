@@ -33,6 +33,7 @@ function CardGridView(props) {
     
   
     const handleClickIndv = () => {
+      console.log("handleClickIndv", props.card.competitorname);
       setRedirect("/indv/" + props.card.competitorname);
     }
     const ratingChanged = (newRating) => {
@@ -67,6 +68,7 @@ function CardListView(props) {
     const[redirectTo, setRedirect] = useState(undefined);
   
     const handleClickIndv = () => {
+      console.log("handleClickIndv", props.card.competitorname);
       setRedirect("/indv/" + props.card.competitorname);
     }
     const ratingChanged = (newRating) => {
