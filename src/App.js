@@ -259,14 +259,14 @@ function App (props) {
     })
   });
 
-  if (!user) {
-    return (
-      <div className="container">
+  // if (!user) {
+  //   return (
+  //     <div className="container">
         
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-      </div>
-    );
-    } else {
+  //       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+  //     </div>
+  //   );
+  //   } else {
         return (
           <div>
             <div>
@@ -304,7 +304,7 @@ function App (props) {
                   <Route path="/about" >
                     <About/>
                   </Route>
-                  <Route path="/">
+                  {/* <Route path="/">
                     <div className="container">
                       <section className="form-column">
                         <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
@@ -321,7 +321,7 @@ function App (props) {
                         </div> 
                       </section>
                     </div>
-                  </Route>
+                  </Route> */}
                   <Route exact path="/signin">
                     <MakeSignIn currentUser={user}/>
                   </Route>
@@ -335,7 +335,7 @@ function App (props) {
               <Footer/>
             </footer>
           </div>);
-}} // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
+} // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
 
 function Header() {
   return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
@@ -418,7 +418,7 @@ function FavoritesPage(props) {
     <div className="container">
       <section className="cards-column">
         <div id="candy-div">
-          <MakeCards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
+          <Cards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
         </div> 
       </section>
     </div>
