@@ -66,12 +66,12 @@ export function RenderForm (props) {
     <input className="sugarrange" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min={0} max={100} onChange={(event) => {props.handleSugarMax(event.target.value)}} /><nobr>
       %</nobr><br />
     <p id="sugarFeedback" className="invalid-feedback" /><br />
-    <label className="filtertype" htmlFor="sort">Sort By:</label><br />
+    {/* <label className="filtertype" htmlFor="sort">Sort By:</label><br />
     <select name="sort" id="sort">
       <option value="alphabet">Name A to Z</option>
       <option value="sugarasc">Sugar Percentile Low to High</option>
       <option value="sugardes">Sugar Percentile High to Low</option>
-    </select>
+    </select> */}
     <br /><br />
     {/* need an onClick for the button */}
     {/* {onClick={props.handleSubmit()}} */}

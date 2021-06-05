@@ -81,7 +81,7 @@ function App (props) {
   
   // filter candies against checkboxes array
   function filterCandies(candies2) {
-    // console.log(checkboxes); // this value is not being updated
+    console.log(checkboxes); // this value is not being updated
     let checkboxV = getCheckboxValues();
     return (checkCheckboxesForm(checkboxV, candies2) && checkCheckboxesModal(checkboxV, candies2));
      // returns true if every element in the bool array is true and false otherwise
