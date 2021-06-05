@@ -8,8 +8,6 @@ export function Form(props) {
   return (<RenderForm handleSugarMin={props.handleSugarMin} handleSugarMax={props.handleSugarMax} handleSubmit={props.handleSubmit}/>);
  
 }
-
-
 export function RenderForm (props) {
   console.log("inside RenderForm");
   console.log("props", props);
@@ -77,7 +75,7 @@ export function RenderForm (props) {
     <br /><br />
     {/* need an onClick for the button */}
     {/* {onClick={props.handleSubmit()}} */}
-    <button id="applybutton" type="button" onClick={() => props.handleSubmit()} >Apply</button>
+    <button id="applybutton" type="button" defaultValue="Reset" onClick={() => props.handleSubmit() } >Apply</button>
     <input type="reset" defaultValue="Reset" />
     <div className="error-message">
       <p className="text-danger">Values in sugar percent ranges must be between 0 and 100.</p>

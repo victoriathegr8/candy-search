@@ -14,6 +14,7 @@ export function RenderModal(props) {
     console.log("Modal handle submit");
     props.handleSubmit();
     props.handleClose();
+    
   }
   console.log("calling from modal");
   return (

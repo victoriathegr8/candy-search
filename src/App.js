@@ -150,7 +150,7 @@ function App (props) {
 
 
   function handleFormSubmit() {
-    let copy = candydata;
+    let copy = props.data;
     if(!validateSugar()) {
       return;
     }
@@ -159,6 +159,7 @@ function App (props) {
         setCandydata(filteredData);
     }
   }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
   const [user, setUser] = useState(undefined);
