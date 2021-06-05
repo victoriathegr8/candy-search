@@ -197,7 +197,7 @@ function App (props) {
             <div className="outer-box">
               <main>
                 <Switch>
-                  <Route exact path="/indv/:candyname">
+                  <Route path="/indv/:candyname">
                     <div className="indv-container">
                       <Indv props={props}/>
                     </div>

@@ -54,7 +54,7 @@ function CardGridView(props) {
             <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
             {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active); handleClickHeart()}}/>
-            <Link to={redirectTo} className="btn btn-primary" onClick={() => {handleClickIndv()}}>More Info:</Link>
+            <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>
     );
@@ -104,7 +104,7 @@ function CardListView(props) {
       }
       const favsRef = firebase.database().ref('favs');
       favsRef.push(newFavObj);
-      if (active == true) {
+      if (active === true) {
         favsRef.child('favs').remove();
       }
     }};
@@ -125,7 +125,7 @@ function CardListView(props) {
             <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
             {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {handleClickHeart()}}/>
-            <Link to={redirectTo} className="btn btn-primary" onClick={() => {handleClickIndv()}}>More Info:</Link>
+            <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>
     );
