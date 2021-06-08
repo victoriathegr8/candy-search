@@ -228,7 +228,13 @@ nav ul {
     background-color:rgb(49, 49, 253);
     border-bottom: none;
 }
-
+.signin-modal-txt {
+    text-align: center;
+}
+.signin-modal-close {
+    top: 0;
+   float: right;
+}
 /*-- problem statement --*/
 
 body {
