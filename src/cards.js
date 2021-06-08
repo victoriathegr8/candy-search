@@ -12,7 +12,7 @@ export function Cards(props) {
       return props.currentData.map((currentCard) => {
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
-          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser}/>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
         </div>);
       });
     }
@@ -20,7 +20,7 @@ export function Cards(props) {
       return props.currentData.map((currentCard) => {
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
-            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser}/>
+            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
           </div>);
       });
     }
@@ -46,11 +46,10 @@ function CardGridView(props) {
       }
       else {
         console.log(props.currentUser)
+        console.log(props.favCandyNums);
         let state = !active
         setActive(state);
-        console.log(state);
         let newCandy = props.card.candynum
-        console.log(newCandy)
         let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
         tempRef.update({[newCandy]: newCandy})
       }
@@ -85,6 +84,19 @@ function CardListView(props) {
       
       setRedirect("/indv/" + props.card.competitorname);
     }
+
+    // const heartStatus = () => {
+    //   if(!props.signedIn) return false;
+    //   else {
+    //     let favCandyStrings = props.favCandyNums;
+    //     let favCandyNums = favCandyStrings.map(Number)
+    //     if (favCandyNums.includes(props.card.candynum) == true) {
+    //       return true;
+    //     }
+    //     else return false;
+    //   }
+    // }
+
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
@@ -94,13 +106,19 @@ function CardListView(props) {
       }
       else {
         console.log(props.currentUser)
+        console.log(props.favCandyNums)
+        console.log(props.card.candynum)
         let state = !active
         setActive(state);
-        console.log(state);
         let newCandy = props.card.candynum
-        console.log(newCandy)
-        let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
-        tempRef.update({[newCandy]: newCandy})
+        if (active == false) {
+          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
+          tempRef.update({[newCandy]: newCandy})
+        }
+        else {
+          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites/' + newCandy)
+          tempRef.remove();
+        }
       }
     };
     
