@@ -184,6 +184,7 @@ function App (props) {
 
   function handleLogOut() {
     setSignedIn(false);
+    setUser(null);
     return <Redirect push to="/"/>;
 
   }
