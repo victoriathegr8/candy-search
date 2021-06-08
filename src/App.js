@@ -237,7 +237,7 @@ function App (props) {
                     <SignIn/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies}/>
+                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data}/>
                     {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} currentUser={user}/>}
                   </Route>
                   <Route path="/">

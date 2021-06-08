@@ -22,7 +22,7 @@ export function FavoritesPage(props) {
         console.log("candiesArray", candiesArray);
         for (let i = 0; i < candiesArray.length; i++) {
           let index = candiesArray[i];
-          let candy = CANDY_DATA[index];
+          let candy = props.data[index];
           favCandies.push(candy);
         }
         
