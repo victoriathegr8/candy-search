@@ -1,11 +1,12 @@
 // imports the right components
 import Heart from "react-heart";
-import ReactStars from "react-rating-stars-component";
 import React, {useState} from 'react';
 import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
+  console.log("in Cards");
+  console.log("props", props);
     // the props for this should be the state values, specifically the card object array, and the gridView
    // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
@@ -52,8 +53,6 @@ function CardGridView(props) {
         <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
         <div className="card-body">
             <p className="card-title h5">{props.card.competitorname}</p>
-            <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
-            {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
             <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active); handleClickHeart()}}/>
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
@@ -79,35 +78,23 @@ function CardListView(props) {
     // this is where the cards code goes
 
     const handleClickHeart = () => {
-      if(!props.currentUser) console.log("not logged in");
+      
+      if(!props.currentUser) {
+        console.log("you're not signed in!");
+        let modal = document.querySelector("#signin-modal");
+        modal.style.display="block";
+      }
       else {
-        setActive(!active);
-        const newFavObj = {
-        candynum: props.card.candynum,
-        competitorname: props.card.competitorname,
-        chocolate: props.card.chocolate,
-        fruity: props.card.fruity,
-        caramel: props.card.caramel,
-        peanutyalmondy: props.card.peanutyalmondy,
-        nougat: props.card.nougat,
-        crispedricewafer: props.card.crispedricewafer,
-        hard: props.card.hard,
-        bar: props.card.bar,
-        pluribus: props.card.pluribus,
-        sugarpercent: props.card.sugarpercent,
-        pricepercent: props.card.pricepercent,
-        winpercent: props.card.winpercent,
-        imglink: props.card.imglink,
-        hasegg: props.card.hasegg,
-        hasmilk: props.card.hasmilk,
-        hassoy: props.card.hassoy
+        console.log(props.currentUser)
+        let state = !active
+        setActive(state);
+        console.log(state);
+        let newCandy = props.card.candynum
+        console.log(newCandy)
+        let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
+        tempRef.update({[newCandy]: newCandy})
       }
-      const favsRef = firebase.database().ref('favs');
-      favsRef.push(newFavObj);
-      if (active === true) {
-        favsRef.child('favs').remove();
-      }
-    }};
+    };
     
     if(redirectTo !== undefined && redirectTo.indexOf("/indv/") >= 0) {
       return (<Redirect push to={redirectTo}/>);
@@ -122,9 +109,7 @@ function CardListView(props) {
             <p className="card-text">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
             <p className="card-text">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
             <p className="card-text">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
-            <div className="stars"><ReactStars count={5} onChange={ratingChanged} size={40} activeColor="#ffd700"/></div>
-            {/* <i className="far fa-heart fa-2x nobreak hearts" onClick={handleClick}></i> */}
-            <Heart className="heart nobreak" isActive={active} onClick={() => {handleClickHeart()}}/>
+            <Heart className="heart nobreak" key={"candy"+props.card.candynum} isActive={active} onClick={() => {handleClickHeart()}} currentUser={props.currentUser} value={props.card.candynum}/>
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>

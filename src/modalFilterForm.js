@@ -18,12 +18,11 @@ export function RenderModal(props) {
   }
   console.log("calling from modal");
   return (
-  <div className="small-view">
     <div id="filtermodal" className="modal">
       <div className="modal-content">
         <span className="close" onClick={() => {props.handleClose()}}>×</span>
         <RenderForm handleSugarMin={props.handleSugarMin} handleSugarMax={props.handleSugarMax} handleSubmit={modalHandleSubmit}/>
       </div>
     </div>
-  </div> );
+  );
 }

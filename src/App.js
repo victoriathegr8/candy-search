@@ -1,6 +1,6 @@
 // importing the right libraries and css styling
 import React, {useState, useEffect} from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, Link, Redirect, useHistory} from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
 
@@ -15,8 +15,9 @@ import {checkCheckboxesForm, checkCheckboxesModal} from './form_modal_filters.js
 import {Header, SignIn, ButtonsLarge, ButtonsSmall, Footer} from './components.js';
 import {NavBar} from './navbar.js';
 import {FavoritesPage} from './favorites.js';
+import {PromptModal} from "./signInPromptModal";
 
-
+import CANDY_DATA from './data/candy-data.json'; 
 
 
 
@@ -207,6 +208,7 @@ function App (props) {
   //   } else {
 
 
+  console.log("Home Screen Cards", <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>);
   // actually returning and rendering the page
         return (
           <div>
@@ -214,7 +216,7 @@ function App (props) {
               <Header/>
             </div>
             <div>
-              <NavBar searchCallBack={handleSearch}/>
+              <NavBar searchCallBack={handleSearch} currentUser={user}/>
             </div>
             <div className="outer-box">
               <main>
@@ -231,7 +233,8 @@ function App (props) {
                     <SignIn/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
+                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user} setCandydata={setCandydata}/>
+                    {!user ? <Redirect to="/signin"/> : <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>}
                   </Route>
                   <Route path="/">
                     <div className="container">
@@ -246,6 +249,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
+                          <PromptModal/>
                           <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
                         </div> 
                       </section>
