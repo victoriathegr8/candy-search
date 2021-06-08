@@ -12,7 +12,7 @@ export function Cards(props) {
       return props.currentData.map((currentCard) => {
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
-          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn}/>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser}/>
         </div>);
       });
     }
@@ -20,7 +20,7 @@ export function Cards(props) {
       return props.currentData.map((currentCard) => {
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
-            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn}/>
+            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser}/>
           </div>);
       });
     }
