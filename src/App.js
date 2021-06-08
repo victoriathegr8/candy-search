@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Route, Switch, Link} from 'react-router-dom';
+import { Route, Switch, Link, Redirect, useHistory} from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
@@ -11,7 +11,9 @@ import {Form} from './mainFilterForm.js';
 import {Modal} from './modalFilterForm.js';
 import {About} from "./about.js";
 import {checkCheckboxesForm, checkCheckboxesModal} from './form_modal_filters.js';
+import {PromptModal} from "./signInPromptModal";
 
+import CANDY_DATA from './data/candy-data.json'; 
 
 const uiConfig = {
   signInOptions: [
@@ -192,7 +194,7 @@ function App (props) {
               <Header/>
             </div>
             <div>
-              <NavBar searchCallBack={handleSearch}/>
+              <NavBar searchCallBack={handleSearch} currentUser={user}/>
             </div>
             <div className="outer-box">
               <main>
@@ -209,7 +211,7 @@ function App (props) {
                     <MakeSignIn currentUser={user}/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
+                    {!user ? <Redirect to="/signin"/> : <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>}
                   </Route>
                   <Route path="/">
                     <div className="container">
@@ -224,6 +226,7 @@ function App (props) {
                         </div>
                         <br/><br/><br/>
                         <div id="candy-div">
+                          <PromptModal/>
                           <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
                         </div> 
                       </section>
@@ -285,41 +288,44 @@ function NavBar(props){
 }
 
 function MakeSignIn(props) {
-    //if (!props.currentUser) {
     return (
       <div className="container">
         
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );
-    // } else {
-    //   return (
-    //     <h1>You're already signed in</h1>
-    //   )
-    // }
 }
 
 function FavoritesPage(props) {
   let candiesArray;
+  let favCandies = [];
   useEffect(() => {
-    const favsRef = firebase.database().ref('favs');
+    let favsRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
+
     favsRef.on('value', (snapshot) => {
       const candiesObjs = snapshot.val();
       console.log(candiesObjs);
       let objectKeyArray = Object.keys(candiesObjs);
       candiesArray = objectKeyArray.map((key) => {
+        console.log(key)
         let singleCandyObj = candiesObjs[key];
-        singleCandyObj.key = key;
         return singleCandyObj;
       })
       console.log("candiesArray", candiesArray);
+      for (let i = 0; i < candiesArray.length; i++) {
+        let index = candiesArray[i];
+        let candy = CANDY_DATA[index];
+        favCandies.push(candy);
+      }
+      console.log(favCandies)
+
     })
   })
   return (
     <div className="container">
       <section className="cards-column">
         <div id="candy-div">
-          <Cards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
+          <Cards currentData={favCandies} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
         </div> 
       </section>
     </div>
