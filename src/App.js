@@ -185,9 +185,9 @@ function App (props) {
 
   function handleLogOut() {
     setSignedIn(false);
-    setUser(undefined);
+    firebase.auth().signOut();
+    window.location.reload();
     return <Redirect push to="/"/>;
-
   }
 
   //auth state event listener
