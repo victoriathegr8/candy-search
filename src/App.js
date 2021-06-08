@@ -17,7 +17,7 @@ import {NavBar} from './navbar.js';
 import {FavoritesPage} from './favorites.js';
 import {PromptModal} from "./signInPromptModal";
 
-import CANDY_DATA from './data/candy-data.json'; 
+
 
 
 
@@ -35,6 +35,7 @@ function App (props) {
   const [user, setUser] = useState(undefined);
   const [signedIn, setSignedIn] = useState(false);
   const [redirect, setRedirect] = useState("/");
+  const [favoriteCandies, setFavoriteCandies] = useState(temp);
 
   
 
@@ -66,7 +67,7 @@ function App (props) {
       let stateSearchStr = (inputStr.toLowerCase());
       // if the candy name string contains the search term
       if (candyObjStr.indexOf(stateSearchStr) !== -1) {
-          console.log("found match");
+          
           // return that object to the candy array
           return candyObj;
       }
@@ -176,10 +177,14 @@ function App (props) {
 
   // function for making sign in/out more user friendly
   function handleSignIn() {
+    setSignedIn(true);
+    return <Redirect push to="/signin"/>;
 
   }
 
   function handleLogOut() {
+    setSignedIn(false);
+    return <Redirect push to="/"/>;
 
   }
 
@@ -201,14 +206,13 @@ function App (props) {
   // if (!user) {
   //   return (
   //     <div className="container">
-        
   //       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
   //     </div>
   //   );
   //   } else {
 
 
-  console.log("Home Screen Cards", <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>);
+ 
   // actually returning and rendering the page
         return (
           <div>
@@ -216,7 +220,7 @@ function App (props) {
               <Header/>
             </div>
             <div>
-              <NavBar searchCallBack={handleSearch} currentUser={user}/>
+              <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn}/>
             </div>
             <div className="outer-box">
               <main>
@@ -233,8 +237,8 @@ function App (props) {
                     <SignIn/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user} setCandydata={setCandydata}/>
-                    {!user ? <Redirect to="/signin"/> : <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>}
+                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies}/>
+                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} currentUser={user}/>}
                   </Route>
                   <Route path="/">
                     <div className="container">

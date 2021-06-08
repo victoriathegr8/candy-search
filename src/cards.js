@@ -5,15 +5,14 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
-  console.log("in Cards");
-  console.log("props", props);
+ 
     // the props for this should be the state values, specifically the card object array, and the gridView
    // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
-          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack}/>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} currentUser={props.currentUser}/>
         </div>);
       });
     }
@@ -35,13 +34,28 @@ function CardGridView(props) {
     
   
     const handleClickIndv = () => {
-      console.log("handleClickIndv", props.card.competitorname);
       setRedirect("/indv/" + props.card.competitorname);
     }
-    const ratingChanged = (newRating) => {
-      console.log(newRating);
+   
+    const handleClickHeart = () => {
+      
+      if(!props.currentUser) {
+        console.log("you're not signed in!");
+        let modal = document.querySelector("#signin-modal");
+        modal.style.display="block";
+      }
+      else {
+        console.log(props.currentUser)
+        let state = !active
+        setActive(state);
+        console.log(state);
+        let newCandy = props.card.candynum
+        console.log(newCandy)
+        let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
+        tempRef.update({[newCandy]: newCandy})
+      }
     };
-    const handleClickHeart = () => {props.likeCallback(props.card.competitorname)};
+  
     // the props for this should be the list of current candies to show
     // this is where the cards code goes
     
@@ -61,22 +75,16 @@ function CardGridView(props) {
   }
 
 
-  
+
 // make the cards formatted like in listView 
 function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
   
     const handleClickIndv = () => {
-      console.log("handleClickIndv", props.card.competitorname);
+      
       setRedirect("/indv/" + props.card.competitorname);
     }
-    const ratingChanged = (newRating) => {
-      console.log(newRating);
-    };
-    // the props for this should be the list of current candies to show
-    // this is where the cards code goes
-
     const handleClickHeart = () => {
       
       if(!props.currentUser) {
@@ -95,6 +103,9 @@ function CardListView(props) {
         tempRef.update({[newCandy]: newCandy})
       }
     };
+    
+    // the props for this should be the list of current candies to show
+    // this is where the cards code goes
     
     if(redirectTo !== undefined && redirectTo.indexOf("/indv/") >= 0) {
       return (<Redirect push to={redirectTo}/>);
@@ -116,6 +127,7 @@ function CardListView(props) {
     );
   }
 
+  
 // given a binary value from the object, this returns a string of yes or no
 export function convertToWords(num) {
     if(num === 0) {

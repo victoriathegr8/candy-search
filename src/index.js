@@ -4,8 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
-
-import CANDY_DATA from './data/candy-data.json'; 
+import CANDY_DATA from "./data/candy-data.json";
 
 var firebaseConfig = {
   apiKey: "AIzaSyAnjzt9GnzIR_514sGHuyAFeui5fO65uyY",
@@ -19,13 +18,30 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics()
+let STATE = {currentData:CANDY_DATA};
 
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App data={CANDY_DATA}/>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
+
+fetch("data/candy-data.json")
+    // gets the data as a json file
+    .then(function(response){
+      console.log("fetching data");
+      let r = response.json();
+      console.log("response", r);
+      return r;
+    })
+    .then(function(data){
+        console.log("downloaded local candies");
+        console.log(data);
+        //sets the data to state
+        STATE.currentData = data; 
+    })
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App data={STATE.currentData}/>
+      </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
