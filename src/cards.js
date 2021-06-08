@@ -5,14 +5,14 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
- 
+  console.log("Cards currentUser", props.currentUser);
     // the props for this should be the state values, specifically the card object array, and the gridView
    // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
-          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} currentUser={props.currentUser}/>
+          <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn}/>
         </div>);
       });
     }
@@ -20,7 +20,7 @@ export function Cards(props) {
       return props.currentData.map((currentCard) => {
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
-            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} currentUser={props.currentUser}/>
+            <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn}/>
           </div>);
       });
     }
@@ -39,7 +39,7 @@ function CardGridView(props) {
    
     const handleClickHeart = () => {
       
-      if(!props.currentUser) {
+      if(!props.signedIn) {
         console.log("you're not signed in!");
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";
@@ -87,7 +87,7 @@ function CardListView(props) {
     }
     const handleClickHeart = () => {
       
-      if(!props.currentUser) {
+      if(!props.signedIn) {
         console.log("you're not signed in!");
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";

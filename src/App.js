@@ -184,7 +184,7 @@ function App (props) {
 
   function handleLogOut() {
     setSignedIn(false);
-    setUser(null);
+    setUser(undefined);
     return <Redirect push to="/"/>;
 
   }
@@ -239,7 +239,7 @@ function App (props) {
                   </Route>
                   <Route exact path="/fav">
                     <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data}/>
-                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} currentUser={user}/>}
+                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn}/>}
                   </Route>
                   <Route path="/">
                     <div className="container">
@@ -255,7 +255,7 @@ function App (props) {
                         <br/><br/><br/>
                         <div id="candy-div">
                           <PromptModal/>
-                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
+                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn}/>
                         </div> 
                       </section>
                     </div>
