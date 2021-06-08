@@ -2,7 +2,6 @@ import Heart from "react-heart";
 import React, {useState} from 'react';
 import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
-import {PromptModal} from "./signInPromptModal";
 
 export function Cards(props) {
     // the props for this should be the state values, specifically the card object array, and the gridView
