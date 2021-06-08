@@ -1,29 +1,31 @@
-import CANDY_DATA from './data/candy-data.json'; 
+// renders the individual candy page
+// importing the right modules
+ 
 import {useParams} from 'react-router-dom';
 import {convertToWords} from './cards.js';
 
-function getIndvCandyImgName(candy) {  
-    // the props should be the individual candy object
-    let location = candy.competitorname.split(' ').join('_');
-    return "img/"+candy.candynum+"_"+location+".jpg";
-}
 
+
+// renders the actual component
 export function Indv(props) {
-    // the props for this should be the individual candy object
+    // the page will get the candy object from the url that the page goes to 
     let urlParams = useParams();
-    let candyName = urlParams.candyname; 
-    console.log("Candy Name: " , candyName);
-    let candy =  CANDY_DATA.filter((candyObj) => {
+    let candyName = urlParams.candyname; // gets me the actual candy name
+
+
+    let candy =  props.data.filter((candyObj) => {
       return candyObj.competitorname === candyName;
     }); 
     candy = candy[0];
     if(!candy) return <h2>Candy not specified</h2> 
-    console.log("CANDY INDV PAGE: " , candy);
+
+    let aboutTitle = "About: " + candy.competitorname;
   
+    // returns the actual components
     return (<div className="indv-info" key={candy.competitorname}>
       <div className="card indv-col">
         <div className="card-title">
-          About:
+          {aboutTitle}
         </div>
         <div className="card-img-top">
           <img className="indv-candy-img" src={candy.imglink} alt={candy.name} />
@@ -41,7 +43,7 @@ export function Indv(props) {
           <p>Sugar Percent: <span className="data-ans">{(candy.sugarpercent * 100) + '%'}</span> </p>
         </div>
       </div>
-      <div className="indv-col">
+      <div className="indv-col nutrition-info">
         <div className="card">
           <div className="card-title">
             Nutrition Information:
@@ -53,4 +55,11 @@ export function Indv(props) {
       </div>
     </div>);
   }
+
+  // gets the image file name from just the candy name 
+  function getIndvCandyImgName(candy) {  
+    // the props should be the individual candy object
+    let location = candy.competitorname.split(' ').join('_');
+    return "img/"+candy.candynum+"_"+location+".jpg";
+}
   

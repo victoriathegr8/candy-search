@@ -1,3 +1,4 @@
+// imports the right components
 import Heart from "react-heart";
 import ReactStars from "react-rating-stars-component";
 import React, {useState} from 'react';
@@ -6,7 +7,7 @@ import firebase from 'firebase';
 
 export function Cards(props) {
     // the props for this should be the state values, specifically the card object array, and the gridView
-   
+   // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
@@ -25,7 +26,7 @@ export function Cards(props) {
     }
   }
 
-
+// make the cards formatted like in gridView
 function CardGridView(props) {
     
     const [active, setActive] = useState(false);
@@ -62,7 +63,7 @@ function CardGridView(props) {
 
 
   
-  
+// make the cards formatted like in listView 
 function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
@@ -74,7 +75,6 @@ function CardListView(props) {
     const ratingChanged = (newRating) => {
       console.log(newRating);
     };
-    //const handleClickHeart = () => {props.likeCallback(props.card.competitorname)};
     // the props for this should be the list of current candies to show
     // this is where the cards code goes
 
@@ -131,6 +131,7 @@ function CardListView(props) {
     );
   }
 
+// given a binary value from the object, this returns a string of yes or no
 export function convertToWords(num) {
     if(num === 0) {
       return "No";

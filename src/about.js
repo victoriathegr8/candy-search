@@ -1,5 +1,5 @@
 import React from 'react';
-
+// renders the component for the "about" page.
 export function About() {
   return (<div>
             <div className="problem">
@@ -19,7 +19,7 @@ export function About() {
 
 
 
-
+// these are the individual about page components. They are only called internally and are not exported
 function MakeStatement() {
     return(
         <div>

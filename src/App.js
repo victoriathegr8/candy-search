@@ -1,8 +1,9 @@
+// importing the right libraries and css styling
 import React, {useState, useEffect} from 'react';
-import { Route, Switch, Link, NavLink, Redirect} from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
 
 // importing the right components
 import {Cards} from './cards.js';
@@ -11,34 +12,39 @@ import {Form} from './mainFilterForm.js';
 import {Modal} from './modalFilterForm.js';
 import {About} from "./about.js";
 import {checkCheckboxesForm, checkCheckboxesModal} from './form_modal_filters.js';
+import {Header, SignIn, ButtonsLarge, ButtonsSmall, Footer} from './components.js';
+import {NavBar} from './navbar.js';
+import {FavoritesPage} from './favorites.js';
 
 
-const uiConfig = {
-  signInOptions: [
-    {provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    requireDisplayName: true}
-  ],
-  credentialHelper: 'none', 
-  signInFlow: 'popup',
-  callbacks: {
-    signInSuccessWithAuthResult: () => false,
-  }
-};
 
+
+
+
+// renders the actual page for the app
 function App (props) {
 
+  // state variables 
   let temp = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   const [gridView, setGridView] = useState(false);
   const [candydata, setCandydata] = useState(props.data);
   const [checkboxes, setCheckboxes] = useState(temp);
   const [sugarMinElem, setSugarmin] = useState(null);
   const [sugarMaxElem, setSugarmax] = useState(null);
+  const [user, setUser] = useState(undefined);
+  const [signedIn, setSignedIn] = useState(false);
+  const [redirect, setRedirect] = useState("/");
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-  let handleClick = function handleGridFlip(booleanValue) {
+  
+
+  // event handlers
+
+  // handleClick should be called when the grid view or list view buttons are clicked
+  let handleClick = function(booleanValue) {
     setGridView(booleanValue);
   }
   
+  // handles the like function when the heart is clicked
   function handleLike(name) {
     let copy = candydata.map(x => x);
     copy.forEach(function(obj) {
@@ -49,6 +55,7 @@ function App (props) {
     setCandydata(copy);
   }
 
+  // filters the existing data by the search term
   function handleSearch(inputStr) {
       if(inputStr === undefined) {
         inputStr = "";
@@ -63,32 +70,35 @@ function App (props) {
           return candyObj;
       }
       });
+      // resets the candyData array and renders
       setCandydata(candyArray);  
   }
 
-  //get checkboxes as array
+  //get checkboxes as array; helper method for handleFormSubmit()
   function getCheckboxValues() {
+    // get all checkboxes
     let allCheckboxes = document.querySelectorAll('input[type=checkbox]');
     let checkboxValues = [];
     allCheckboxes.forEach((checkbox) => {
+          // add 1 if the checkbox is clicked, add 0 if not
           if (checkbox.checked) checkboxValues.push(1);
           else checkboxValues.push(0)
     });
-    setCheckboxes(checkboxValues);
-    return checkboxValues;
+    setCheckboxes(checkboxValues); // this is not actually updating the checkboxes value
+    return checkboxValues; // returning the value is a temp fix for the stateHook problem
 }
  
   
-  // filter candies against checkboxes array
+  // filter candies against checkboxes array; helper method for handleFormSubmit()
   function filterCandies(candies2) {
     console.log(checkboxes); // this value is not being updated
     let checkboxV = getCheckboxValues();
     return (checkCheckboxesForm(checkboxV, candies2) && checkCheckboxesModal(checkboxV, candies2));
      // returns true if every element in the bool array is true and false otherwise
   }
-  // filter candies against sugar percent range
+
+  // filter candies against sugar percent range; helper method for handleFormSubmit()
   function sugarFilter(candies) {
-    console.log("inside sugar filter");
     if (sugarMinElem > 0 && sugarMaxElem> 0) {
       return (candies.sugarpercent) * 100 > sugarMinElem && (candies.sugarpercent) * 100 < sugarMaxElem;
     }
@@ -103,17 +113,17 @@ function App (props) {
     }
   }
 
-  //combine characteristics and sugar range filters
+  //combine characteristics and sugar range filters; helper method for handleFormSubmit()
   function makeCombinedFilter() {
     return function combinedFilter(candyObj) {
-      let filtered1 = filterCandies(candyObj);
-      let filtered2 = sugarFilter(candyObj);
-      return filtered1 && filtered2;
+      let filtered1 = filterCandies(candyObj); // returns true if the candy object passes the first filter
+      let filtered2 = sugarFilter(candyObj); // returns true if the candy object passes the sugar filter
+      return filtered1 && filtered2; // the candy object must pass both the filters to be displayed
     };
   }
   let candyCombinedFilter = makeCombinedFilter();
   
-  // input validation for sugar range
+  // input validation for sugar range; shows an error message on the bottom of the screen in red
   function validateSugar() {
     if (sugarMinElem < 0 || sugarMaxElem < 0 || sugarMinElem > 100 || sugarMaxElem > 100 ) {
       document.querySelector(".error-message").style.display="block";
@@ -125,6 +135,7 @@ function App (props) {
     }
   }
 
+  // sets stateHook values
   function handleSugarMin(input) {
     setSugarmin(input);
   }
@@ -132,6 +143,7 @@ function App (props) {
     setSugarmax(input);
   }
 
+  // displays the modal element when the modal button is clicked
   function handleModalPopup() {
     let modal = document.querySelector(".modal");
     modal.style.display="block";
@@ -140,6 +152,7 @@ function App (props) {
     cards.style.display="none";
   }
 
+  // makes the modal element dissappear when closed
   function handleModalClose() {
     let modal = document.querySelector(".modal");
     modal.style.display="none";
@@ -148,7 +161,7 @@ function App (props) {
     cards.style.display="block";
   }
 
-
+  // updates the candy data to match the checkboxes on either the form or the modal 
   function handleFormSubmit() {
     let copy = props.data;
     if(!validateSugar()) {
@@ -160,23 +173,29 @@ function App (props) {
     }
   }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+  // function for making sign in/out more user friendly
+  function handleSignIn() {
 
-  const [user, setUser] = useState(undefined);
-  console.log(user);
-  let content = null;
+  }
+
+  function handleLogOut() {
+
+  }
 
   //auth state event listener
   useEffect( () => {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser)
+        setRedirect("/");
       } else {
         setUser(null)
       }
         
     })
   });
+
+ 
 
   // if (!user) {
   //   return (
@@ -186,6 +205,9 @@ function App (props) {
   //     </div>
   //   );
   //   } else {
+
+
+  // actually returning and rendering the page
         return (
           <div>
             <div>
@@ -199,14 +221,14 @@ function App (props) {
                 <Switch>
                   <Route path="/indv/:candyname">
                     <div className="indv-container">
-                      <Indv props={props}/>
+                      <Indv data={props.data}/>
                     </div>
                   </Route>
                   <Route path="/about" >
                     <About/>
                   </Route>
                   <Route exact path="/signin">
-                    <MakeSignIn currentUser={user}/>
+                    <SignIn/>
                   </Route>
                   <Route exact path="/fav">
                     <FavoritesPage gridView={gridView} likeCallBack={handleLike} currentUser={user}/>
@@ -238,142 +260,6 @@ function App (props) {
           </div>);
 } // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
 
-function Header() {
-  return (<header className="jumbotron jumbotron-fluid bg-secondary text-white">
-            <div className="a">
-                <div className="header-row">
-                    <div className="header-image">
-                        <img className="logo" src="img/icon.png" alt="candy website logo"/>
-                    </div>
-                    <div className="header-text">
-                        <h1>Candy Search</h1>
-                        <p>Search for your new favorite candy using the candy filter!</p>
-                    </div>
-                </div>
-            </div>
-          </header>);
-}
-
-function NavBar(props){
-  const handleSignOut = () => {
-    firebase.auth().signOut();
-  }
-  return (<nav>
-            <ul>
-                <li>
-                    <Link to="/"><img src="img/icon.png" alt="candy website logo"/></Link>
-                </li>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
-                    <Link to="/about">About</Link>
-                </li>
-                <li>
-                    <Link to="/fav">Favorites</Link>
-                </li>
-                <li>
-                  
-                </li>
-            </ul>
-            <div id="search-div" className="search" role="search">
-                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
-                <NavLink to="/signin" className="navLink" type="button" onClick={handleSignOut}>Log Out</NavLink>
-            </div>
-            
-        </nav>);
-}
-
-function MakeSignIn(props) {
-    //if (!props.currentUser) {
-    return (
-      <div className="container">
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-      </div>
-    );
-    // } else {
-    //   return (
-    //     <h1>You're already signed in</h1>
-    //   )
-    // }
-}
-
-function FavoritesPage(props) {
-  let candiesArray;
-  useEffect(() => {
-    const favsRef = firebase.database().ref('favs');
-    favsRef.on('value', (snapshot) => {
-      const candiesObjs = snapshot.val();
-      console.log(candiesObjs);
-      let objectKeyArray = Object.keys(candiesObjs);
-      candiesArray = objectKeyArray.map((key) => {
-        let singleCandyObj = candiesObjs[key];
-        singleCandyObj.key = key;
-        return singleCandyObj;
-      })
-      console.log("candiesArray", candiesArray);
-    })
-  })
-  return (
-    <div className="container">
-      <section className="cards-column">
-        <div id="candy-div">
-          <Cards currentData={candiesArray} gridView={props.gridView} likeCallBack={props.likeCallBack} currentUser={props.currentUser}/>
-        </div> 
-      </section>
-    </div>
-  )
-}
-
-function ButtonsLarge(props){
-  return(
-    <div>
-      <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Large List");}}>
-        <i className="fa fa-bars"></i>
-        List
-      </button>
-      <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Large Grid");}}>
-        <i className="fa fa-th-large"></i>
-        Grid
-      </button>
-      <br/><br/><br/>
-    </div>
-  );
-}
-
-
-function ButtonsSmall(props) {
-
-    return(
-    <div>
-      <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Small List");}}>
-        <i className="fa fa-bars"></i>
-        List
-      </button>
-      <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Small Grid");}}>
-        <i className="fa fa-th-large"></i>
-        Grid
-      </button>
-      <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {props.filterButtonCallBack(); console.log("opening filter button");}}>
-        <i className="fa fa-filter"></i>
-        Filter and Sort
-      </button>
-    </div>
-  );
-}
-
-function Footer() {
-
-  return (
-    <div className="footer">
-      <p>©2021 The WhipperSnappers. All rights reserved.</p>
-      <p>Created by Sachi Figliolini, Victoria Nguyen, and Roshni Srikanth</p>
-      <p>Images taken from
-        <a href="https://www.candywarehouse.com/">Candy Warehouse</a>
-      </p>
-    </div>
-  );
-}
 
 
 

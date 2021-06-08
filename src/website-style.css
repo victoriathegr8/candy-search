@@ -262,11 +262,13 @@ body {
 .authors-about {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*-- author info box  --*/
 .author-col {
-    flex-basis: 31%;
+    
+    width: 100%;
     background: #8b71be;
     border-radius: 10px;
     margin-bottom: 5%;
@@ -306,12 +308,16 @@ h3 {
 .ind-container {
     display: flex;
 }
+.nutrition-info {
+    display:none;
+}
 .nutrition-info img{
     align-content: center;
     width: 400px;
     height: fit-content;
     
 }
+
 .indv-info {
     display: flex;
     justify-content: space-around;
@@ -389,8 +395,11 @@ h3 {
     .header-image {
         display: none;
     }
-    .nutrition-info img{
+    .nutrition-info {
         display: block;
+    }
+    .author-col {
+        flex-basis: 40%;
     }
 }
 @media (min-width: 992px) {
@@ -402,5 +411,8 @@ h3 {
     }
     .cardpool {
         position:relative;
+    }
+    .author-col {
+        flex-basis: 30%;
     }
 }
