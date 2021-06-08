@@ -185,6 +185,7 @@ function App (props) {
   function handleLogOut() {
     setSignedIn(false);
     firebase.auth().signOut();
+    window.location.reload();
     return <Redirect push to="/"/>;
   }
 
