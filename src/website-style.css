@@ -103,7 +103,9 @@ nav ul {
 }
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin-top: 200px;
+  margin-left: 10%;
+  padding-top: 50px;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -280,6 +282,8 @@ nav ul {
     background-color:rgb(49, 49, 253);
     border-bottom: none;
 }
+
+
 .signin-modal-txt {
     text-align: center;
 }
