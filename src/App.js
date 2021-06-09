@@ -204,9 +204,6 @@ function App (props) {
   return (
   <div>
     <div>
-      <Header/>
-    </div>
-    <div>
       <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn} user={user}/>
     </div>
     <div className="outer-box">
@@ -228,6 +225,7 @@ function App (props) {
             {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
           </Route>
           <Route path="/">
+            <Header/>
             <div className="container">
               <section className="form-column">
                 <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
