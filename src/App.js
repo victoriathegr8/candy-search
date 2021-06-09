@@ -32,7 +32,7 @@ function App (props) {
   const [checkboxes, setCheckboxes] = useState(temp);
   const [sugarMinElem, setSugarmin] = useState(null);
   const [sugarMaxElem, setSugarmax] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
   const [signedIn, setSignedIn] = useState(false);
   const [redirect, setRedirect] = useState("/");
   const [favoriteCandies, setFavoriteCandies] = useState(temp);
@@ -239,7 +239,7 @@ function App (props) {
                     <SignIn/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                    {!signedIn ? <Redirect to="/signin"/> :<FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>}
                     {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
                   </Route>
                   <Route path="/">
