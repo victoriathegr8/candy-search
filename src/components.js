@@ -98,9 +98,9 @@ export function ButtonsSmall(props) {
 export function Footer() {
     return (
       <div className="footer">
-        <p>©2021 The WhipperSnappers. All rights reserved.</p>
+        <p>©2021 The Whippersnappers. All rights reserved.</p>
         <p>Created by Sachi Figliolini, Victoria Nguyen, and Roshni Srikanth</p>
-        <p>Images taken from
+        <p>Images taken from&nbsp;
           <a href="https://www.candywarehouse.com/">Candy Warehouse</a>
         </p>
       </div>

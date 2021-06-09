@@ -13,7 +13,7 @@ function NavBarLogOut(props){
     return (<nav>
               <ul>
                   <li>
-                      <Link to="/"><img src="img/icon.png" alt="candy website logo"/></Link>
+                      <Link to="/"><img src="img/candy_logo.png" alt="candy website logo"/></Link>
                   </li>
                   <li>
                       <Link to="/">Home</Link>
@@ -41,7 +41,7 @@ function NavBarSignIn(props){
     return (<nav>
               <ul>
                   <li>
-                      <Link to="/"><img src="img/icon.png" alt="candy website logo"/></Link>
+                      <Link to="/"><img src="img/candy_logo.png" alt="candy website logo"/></Link>
                   </li>
                   <li>
                       <Link to="/">Home</Link>

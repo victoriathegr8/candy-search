@@ -36,7 +36,19 @@ function CardGridView(props) {
     const handleClickIndv = () => {
       setRedirect("/indv/" + props.card.competitorname);
     }
-   
+    
+    const heartStatus = (e) => {
+      if(!props.currentUser) return false;
+      else {
+        let favCandyStrings = props.favCandyNums;
+        let favCandyNums = favCandyStrings.map(Number)
+        if (favCandyNums.includes(e) === true) {
+          return true;
+        }
+        return false
+      }
+    }
+
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
@@ -66,7 +78,7 @@ function CardGridView(props) {
         <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
         <div className="card-body">
             <p className="card-title h5">{props.card.competitorname}</p>
-            <Heart className="heart nobreak" isActive={active} onClick={() => {setActive(!active); handleClickHeart()}}/>
+            <Heart className="heart nobreak" isActive={heartStatus(props.card.candynum)} onClick={() => {setActive(!active); handleClickHeart()}}/>
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>
@@ -85,22 +97,12 @@ function CardListView(props) {
       setRedirect("/indv/" + props.card.competitorname);
     }
 
-    // const heartStatus = () => {
-    //   if(!props.signedIn) return false;
-    //   else {
-    //     let favCandyStrings = props.favCandyNums;
-    //     let favCandyNums = favCandyStrings.map(Number)
-    //     if (favCandyNums.includes(props.card.candynum) == true) {
-    //       return true;
-    //     }
-    //     else return false;
-    //   }
-    // }
-
     const heartStatus = (e) => {
-      if(!props.signedIn) return false;
+      if(!props.currentUser) return false;
       else {
-        if (props.favCandyNums.includes(e) === true) {
+        let favCandyStrings = props.favCandyNums;
+        let favCandyNums = favCandyStrings.map(Number)
+        if (favCandyNums.includes(e) === true) {
           return true;
         }
         return false
