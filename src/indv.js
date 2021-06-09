@@ -43,16 +43,7 @@ export function Indv(props) {
           <p>Sugar Percent: <span className="data-ans">{getSugarPercent(candy.sugarpercent)}</span> </p>
         </div>
       </div>
-      <div className="indv-col nutrition-info">
-        <div className="card">
-          <div className="card-title">
-            Nutrition Information:
-          </div>
-          <div className="card-img nutrition-info">
-            <img src={"../" + getIndvCandyImgName(candy)} alt={"Nutrition Information about" + candy.competitorname}/>
-          </div>
-        </div>
-      </div>
+      <NutritionInfo candy={candy}/>
     </div>);
   }
 
@@ -68,6 +59,33 @@ function getSugarPercent (sugar) {
   }
   else {
   return sugar * 100 + '%'
+  }
+}
+
+function NutritionInfo(props) {
+  if(props.candy.userAdded === undefined) {
+    return (<div className="indv-col nutrition-info">
+        <div className="card">
+          <div className="card-title">
+            Nutrition Information:
+          </div>
+          <div className="card-img nutrition-info">
+            <img src={"../" + getIndvCandyImgName(props.candy)} alt={"Nutrition Information about" + props.candy.competitorname}/>
+          </div>
+        </div>
+      </div>);
+  }
+  else {
+    return (<div className="indv-col nutrition-info">
+    <div className="card">
+      <div className="card-title">
+        Nutrition Information:
+      </div>
+      <div className="card-img nutrition-info">
+        <h1>Nutrition Information Not Found</h1>
+      </div>
+    </div>
+  </div>);
   }
 }
   

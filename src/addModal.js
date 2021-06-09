@@ -8,7 +8,7 @@ export function AddModal(props) {
 
     const handleApply = (candyObj) => {
         console.log("inside handleApply")
-        if(!props.signedIn || props.currentUser === null) {
+        if(!props.signedIn || props.currentUser === undefined) {
           let modal = document.querySelector("#signin-modal");
           modal.style.display="block";
         }
@@ -41,7 +41,8 @@ export function AddModal(props) {
         "imglink": "",
         "hasegg": 0,
         "hasmilk": 0,
-        "hassoy": 0
+        "hassoy": 0,
+        "userAdded": 1
       }; 
     return (
         <div className="modal add-modal card">
