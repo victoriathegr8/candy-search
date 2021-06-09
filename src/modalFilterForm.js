@@ -11,12 +11,10 @@ export function Modal(props) {
 export function RenderModal(props) {
   // this should be passed the same items as renderForm
   function modalHandleSubmit() {
-    console.log("Modal handle submit");
     props.handleSubmit();
     props.handleClose();
     
   }
-  console.log("calling from modal");
   return (
     <div id="filtermodal" className="modal">
       <div className="modal-content">

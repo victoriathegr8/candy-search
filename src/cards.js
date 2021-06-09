@@ -5,12 +5,12 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
-  if(props.currentData === null) {
+  if(props.currentData.length < 1) {
     return <h1 className="no-favs">You don't have any favorited candies yet! Press a heart button on the home page, and you'll see your favorites here.</h1>
   }
-  console.log("Cards currentUser", props.currentUser);
+  else {
     // the props for this should be the state values, specifically the card object array, and the gridView
-   // based on the listView/GridView thing, rerender the cards accordingly
+    // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
         return(
@@ -28,6 +28,7 @@ export function Cards(props) {
       });
     }
   }
+}
 
 // make the cards formatted like in gridView
 function CardGridView(props) {
@@ -35,11 +36,13 @@ function CardGridView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
     
-  
+    // set path for each more info button on each card
     const handleClickIndv = () => {
       setRedirect("/indv/" + props.card.competitorname);
     }
     
+    // figure out the correct display mode of the heart -
+    // if logged out, off. if in favs in firebase, on. if not in favs, off.
     const heartStatus = (e) => {
       if(!props.currentUser) return false;
       else {
@@ -52,6 +55,8 @@ function CardGridView(props) {
       }
     }
 
+    // if not logged in when heart is clicked, show prompt to sign up/log in
+    // when heart is clickedand user is signed in, add candy num to firebase, specific to user
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
@@ -91,7 +96,8 @@ function CardGridView(props) {
 function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
-  
+
+    // same three functions as grid view
     const handleClickIndv = () => {
       
       setRedirect("/indv/" + props.card.competitorname);

@@ -4,15 +4,10 @@ export function Form(props) {
   //  currentData
   //  handleSubmit
   // <RenderForm handleFormSubmit={props.handleSubmit} handleSugarMin={props.handleSugarMin} handleSugarMax={props.handleSugarMax}/>
-  console.log("props inside MakeForm", props);
   return (<RenderForm handleSugarMin={props.handleSugarMin} handleSugarMax={props.handleSugarMax} handleSubmit={props.handleSubmit}/>);
  
 }
 export function RenderForm (props) {
-  console.log("inside RenderForm");
-  console.log("props", props);
-  
-  
   return (
   <form>
     <h2>Filter</h2>
@@ -55,13 +50,9 @@ export function RenderForm (props) {
     <label htmlFor="other3">
       Candy Bar</label><br /><br />
     <nobr className="filtertype">Sugar Percentile:</nobr><br />
-    {/* need an onChange for the input */}
-    {/* onChange={(event) => {props.handleSugarMin(event.target.value); console.log("changed sugar min")}} */}
     <input className="sugarrange" placeholder="Min" aria-label="Minimum Sugar Percentile" type="number" id="sugarmin" name="sugarmin" min={0} max={100} onChange={(event) => {props.handleSugarMin(event.target.value)}} />
     <nobr>% to
     </nobr>
-    {/* need an onChange for the input */}
-    {/* onChange={(event) => {props.handleSugarMax(event.target.value); console.log("changed sugar max")}} */}
     <input className="sugarrange" placeholder="Max" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min={0} max={100} onChange={(event) => {props.handleSugarMax(event.target.value)}} /><nobr>
       %</nobr><br />
     <p id="sugarFeedback" className="invalid-feedback" /><br />
