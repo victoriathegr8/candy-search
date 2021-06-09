@@ -2,15 +2,14 @@ import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import CANDY_DATA from './data/candy-data.json'; 
 
-
+// component that sets candy data to only favorited candies, and creates array of favorited candy nums
 export function FavoritesPage(props) {
    
     let candiesArray;
     let favCandies = [];
-    console.log("props Fav Page", props)
-  
+    
+    // takes a snapshot of firebase user's favorites
     useEffect(() => {
-
       if(props.currentUser !== undefined) {
         let favsRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
     
@@ -26,13 +25,10 @@ export function FavoritesPage(props) {
             let candy = props.data[index];
             favCandies.push(candy);
           }
-          
           props.setCandydata(favCandies);
           props.setFavCandyNums(objectKeyArray);  
         }); 
       }
     }, []);
     return null;
-    
-    
   }

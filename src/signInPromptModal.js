@@ -1,11 +1,12 @@
 import {Link} from 'react-router-dom';
 
-
+// modal that shows when a user tries to use like button without being signed in
 export function PromptModal(props) {
     function handleModalClose() {
     let modal = document.querySelector("#signin-modal");
     modal.style.display="none";
     }
+    
     return (
         <div className="signin-modal">
             <div id="signin-modal" className="modal card">

@@ -202,18 +202,6 @@ function App (props) {
         
     })
   });
-
- 
-
-  // if (!user) {
-  //   return (
-  //     <div className="container">
-  //       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-  //     </div>
-  //   );
-  //   } else {
-
-
  
   // actually returning and rendering the page
         return (
@@ -262,7 +250,6 @@ function App (props) {
                       </section>
                     </div>
                   </Route>
-                  {/* <Redirect to="/"/> */}
                 </Switch>
               </main>
             </div>
@@ -270,7 +257,7 @@ function App (props) {
               <Footer/>
             </footer>
           </div>);
-} // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
+}
 
 
 

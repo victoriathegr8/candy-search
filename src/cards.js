@@ -32,11 +32,13 @@ function CardGridView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
     
-  
+    // set path for each more info button on each card
     const handleClickIndv = () => {
       setRedirect("/indv/" + props.card.competitorname);
     }
     
+    // figure out the correct display mode of the heart -
+    // if logged out, off. if in favs in firebase, on. if not in favs, off.
     const heartStatus = (e) => {
       if(!props.currentUser) return false;
       else {
@@ -49,6 +51,8 @@ function CardGridView(props) {
       }
     }
 
+    // if not logged in when heart is clicked, show prompt to sign up/log in
+    // when heart is clickedand user is signed in, add candy num to firebase, specific to user
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
@@ -91,7 +95,8 @@ function CardGridView(props) {
 function CardListView(props) {
     const [active, setActive] = useState(false);
     const[redirectTo, setRedirect] = useState(undefined);
-  
+
+    // same three functions as grid view
     const handleClickIndv = () => {
       
       setRedirect("/indv/" + props.card.competitorname);

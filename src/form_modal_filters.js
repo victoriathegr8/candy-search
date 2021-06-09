@@ -1,3 +1,4 @@
+// filter candy data against checkboxes in form (in modal)
 export function checkCheckboxesModal(checkboxV, candies2) {
     let bools = [];
     if (checkboxV[12] === 1) {
@@ -77,6 +78,7 @@ export function checkCheckboxesModal(checkboxV, candies2) {
     return r;
 }
 
+// filter candy data against checkboxes in form (in main form)
 export function checkCheckboxesForm(checkboxV, candies2) {
     let bools = [];
     if (checkboxV[0] === 1) {
