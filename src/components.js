@@ -1,6 +1,7 @@
 // imports the right statements
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import react, {useState} from 'react';
 
 // signin
 const uiConfig = {
@@ -44,10 +45,10 @@ export function SignIn(props) {
   );
 }
   
-
- 
 // creates the larger list view/grid view buttons
 export function ButtonsLarge(props){
+    const[show,setShow] = useState(false);
+    const close = () => setShow(false);
     return(
       <div>
         <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false)}}>
@@ -58,6 +59,33 @@ export function ButtonsLarge(props){
           <i className="fa fa-th-large"></i>
           Grid
         </button>
+        <button data-modal-target="#modal" id="add-button" className="view" aria-label="Add Candy" onClick={() => setShow(true)}>
+          <i className="fa fa-edit"></i>
+          Add Candy
+        </button>
+        <div class="add-modal" id="add-modal" 
+        style={{
+          opacity: show ? '1' : '0'
+        }}>
+          <div class="add-modal-header">
+            <div class="title">Add Your New Candy Information Here</div>
+            <button data-close-button class="close-button" onClick={close}>&times;</button>
+          </div>
+          <div class="add-modal-body">
+            <label for="name">Name of your Candy: </label>
+            <input type="text" name="name"></input> <br/>
+            <label for="image">Image Url of a Picture of your Candy: </label>
+            <input type="text" name="image"></input> <br/>
+            <input type="checkbox" name="containsEgg"></input>
+            <label for="containsEgg">Your Candy contains Egg</label> <br/>
+            <input type="checkbox" name="containsMilk"></input>
+            <label for="containsMilk">Your Candy contains Milk</label> <br/>
+            <input type="checkbox" name="containsSoy"></input>
+            <label for="containsSoy">Your Candy contains Soy</label> <br/>
+            <br/>
+            <button>Apply</button>
+          </div>
+        </div>
         <br/><br/><br/>
       </div>
     );

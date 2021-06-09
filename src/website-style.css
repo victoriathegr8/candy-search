@@ -255,7 +255,7 @@ nav ul {
 
 body {
     background-color: #F0EBF4;
-    padding-top: 80px;
+    padding-top: 100px;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 .problem {
@@ -433,4 +433,40 @@ h3 {
     .author-col {
         flex-basis: 30%;
     }
+}
+
+/*-- add candy modal --*/
+.add-modal{
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1.5px solid black;
+    border-radius: 10px;
+    z-index:20;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+.add-modal-header{
+    padding: 10px 15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom: 1px solid black;
+}
+.add-modal-header .title{
+    font-size: 1.25rem;
+    font-weight:bold;
+}
+.modal-deader .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight:bold;
+}
+.add-modal-body{
+    padding: 10px 15px;
 }
