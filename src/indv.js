@@ -40,7 +40,7 @@ export function Indv(props) {
           <p>Is Hard: <span className="data-ans">{convertToWords(candy.hard)}</span></p>
           <p>Is Bar: <span className="data-ans">{convertToWords(candy.bar)}</span></p>
           <p>Pluribus (many candies in 1 package): <span className="data-ans">{convertToWords(candy.pluribus)}</span> </p>
-          <p>Sugar Percent: <span className="data-ans">{(candy.sugarpercent * 100) + '%'}</span> </p>
+          <p>Sugar Percent: <span className="data-ans">{getSugarPercent(candy.sugarpercent)}</span> </p>
         </div>
       </div>
       <div className="indv-col nutrition-info">
@@ -61,5 +61,13 @@ export function Indv(props) {
     // the props should be the individual candy object
     let location = candy.competitorname.split(' ').join('_');
     return "img/"+candy.candynum+"_"+location+".jpg";
+}
+function getSugarPercent (sugar) {
+  if(sugar === -1) {
+    return "Not Specified";
+  }
+  else {
+  return sugar * 100 + '%'
+  }
 }
   

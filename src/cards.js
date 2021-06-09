@@ -164,6 +164,9 @@ export function convertToWords(num) {
     if(num === 0) {
       return "No";
     }
+    else if(num === -1) {
+      return "Not Specified";
+    }
     else {
       return "Yes";
     }

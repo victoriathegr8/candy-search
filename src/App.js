@@ -174,8 +174,41 @@ function App (props) {
     let cards = document.querySelector("#candy-div");
     cards.style.display="block";
   }
-  function handleModalApply() {
+  function handleModalApply(addModalValues) {
+    // let candy = {
+    //   "candynum": candyNum,
+    //   "competitorname": addModalValues.name,
+    //   "chocolate": -1,
+    //   "fruity": -1,
+    //   "caramel": -1,
+    //   "peanutyalmondy": -1,
+    //   "nougat": -1,
+    //   "crispedricewafer": -1,
+    //   "hard": -1,
+    //   "bar": -1,
+    //   "pluribus": -1,
+    //   "sugarpercent": -1,
+    //   "pricepercent": -1,
+    //   "winpercent": -1,
+    //   "imglink": addModalValues.imgurl,
+    //   "hasegg": addModalValues.hasEgg,
+    //   "hasmilk": addModalValues.hasMilk,
+    //   "hassoy": addModalValues.hasSoy
+    // }
+    // setCandyNum(candyNum + 1);
 
+    // let data = JSON.stringify(candy);
+    // console.log(data);
+    // fs.writeFile('data/candy-data.json', data, 'utf8', (err) => {
+    //   if (err) {
+    //       console.log(`Error writing file:`, err);
+    //       setCandyNum(candyNum - 1);
+    //   }  
+    //   else 
+    //   {
+    //     console.log("wrote to json file");
+    //   }
+    // });
     handleAddModalClose();
   }
 
