@@ -37,10 +37,9 @@ export function Header() {
   
 // creates the signin page
 export function SignIn(props) {
-  props.setSignedIn(true);
   return (
     <div className="container">
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={props.setSignedIn(true)} />
     </div>
   );
 }
