@@ -82,7 +82,7 @@ function NutritionInfo(props) {
         Nutrition Information:
       </div>
       <div className="card-img nutrition-info">
-        <h1>Nutrition information is not availible for candies you add.</h1>
+        <h1>Nutrition information is not available for candies you add.</h1>
       </div>
     </div>
   </div>);
