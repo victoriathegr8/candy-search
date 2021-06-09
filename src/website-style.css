@@ -123,6 +123,16 @@ nav ul {
 }
 
 /*-- card views --*/
+.card-title {
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-align: center;
+}
+.card-text {
+    font-weight: normal;
+    font-size: 1rem;
+    text-align: center;
+}
 .small-view {
     position: absolute;
     right: 50px;
@@ -295,11 +305,7 @@ h3 {
 }
 
 /*-- individual candy info pages --*/
-.card-title {
-    font-weight: bold;
-    font-size: 1.7rem;
-    padding-left: 1rem;
-}
+
 .candy-detail {
     background-color: #A1C3D1;
     color: #4b2e83;
