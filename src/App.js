@@ -281,7 +281,7 @@ function App (props) {
                 <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
               </section>
               <section className="cards-column">
-                <AddModal handleModalClose={handleAddModalClose} handleModalApply={handleModalApply}/>
+                <AddModal signedIn={signedIn} currentUser={user} handleModalClose={handleAddModalClose} candyNum={candydata.length}/>
                 <div className="small-view">
                   <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
                   <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>

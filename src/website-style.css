@@ -133,9 +133,7 @@ nav ul {
     border: 1.5px solid black;
     border-radius: 10px;
     z-index:20;
-    background-color: white;
-    width: 500px;
-    max-width: 80%;
+    
     display: none;
 }
 .add-modal-header{
