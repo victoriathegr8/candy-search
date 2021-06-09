@@ -5,6 +5,7 @@ import "./website-style.css";
 import firebase from 'firebase';
 
 
+
 // importing the right components
 import {Cards} from './cards.js';
 import {Indv} from './indv.js';

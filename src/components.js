@@ -82,9 +82,9 @@ export function ButtonsSmall(props) {
           <i className="fa fa-th-large"></i>
           Grid
         </button>
-        <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {props.filterButtonCallBack()}}>
+        <button id="smallfilterbutton" aria-label="Filter"  onClick={() => {props.filterButtonCallBack()}}>
           <i className="fa fa-filter"></i>
-          Filter and Sort
+          Filter
         </button>
       </div>
     );
