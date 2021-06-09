@@ -236,10 +236,10 @@ function App (props) {
           <Route path="/about" >
             <About/>
           </Route>
-          <Route exact path="/signin">
+          <Route  path="/signin">
             <SignIn setSignedIn={setSignedIn}/>
           </Route>
-          <Route exact path="/fav">
+          <Route  path="/fav">
             <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
             {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
           </Route>
