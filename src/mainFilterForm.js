@@ -12,41 +12,41 @@ export function RenderForm (props) {
   <form>
     <h2>Filter</h2>
     <nobr className="filtertype">Contains:</nobr><br />
-    <input type="checkbox" id="contains1" name="contains1" value="chocolate" />
+    <input type="checkbox" name="contains1" value="chocolate" />
     <label htmlFor="contains1">
       Chocolate</label><br />
-    <input type="checkbox" id="contains2" name="contains2" value="caramel" />
+    <input type="checkbox" name="contains2" value="caramel" />
     <label htmlFor="contains2">
       Caramel</label><br />
-    <input type="checkbox" id="contains3" name="contains3" value="peanutyalmondy" />
+    <input type="checkbox" name="contains3" value="peanutyalmondy" />
     <label htmlFor="contains3">
       Peanuts/Peanut Butter/Almonds</label><br />
-    <input type="checkbox" id="contains4" name="contains4" value="nougat" />
+    <input type="checkbox" name="contains4" value="nougat" />
     <label htmlFor="contains4">
       Nougat</label><br />
-    <input type="checkbox" id="contains5" name="contains5" value="crispedricewafer" />
+    <input type="checkbox" name="contains5" value="crispedricewafer" />
     <label htmlFor="contains5">
       Crisped Rice/Wafers/Cookie</label><br />
-    <input type="checkbox" id="contains6" name="contains6" value="pluribus" />
+    <input type="checkbox" name="contains6" value="pluribus" />
     <label htmlFor="contains6">
       Multiple Candies in Bag/Box</label><br />
-    <input type="checkbox" id="contains7" name="contains7" defaultValue="Egg" />
+    <input type="checkbox" name="contains7" defaultValue="Egg" />
     <label htmlFor="contains7">
       No Egg</label><br />
-    <input type="checkbox" id="contains8" name="contains8" defaultValue="Milk" />
+    <input type="checkbox" name="contains8" defaultValue="Milk" />
     <label htmlFor="contains8">
       No Milk</label><br />
-    <input type="checkbox" id="contains9" name="contains9" defaultValue="Soy" />
+    <input type="checkbox" name="contains9" defaultValue="Soy" />
     <label htmlFor="contains9">
       No Soy</label><br /><br />
     <nobr className="filtertype">Other Attributes:</nobr><br />
-    <input type="checkbox" id="other1" name="other1" defaultValue="Fruity" />
+    <input type="checkbox" name="other1" defaultValue="Fruity" />
     <label htmlFor="other1">
       Fruit-Flavored</label><br />
-    <input type="checkbox" id="other2" name="other2" defaultValue="Hard" />
+    <input type="checkbox" name="other2" defaultValue="Hard" />
     <label htmlFor="other2">
       Hard Candy</label><br />
-    <input type="checkbox" id="other3" name="other3" defaultValue="Bar" />
+    <input type="checkbox" name="other3" defaultValue="Bar" />
     <label htmlFor="other3">
       Candy Bar</label><br /><br />
     <nobr className="filtertype">Sugar Percentile:</nobr><br />
