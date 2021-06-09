@@ -32,7 +32,7 @@ function App (props) {
   const [checkboxes, setCheckboxes] = useState(temp);
   const [sugarMinElem, setSugarmin] = useState(null);
   const [sugarMaxElem, setSugarmax] = useState(null);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   const [signedIn, setSignedIn] = useState(false);
   const [redirect, setRedirect] = useState("/");
   const [favoriteCandies, setFavoriteCandies] = useState(temp);
