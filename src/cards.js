@@ -5,6 +5,9 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
+  if(props.currentData === null) {
+    return <h1 className="no-favs">You don't have any favorited candies yet! Press a heart button on the home page, and you'll see your favorites here.</h1>
+  }
   console.log("Cards currentUser", props.currentUser);
     // the props for this should be the state values, specifically the card object array, and the gridView
    // based on the listView/GridView thing, rerender the cards accordingly
@@ -52,13 +55,10 @@ function CardGridView(props) {
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
-        console.log("you're not signed in!");
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";
       }
       else {
-        console.log(props.currentUser)
-        console.log(props.favCandyNums);
         let state = !active
         setActive(state);
         let newCandy = props.card.candynum
@@ -111,14 +111,10 @@ function CardListView(props) {
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
-        console.log("you're not signed in!");
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";
       }
       else {
-        console.log(props.currentUser)
-        console.log(props.favCandyNums)
-        console.log(props.card.candynum)
         let state = !active
         setActive(state);
         let newCandy = props.card.candynum

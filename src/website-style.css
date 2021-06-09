@@ -123,6 +123,11 @@ nav ul {
 }
 
 /*-- card views --*/
+.no-favs {
+    text-align: center;
+    font-weight: lighter;
+    padding: 3rem;
+}
 .card-title {
     font-weight: bold;
     font-size: 1.7rem;

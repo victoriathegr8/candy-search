@@ -1,6 +1,4 @@
 // imports the right statements
-import React, {useEffect} from 'react';
-import {Link, NavLink, Redirect, } from 'react-router-dom';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -39,18 +37,13 @@ export function Header() {
   
 // creates the signin page
 export function SignIn(props) {
-      //if (!props.currentUser) {
-      return (
-        <div className="container">
-          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-        </div>
-      );
-      // } else {
-      //   return (
-      //     <h1>You're already signed in</h1>
-      //   )
-      // }
-  }
+  props.setSignedIn(true);
+  return (
+    <div className="container">
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    </div>
+  );
+}
   
 
  
@@ -58,11 +51,11 @@ export function SignIn(props) {
 export function ButtonsLarge(props){
     return(
       <div>
-        <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Large List");}}>
+        <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false)}}>
           <i className="fa fa-bars"></i>
           List
         </button>
-        <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Large Grid");}}>
+        <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true)}}>
           <i className="fa fa-th-large"></i>
           Grid
         </button>

@@ -1,6 +1,6 @@
 // importing the right libraries and css styling
 import React, {useState, useEffect} from 'react';
-import { Route, Switch, Link, Redirect, useHistory} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
 
@@ -41,7 +41,6 @@ function App (props) {
   
 
   // event handlers
-
   // handleClick should be called when the grid view or list view buttons are clicked
   let handleClick = function(booleanValue) {
     setGridView(booleanValue);
@@ -89,7 +88,7 @@ function App (props) {
     });
     setCheckboxes(checkboxValues); // this is not actually updating the checkboxes value
     return checkboxValues; // returning the value is a temp fix for the stateHook problem
-}
+  }
  
   
   // filter candies against checkboxes array; helper method for handleFormSubmit()
@@ -180,7 +179,6 @@ function App (props) {
   function handleSignIn() {
     setSignedIn(true);
     return <Redirect push to="/signin"/>;
-
   }
 
   function handleLogOut() {
@@ -199,78 +197,64 @@ function App (props) {
       } else {
         setUser(null)
       }
-        
     })
   });
 
- 
-
-  // if (!user) {
-  //   return (
-  //     <div className="container">
-  //       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-  //     </div>
-  //   );
-  //   } else {
-
-
- 
   // actually returning and rendering the page
-        return (
-          <div>
-            <div>
-              <Header/>
+  return (
+  <div>
+    <div>
+      <Header/>
+    </div>
+    <div>
+      <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn}/>
+    </div>
+    <div className="outer-box">
+      <main>
+        <Switch>
+          <Route path="/indv/:candyname">
+            <div className="indv-container">
+              <Indv data={props.data}/>
             </div>
-            <div>
-              <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn}/>
+          </Route>
+          <Route path="/about" >
+            <About/>
+          </Route>
+          <Route exact path="/signin">
+            <SignIn setSignedIn={setSignedIn}/>
+          </Route>
+          <Route exact path="/fav">
+            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+            {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+          </Route>
+          <Route path="/">
+            <div className="container">
+              <section className="form-column">
+                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
+                <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
+              </section>
+              <section className="cards-column">
+                <div className="small-view">
+                  <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
+                  <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
+                </div>
+                <br/><br/><br/>
+                <div id="candy-div">
+                  <PromptModal/>
+                  <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                  <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
+                </div> 
+              </section>
             </div>
-            <div className="outer-box">
-              <main>
-                <Switch>
-                  <Route path="/indv/:candyname">
-                    <div className="indv-container">
-                      <Indv data={props.data}/>
-                    </div>
-                  </Route>
-                  <Route path="/about" >
-                    <About/>
-                  </Route>
-                  <Route exact path="/signin">
-                    <SignIn/>
-                  </Route>
-                  <Route exact path="/fav">
-                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
-                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
-                  </Route>
-                  <Route path="/">
-                    <div className="container">
-                      <section className="form-column">
-                        <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
-                        <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
-                      </section>
-                      <section className="cards-column">
-                        <div className="small-view">
-                          <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
-                          <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
-                        </div>
-                        <br/><br/><br/>
-                        <div id="candy-div">
-                          <PromptModal/>
-                          <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
-                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
-                        </div> 
-                      </section>
-                    </div>
-                  </Route>
-                  {/* <Redirect to="/"/> */}
-                </Switch>
-              </main>
-            </div>
-            <footer>
-              <Footer/>
-            </footer>
-          </div>);
-} // VICTORIA DON'T FORGET THE EXTRA BRACKET HERE
+          </Route>
+        </Switch>
+      </main>
+    </div>
+    <footer>
+      <Footer/>
+    </footer>
+  </div>);
+}
 
 
 

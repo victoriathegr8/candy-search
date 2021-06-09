@@ -16,19 +16,26 @@ export function FavoritesPage(props) {
     
         favsRef.on('value', (snapshot) => {
           const candiesObjs = snapshot.val();
-          let objectKeyArray = Object.keys(candiesObjs);
-          candiesArray = objectKeyArray.map((key) => {
-            let singleCandyObj = candiesObjs[key];
-            return singleCandyObj;
-          })
-          for (let i = 0; i < candiesArray.length; i++) {
-            let index = candiesArray[i];
-            let candy = props.data[index];
-            favCandies.push(candy);
-          }
+          if(candiesObjs != null) {
+            let objectKeyArray = Object.keys(candiesObjs);
+            candiesArray = objectKeyArray.map((key) => {
+              let singleCandyObj = candiesObjs[key];
+              return singleCandyObj;
+            });
           
-          props.setCandydata(favCandies);
-          props.setFavCandyNums(objectKeyArray);  
+            for (let i = 0; i < candiesArray.length; i++) {
+              let index = candiesArray[i];
+              let candy = props.data[index];
+              favCandies.push(candy);
+            }
+            
+            props.setCandydata(favCandies);
+            props.setFavCandyNums(objectKeyArray);  
+          }
+          else {
+            props.setCandydata(null);
+            props.setFavCandyNums(0);
+          }
         }); 
       }
     }, []);

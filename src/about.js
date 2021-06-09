@@ -17,8 +17,6 @@ export function About() {
 </div>);
 }
 
-
-
 // these are the individual about page components. They are only called internally and are not exported
 function MakeStatement() {
     return(
