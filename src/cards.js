@@ -59,7 +59,7 @@ function CardGridView(props) {
     // when heart is clickedand user is signed in, add candy num to firebase, specific to user
     const handleClickHeart = () => {
       
-      if(!props.signedIn) {
+      if(!props.signedIn || props.currentUser === null) {
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";
       }
@@ -116,7 +116,7 @@ function CardListView(props) {
     }
     const handleClickHeart = () => {
       
-      if(!props.signedIn) {
+      if(!props.signedIn || props.currentUser === null) {
         let modal = document.querySelector("#signin-modal");
         modal.style.display="block";
       }

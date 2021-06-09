@@ -177,13 +177,14 @@ function App (props) {
 
   // function for making sign in/out more user friendly
   function handleSignIn() {
-    setSignedIn(true);
+    setSignedIn(false);
     return <Redirect push to="/signin"/>;
   }
 
   function handleLogOut() {
-    setSignedIn(false);
+    
     firebase.auth().signOut();
+    setSignedIn(false);
     return <Redirect push to="/"/>;
   }
 
@@ -206,7 +207,7 @@ function App (props) {
       <Header/>
     </div>
     <div>
-      <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn}/>
+      <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn} user={user}/>
     </div>
     <div className="outer-box">
       <main>

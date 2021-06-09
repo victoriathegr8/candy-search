@@ -2,7 +2,7 @@
 import {Link, NavLink} from 'react-router-dom';
 
 export function NavBar(props) {
-    if(props.signedIn === true) {
+    if(props.signedIn === true && props.user !== null) {
         return (<NavBarLogOut handleClick={props.handleLogOut}/>);
     }
     else {
