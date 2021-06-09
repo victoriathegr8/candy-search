@@ -148,9 +148,6 @@ function App (props) {
   function handleModalPopup() {
     let modal = document.querySelector(".modal");
     modal.style.display="block";
-
-    let cards = document.querySelector("#candy-div");
-    cards.style.display="none";
   }
 
   // makes the modal element dissappear when closed
@@ -164,10 +161,9 @@ function App (props) {
 
   function showAddModal(){
     let modal = document.querySelector(".add-modal");
-    modal.style.display="block";
-
-    let cards = document.querySelector("#candy-div");
-    cards.style.display="none";
+    let promptModal = document.querySelector("#signin-modal");
+    if (user) modal.style.display="block";
+    else promptModal.style.display="block";
   }
   
   function handleAddModalClose() {
@@ -237,7 +233,7 @@ function App (props) {
             <About/>
           </Route>
           <Route  path="/signin">
-            <SignIn setSignedIn={setSignedIn}/>
+          {user ? <Redirect to="/"/> : <SignIn setSignedIn={setSignedIn}/>}
           </Route>
           <Route  path="/fav">
             <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
@@ -247,7 +243,7 @@ function App (props) {
             <Header/>
             <div className="container">
               <section className="form-column">
-                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike} showAddModal={showAddModal} />
+                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike} showAddModal={showAddModal}/>
                 <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
               </section>
               <section className="cards-column">
