@@ -11,7 +11,10 @@ export function FavoritesPage(props) {
     
     // takes a snapshot of firebase user's favorites
     useEffect(() => {
-      if(props.currentUser !== undefined) {
+      if(props.currentUser === undefined || props.currentUser === null) {
+        return <h1 className="no-favs">You don't have any favorited candies yet! Press a heart button on the home page, and you'll see your favorites here.</h1>
+      }
+      else if(props.currentUser !== undefined || props.currentUser !== null) {
         let favsRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
     
         favsRef.on('value', (snapshot) => {
