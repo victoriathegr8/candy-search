@@ -97,6 +97,15 @@ function CardListView(props) {
     //   }
     // }
 
+    const heartStatus = (e) => {
+      if(!props.signedIn) return false;
+      else {
+        if (props.favCandyNums.includes(e) === true) {
+          return true;
+        }
+        return false
+      }
+    }
     const handleClickHeart = () => {
       
       if(!props.signedIn) {
@@ -138,7 +147,7 @@ function CardListView(props) {
             <p className="card-text">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
             <p className="card-text">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
             <p className="card-text">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
-            <Heart className="heart nobreak" key={"candy"+props.card.candynum} isActive={active} onClick={() => {handleClickHeart()}} currentUser={props.currentUser} value={props.card.candynum}/>
+            <Heart className="heart nobreak" key={"candy"+props.card.candynum} isActive={heartStatus(props.card.candynum)} onClick={() => {handleClickHeart()}} currentUser={props.currentUser} value={props.card.candynum}/>
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>
