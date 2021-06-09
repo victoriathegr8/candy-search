@@ -12,22 +12,19 @@ export function FavoritesPage(props) {
   
       favsRef.on('value', (snapshot) => {
         const candiesObjs = snapshot.val();
-        console.log(candiesObjs);
         let objectKeyArray = Object.keys(candiesObjs);
         candiesArray = objectKeyArray.map((key) => {
-          console.log(key)
           let singleCandyObj = candiesObjs[key];
           return singleCandyObj;
         })
-        console.log("candiesArray", candiesArray);
         for (let i = 0; i < candiesArray.length; i++) {
           let index = candiesArray[i];
           let candy = props.data[index];
           favCandies.push(candy);
         }
         
-        console.log(favCandies);
-        props.setCandydata(favCandies);  
+        props.setCandydata(favCandies);
+        props.setFavCandyNums(objectKeyArray);  
       });
     }, []);
     return null;

@@ -36,6 +36,7 @@ function App (props) {
   const [signedIn, setSignedIn] = useState(false);
   const [redirect, setRedirect] = useState("/");
   const [favoriteCandies, setFavoriteCandies] = useState(temp);
+  const [favCandyNums, setFavCandyNums] = useState([]);
 
   
 
@@ -238,8 +239,8 @@ function App (props) {
                     <SignIn/>
                   </Route>
                   <Route exact path="/fav">
-                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data}/>
-                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user}/>}
+                    <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                    {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
                   </Route>
                   <Route path="/">
                     <div className="container">
@@ -255,11 +256,13 @@ function App (props) {
                         <br/><br/><br/>
                         <div id="candy-div">
                           <PromptModal/>
-                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user}/>
+                          <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                          <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
                         </div> 
                       </section>
                     </div>
                   </Route>
+                  {/* <Redirect to="/"/> */}
                 </Switch>
               </main>
             </div>
