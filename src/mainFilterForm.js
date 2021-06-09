@@ -55,7 +55,8 @@ export function RenderForm (props) {
     </nobr>
     <input className="sugarrange" placeholder="Max" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min={0} max={100} onChange={(event) => {props.handleSugarMax(event.target.value)}} /><nobr>
       %</nobr><br />
-    <p id="sugarFeedback" className="invalid-feedback" /><br />
+      {/* id="sugarFeedback" */}
+    <p  className="invalid-feedback" /><br />
     {/* <label className="filtertype" htmlFor="sort">Sort By:</label><br />
     <select name="sort" id="sort">
       <option value="alphabet">Name A to Z</option>
@@ -65,7 +66,8 @@ export function RenderForm (props) {
     <br /><br />
     {/* need an onClick for the button */}
     {/* {onClick={props.handleSubmit()}} */}
-    <button id="applybutton" type="button" defaultValue="Reset" onClick={() => props.handleSubmit() } >Apply</button>
+    {/* id="applybutton" */}
+    <button  type="button" defaultValue="Reset" onClick={() => props.handleSubmit() } >Apply</button>
     <input type="reset" defaultValue="Reset" />
     <div className="error-message">
       <p className="text-danger">Values in sugar percent ranges must be between 0 and 100.</p>

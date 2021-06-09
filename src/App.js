@@ -16,6 +16,7 @@ import {Header, SignIn, ButtonsLarge, ButtonsSmall, Footer} from './components.j
 import {NavBar} from './navbar.js';
 import {FavoritesPage} from './favorites.js';
 import {PromptModal} from "./signInPromptModal";
+import { AddModal } from './addModal';
 
 
 
@@ -34,7 +35,6 @@ function App (props) {
   const [sugarMaxElem, setSugarmax] = useState(null);
   const [user, setUser] = useState(undefined);
   const [signedIn, setSignedIn] = useState(false);
-  const [redirect, setRedirect] = useState("/");
   const [favoriteCandies, setFavoriteCandies] = useState(temp);
   const [favCandyNums, setFavCandyNums] = useState([]);
 
@@ -93,7 +93,6 @@ function App (props) {
   
   // filter candies against checkboxes array; helper method for handleFormSubmit()
   function filterCandies(candies2) {
-    console.log(checkboxes); // this value is not being updated
     let checkboxV = getCheckboxValues();
     return (checkCheckboxesForm(checkboxV, candies2) && checkCheckboxesModal(checkboxV, candies2));
      // returns true if every element in the bool array is true and false otherwise
@@ -163,6 +162,26 @@ function App (props) {
     cards.style.display="block";
   }
 
+  function showAddModal(){
+    let modal = document.querySelector(".add-modal");
+    modal.style.display="block";
+
+    let cards = document.querySelector("#candy-div");
+    cards.style.display="none";
+  }
+  
+  function handleAddModalClose() {
+    let modal = document.querySelector(".add-modal");
+    modal.style.display="none";
+
+    let cards = document.querySelector("#candy-div");
+    cards.style.display="block";
+  }
+  function handleModalApply() {
+
+    handleAddModalClose();
+  }
+
   // updates the candy data to match the checkboxes on either the form or the modal 
   function handleFormSubmit() {
     let copy = props.data;
@@ -193,7 +212,7 @@ function App (props) {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser)
-        setRedirect("/");
+        return <Redirect push to="/"/>
       } else {
         setUser(null)
       }
@@ -228,10 +247,11 @@ function App (props) {
             <Header/>
             <div className="container">
               <section className="form-column">
-                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike}/>
+                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike} showAddModal={showAddModal} />
                 <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
               </section>
               <section className="cards-column">
+                <AddModal handleModalClose={handleAddModalClose} handleModalApply={handleModalApply}/>
                 <div className="small-view">
                   <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
                   <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>

@@ -124,7 +124,7 @@ function CardListView(props) {
         let state = !active
         setActive(state);
         let newCandy = props.card.candynum
-        if (active == false) {
+        if (active === false) {
           let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/favorites')
           tempRef.update({[newCandy]: newCandy})
         }

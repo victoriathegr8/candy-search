@@ -1,7 +1,7 @@
 // imports the right statements
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import {addModal} from './addModal.js';
+
 
 // signin
 const uiConfig = {
@@ -47,10 +47,7 @@ export function SignIn(props) {
   
 // creates the larger list view/grid view buttons
 export function ButtonsLarge(props){
-  function showAddModal(){
-    let modal = document.querySelector("add-modal");
-    modal.style.display="block";
-  }
+  
     return(
       <div>
         <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false)}}>
@@ -61,7 +58,7 @@ export function ButtonsLarge(props){
           <i className="fa fa-th-large"></i>
           Grid
         </button>
-        <button id="add-button" className="view" aria-label="Add Candy" onClick={() => showAddModal(true)}>
+        <button id="add-button" className="view" aria-label="Add Candy" onClick={() => {props.showAddModal()}}>
           <i className="fa fa-edit"></i>
           Add Candy
         </button>
@@ -77,15 +74,15 @@ export function ButtonsSmall(props) {
   
       return(
       <div>
-        <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false); console.log("Make Buttons Small List");}}>
+        <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false)}}>
           <i className="fa fa-bars"></i>
           List
         </button>
-        <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true); console.log("Make Buttons Small Grid");}}>
+        <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true)}}>
           <i className="fa fa-th-large"></i>
           Grid
         </button>
-        <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {props.filterButtonCallBack(); console.log("opening filter button");}}>
+        <button id="smallfilterbutton" aria-label="Filter and Sort"  onClick={() => {props.filterButtonCallBack()}}>
           <i className="fa fa-filter"></i>
           Filter and Sort
         </button>

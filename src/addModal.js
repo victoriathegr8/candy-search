@@ -1,16 +1,11 @@
-// modal that shows when a user tries to use like button without being signed in
-export function addModal(props) {
-    function handleModalClose() {
-    let modal = document.querySelector("#add-modal");
-    modal.style.display="none";
-    }
-    
+
+// modal that adds a candy to the file
+export function AddModal(props) {   
     return (
-        <div className="add-modal">
-            <div id="add-modal" className="modal card">
+        <div className="add-modal card">
             <div className="modal-content card-body">
-                <span className="add-modal-close close" onClick={() => handleModalClose()}>×</span>
-                <span className="add-modal-txt">Add You New Candy Information</span>
+                <span className="add-modal-close close" onClick={() => props.handleModalClose()}>×</span>
+                <span className="add-modal-txt">Add Your New Candy Information</span>
                 <label for="name">Name of your Candy: </label>
                 <input type="text" name="name"></input> <br/>
                 <label for="image">Image Url of a Picture of your Candy: </label>
@@ -22,9 +17,9 @@ export function addModal(props) {
                 <input type="checkbox" name="containsSoy"></input>
                 <label for="containsSoy">Your Candy contains Soy</label> <br/>
                 <br/>
-                <button>Apply</button>
-            </div>
+                <button className="btn btn-primary" onClick={() => props.handleModalApply()}>Apply</button>
             </div>
         </div>
+        
     );
 }

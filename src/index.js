@@ -26,14 +26,10 @@ let STATE = {currentData:CANDY_DATA};
 fetch("data/candy-data.json")
     // gets the data as a json file
     .then(function(response){
-      console.log("fetching data");
       let r = response.json();
-      console.log("response", r);
       return r;
     })
     .then(function(data){
-        console.log("downloaded local candies");
-        console.log(data);
         //sets the data to state
         STATE.currentData = data; 
     })
