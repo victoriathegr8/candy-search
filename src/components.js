@@ -41,11 +41,11 @@ export function SignIn(props) {
   // make sure to make the addedCandies State, and bring the value into this method
   function handleSignIn() {
     props.setSignedIn(true)
-    props.setAddedCandies()//added candies from firebase);
+    //props.setAddedCandies()//added candies from firebase);
   }
   return (
     <div className="container">
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={() => {handleSignIn()}}/>
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={handleSignIn()}/>
     </div>
   );
 }
@@ -67,7 +67,6 @@ export function ButtonsLarge(props){
           <i className="fa fa-edit"></i>
           Add Candy
         </button>
-        <addModal/>
         <br/><br/><br/>
       </div>
     );

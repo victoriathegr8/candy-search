@@ -176,43 +176,6 @@ function App (props) {
     let cards = document.querySelector("#candy-div");
     cards.style.display="block";
   }
-  function handleModalApply(addModalValues) {
-    // let candy = {
-    //   "candynum": candyNum,
-    //   "competitorname": addModalValues.name,
-    //   "chocolate": -1,
-    //   "fruity": -1,
-    //   "caramel": -1,
-    //   "peanutyalmondy": -1,
-    //   "nougat": -1,
-    //   "crispedricewafer": -1,
-    //   "hard": -1,
-    //   "bar": -1,
-    //   "pluribus": -1,
-    //   "sugarpercent": -1,
-    //   "pricepercent": -1,
-    //   "winpercent": -1,
-    //   "imglink": addModalValues.imgurl,
-    //   "hasegg": addModalValues.hasEgg,
-    //   "hasmilk": addModalValues.hasMilk,
-    //   "hassoy": addModalValues.hasSoy
-    // }
-    // setCandyNum(candyNum + 1);
-
-    // let data = JSON.stringify(candy);
-    // console.log(data);
-    // fs.writeFile('data/candy-data.json', data, 'utf8', (err) => {
-    //   if (err) {
-    //       console.log(`Error writing file:`, err);
-    //       setCandyNum(candyNum - 1);
-    //   }  
-    //   else 
-    //   {
-    //     console.log("wrote to json file");
-    //   }
-    // });
-    handleAddModalClose();
-  }
 
   // updates the candy data to match the checkboxes on either the form or the modal 
   function handleFormSubmit() {
@@ -228,7 +191,9 @@ function App (props) {
 
   // function for making sign in/out more user friendly
   function handleSignIn() {
+    
     setSignedIn(false);
+    
     return <Redirect push to="/signin"/>;
   }
 
@@ -236,6 +201,7 @@ function App (props) {
     
     firebase.auth().signOut();
     setSignedIn(false);
+    
     return <Redirect push to="/"/>;
   }
 
@@ -246,7 +212,7 @@ function App (props) {
         setUser(firebaseUser)
         return <Redirect push to="/"/>
       } else {
-        setUser(null)
+        setUser(undefined)
       }
     })
   });
@@ -269,11 +235,12 @@ function App (props) {
             <About/>
           </Route>
           <Route  path="/signin">
-          {user ? <Redirect to="/"/> : <SignIn setSignedIn={setSignedIn}/>}
+          {user ? <Redirect push to="/"/> : <SignIn setSignedIn={setSignedIn}/>}
+          {/* <SignIn setSignedIn={setSignedIn}/> */}
           </Route>
           <Route  path="/fav">
-            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
-            {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={candydata} setFavCandyNums={setFavCandyNums}/>
+            {!signedIn ? <Redirect push to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
           </Route>
           <Route path="/">
             <Header/>

@@ -52,24 +52,24 @@ function MakeAuthors() {
                 <img src="./img/sachi.JPG" alt="Sachi Figliolini"></img>
                 <h3>Sachi Figliolini</h3>
                 <p>Sachi is a freshman studying Informatics at the Univeristy of Washington. In the Information school she particaptes in the Informatics Undergraduate Association (IUGA) as a first year representative and the Director of Finance. She is passionate about using information and computing to lead efforts to solve issues in the greater community. During her free time she likes playing video games, rewatching shows, and painting.</p>
-                <a href="https://www.linkedin.com/in/sachi-figliolini" target="_blank">
-                    <img class="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
+                <a href="https://www.linkedin.com/in/sachi-figliolini" target="_blank" rel="noreferrer">
+                    <img className="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
                 </a>
             </div>
             <div className="author-col">
                 <img src="./img/victoria.jpg" alt="Victoria Nguyen"></img>
                 <h3>Victoria Nguyen</h3>
                 <p>Victoria is a freshman studying informatics and psychology. By combining the two fields, she is pursuing a path in user experience research. Her involvements at UW include serving as a junior officer of Women in User Experience as well as contributing to research in the Human Centered Design and Engineering department. Outside of school, she enjoys cooking, trying new restaurants, and having self-care nights with herself. Topics that she’s always excited to have a conversation about are mental health and cartoons.</p>
-                <a href="https://www.linkedin.com/in/victoriabnguyen/" target="_blank">
-                    <img class="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
+                <a href="https://www.linkedin.com/in/victoriabnguyen/" target="_blank" rel="noreferrer">
+                    <img className="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
                 </a>
             </div>
             <div className="author-col">
                 <img src="./img/roshni.JPG" alt="Roshni Srikanth"></img>
                 <h3>Roshni Srikanth</h3>
                 <p>Roshni Srikanth is a freshman studying Informatics at the University of Washington. She is a student in the Interdisciplinary Honors Program and is the Director of Diversity Efforts for WINFO (Women in Informatics). She is interested in studying technology, its interaction with culture, and sustainability. Outside of school, she loves to read, eat, cook, and play with her dog Mango.</p>
-                <a href="https://www.linkedin.com/in/roshni-srikanth/" target="_blank">
-                    <img class="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
+                <a href="https://www.linkedin.com/in/roshni-srikanth/" target="_blank" rel="noreferrer">
+                    <img className="linkedin" src="./img/linkedin.png" alt="linkedin logo"></img>
                 </a>
             </div>
         </div>
