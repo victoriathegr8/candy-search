@@ -5,6 +5,7 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
+  console.log("props.currentData", props.currentData);
   if(props.currentData.length < 1) {
     return <h1 className="no-favs">You don't have any favorited candies yet! Press a heart button on the home page, and you'll see your favorites here.</h1>
   }
@@ -13,6 +14,7 @@ export function Cards(props) {
     // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
+        console.log("current card:", currentCard);
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
           <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
@@ -21,6 +23,7 @@ export function Cards(props) {
     }
     else {
       return props.currentData.map((currentCard) => {
+        console.log("current card:", currentCard);
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
             <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
