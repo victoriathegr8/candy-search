@@ -7,6 +7,7 @@ import firebase from 'firebase';
 
 
 // importing the right components
+import {AddedCandyCards} from './addedCandies.js'
 import {Cards} from './cards.js';
 import {Indv} from './indv.js';
 import {Form} from './mainFilterForm.js';
@@ -18,6 +19,7 @@ import {NavBar} from './navbar.js';
 import {FavoritesPage} from './favorites.js';
 import {PromptModal} from "./signInPromptModal";
 import { AddModal } from './addModal';
+
 
 
 
@@ -38,7 +40,7 @@ function App (props) {
   const [signedIn, setSignedIn] = useState(false);
   const [favoriteCandies, setFavoriteCandies] = useState(temp);
   const [favCandyNums, setFavCandyNums] = useState([]);
-
+  const [addedCandies, setAddedCandies] = useState([]);
   
 
   // event handlers
@@ -290,6 +292,7 @@ function App (props) {
                 <div id="candy-div">
                   <PromptModal/>
                   <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                  <AddedCandyCards currentUser={user} setAddedCandies={setAddedCandies}/>
                   <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
                 </div> 
               </section>
