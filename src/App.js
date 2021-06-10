@@ -187,11 +187,9 @@ function App (props) {
     }
   }
 
-  // function for making sign in/out more user friendly
-  function handleSignIn() {
-    
+   // function for making sign in/out more user friendly
+   function handleSignIn() {
     setSignedIn(false);
-    
     return <Redirect push to="/signin"/>;
   }
 
@@ -199,21 +197,21 @@ function App (props) {
     
     firebase.auth().signOut();
     setSignedIn(false);
-    
     return <Redirect push to="/"/>;
   }
 
   //auth state event listener
-  useEffect( () => {
-    firebase.auth().onAuthStateChanged((firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser)
-        return <Redirect push to="/"/>
-      } else {
-        setUser(undefined)
-      }
-    })
-  });
+  // useEffect( () => {
+  //   firebase.auth().onAuthStateChanged((firebaseUser) => {
+  //     if (firebaseUser) {
+  //       setUser(firebaseUser)
+  //       return <Redirect push to="/"/>
+  //     } else {
+  //       setUser(undefined)
+  //       setSignedIn(false);
+  //     }
+  //   })
+  // });
   
   // actually returning and rendering the page
   return (
@@ -233,12 +231,12 @@ function App (props) {
             <About/>
           </Route>
           <Route  path="/signin">
-          {user ? <Redirect push to="/"/> : <SignIn setSignedIn={setSignedIn}/>}
-          {/* <SignIn setSignedIn={setSignedIn}/> */}
+            <SignIn setSignedIn={setSignedIn} setUser={setUser}/>
+            <h1>Click on 'home' in the nav bar to see the candies</h1>
           </Route>
           <Route  path="/fav">
-            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={candydata} setFavCandyNums={setFavCandyNums}/>
-            {!signedIn ? <Redirect push to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+            {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
           </Route>
           <Route path="/">
             <Header/>
