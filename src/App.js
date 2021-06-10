@@ -189,11 +189,9 @@ function App (props) {
     }
   }
 
-  // function for making sign in/out more user friendly
-  function handleSignIn() {
-    
+   // function for making sign in/out more user friendly
+   function handleSignIn() {
     setSignedIn(false);
-    
     return <Redirect push to="/signin"/>;
   }
 
@@ -201,21 +199,21 @@ function App (props) {
     
     firebase.auth().signOut();
     setSignedIn(false);
-    
     return <Redirect push to="/"/>;
   }
 
   //auth state event listener
-  useEffect( () => {
-    firebase.auth().onAuthStateChanged((firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser)
-        return <Redirect push to="/"/>
-      } else {
-        setUser(undefined)
-      }
-    })
-  });
+  // useEffect( () => {
+  //   firebase.auth().onAuthStateChanged((firebaseUser) => {
+  //     if (firebaseUser) {
+  //       setUser(firebaseUser)
+  //       return <Redirect push to="/"/>
+  //     } else {
+  //       setUser(undefined)
+  //       setSignedIn(false);
+  //     }
+  //   })
+  // });
   
   // actually returning and rendering the page
   return (
@@ -235,12 +233,31 @@ function App (props) {
             <About/>
           </Route>
           <Route  path="/signin">
-          {user ? <Redirect push to="/"/> : <SignIn setSignedIn={setSignedIn}/>}
-          {/* <SignIn setSignedIn={setSignedIn}/> */}
+            <SignIn setSignedIn={setSignedIn} setUser={setUser}/>
+            <h1>Click on 'home' in the nav bar to see the candies</h1>
           </Route>
           <Route  path="/fav">
-            <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={candydata} setFavCandyNums={setFavCandyNums}/>
-            {!signedIn ? <Redirect push to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+          <Header/>
+            <div className="container">
+              <section className="form-column">
+                <ButtonsLarge handleClick={handleClick} likeCallBack={handleLike} showAddModal={showAddModal}/>
+                <Form handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax} handleSubmit={handleFormSubmit}/>
+              </section>
+              <section className="cards-column">
+                <AddModal signedIn={signedIn} currentUser={user} handleModalClose={handleAddModalClose} candyNum={candydata.length}/>
+                <div className="small-view">
+                  <ButtonsSmall handleClick={handleClick} likeCallBack={handleLike} filterButtonCallBack={handleModalPopup}/>
+                  <Modal  handleSugarMin={handleSugarMin} handleSugarMax={handleSugarMax}  handleSubmit={handleFormSubmit} handleClose={handleModalClose}/>
+                </div>
+                <br/><br/><br/>
+                <div id="candy-div">
+                  <PromptModal/>
+                  <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                  {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+                </div> 
+              </section>
+            </div>
+            
           </Route>
           <Route path="/">
             <Header/>
@@ -258,7 +275,7 @@ function App (props) {
                 <br/><br/><br/>
                 <div id="candy-div">
                   <PromptModal/>
-                  <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                  {/* <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/> */}
                   <AddedCandyCards currentUser={user} setAddedCandies={setAddedCandies}/>
                   <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
                 </div> 

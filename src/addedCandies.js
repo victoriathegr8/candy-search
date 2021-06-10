@@ -4,7 +4,7 @@ import firebase from 'firebase';
 export function AddedCandyCards(props) {
    
     let candiesArray = [];
-    let favCandies = [];
+    let addedCandies = [];
     let objectKeyArray = [];
     
     // takes a snapshot of firebase user's favorites
@@ -24,8 +24,12 @@ export function AddedCandyCards(props) {
               return singleCandyObj;
             })
           }
-          console.log(candiesArray);
-          props.setAddedCandies(candiesArray);  
+            var result = {};
+            objectKeyArray.forEach((key, i) => result[key] = candiesArray[i]);
+            addedCandies = Object.values(result);
+          
+            console.log(addedCandies);
+            props.setAddedCandies(addedCandies);
         }); 
       }
     }, []);

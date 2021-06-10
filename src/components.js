@@ -1,7 +1,8 @@
 // imports the right statements
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-
+import React, {useEffect} from 'react';
+import {Redirect} from 'react-router-dom';
 
 // signin
 const uiConfig = {
@@ -36,20 +37,28 @@ export function Header() {
  
 
 
+
 // creates the signin page
 export function SignIn(props) {
-  // make sure to make the addedCandies State, and bring the value into this method
-  function handleSignIn() {
-    props.setSignedIn(true)
-    //props.setAddedCandies()//added candies from firebase);
-  }
+  useEffect( () => {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        props.setUser(firebaseUser)
+        props.setSignedIn(true);
+        return <Redirect push to="/"/>
+      } else {
+        props.setUser(undefined)
+        props.setSignedIn(false);
+      }
+    })
+  });
+  console.log("inside signin")
   return (
     <div className="container">
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} onClick={handleSignIn()}/>
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </div>
   );
 }
-  
 // creates the larger list view/grid view buttons
 export function ButtonsLarge(props){
   

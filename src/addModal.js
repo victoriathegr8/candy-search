@@ -1,10 +1,11 @@
 import firebase from 'firebase';
 import React, {useState} from 'react';
-
+let addedID = 0;
 
 // modal that adds a candy to the file
 export function AddModal(props) { 
     const [active, setActive] = useState(false);
+
 
     const handleApply = (candyObj) => {
         console.log("inside handleApply")
@@ -15,10 +16,12 @@ export function AddModal(props) {
         else {
           let state = !active
           setActive(state);
+
           console.log("candyObj", candyObj);
-          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/added')
+          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/added/' + addedID + "/")
           console.log("tempRef", tempRef)
           tempRef.update(candyObj);
+          addedID++;
         }
         props.handleModalClose();
       };
