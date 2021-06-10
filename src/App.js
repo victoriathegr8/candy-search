@@ -220,6 +220,7 @@ function App (props) {
   <div>
     <div>
       <NavBar searchCallBack={handleSearch} signedIn={signedIn} handleLogOut={handleLogOut} handleSignIn={handleSignIn} user={user}/>
+      
     </div>
     <div className="outer-box">
       <main>
@@ -252,7 +253,7 @@ function App (props) {
                 <br/><br/><br/>
                 <div id="candy-div">
                   <PromptModal/>
-                  <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/>
+                  <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={candydata} setFavCandyNums={setFavCandyNums}/>
                   {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
                 </div> 
               </section>
@@ -276,7 +277,7 @@ function App (props) {
                 <div id="candy-div">
                   <PromptModal/>
                   {/* <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/> */}
-                  <AddedCandyCards currentUser={user} setAddedCandies={setAddedCandies}/>
+                  <AddedCandyCards currentUser={user} setAddedCandies={setAddedCandies} candyData={candydata} setCandyData={setCandydata}/>
                   <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
                 </div> 
               </section>

@@ -39,6 +39,7 @@ function CardGridView(props) {
     // set path for each more info button on each card
     const handleClickIndv = () => {
       setRedirect("/indv/" + props.card.competitorname);
+      console.log('redirect to: /indv/'+ props.card.competitorname);
     }
     
     // figure out the correct display mode of the heart -

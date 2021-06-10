@@ -27,9 +27,18 @@ export function AddedCandyCards(props) {
             var result = {};
             objectKeyArray.forEach((key, i) => result[key] = candiesArray[i]);
             addedCandies = Object.values(result);
-          
+            let initialLength = props.candyData.length;
+
             console.log(addedCandies);
             props.setAddedCandies(addedCandies);
+            let temp = props.candyData;
+            for(let i = 0; i< addedCandies.length; i++) {
+              addedCandies[i].candynum = initialLength;
+              temp.push(addedCandies[i]);
+              initialLength ++;
+            }
+            console.log(temp);
+            props.setCandyData(temp)
         }); 
       }
     }, []);
