@@ -6,7 +6,7 @@ export function PromptModal(props) {
     let modal = document.querySelector("#signin-modal");
     modal.style.display="none";
     }
-
+    
     return (
         <div className="signin-modal">
             <div id="signin-modal" className="modal card">
