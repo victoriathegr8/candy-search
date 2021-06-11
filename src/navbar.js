@@ -41,7 +41,7 @@ function NavBarLogOut(props){
 
 // creates the Nav Bar with a button that says sign in
 function NavBarSignIn(props){
-    console.log("navbar props", props)
+    
     return (
         <nav>
             <ul>

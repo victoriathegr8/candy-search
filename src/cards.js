@@ -5,7 +5,7 @@ import { Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase';
 
 export function Cards(props) {
-  console.log("props.currentData", props.currentData);
+  
   if(props.currentData.length < 1) {
     return <h1 className="no-favs">You don't have any favorited candies yet! Press a heart button on the home page, and you'll see your favorites here.</h1>
   }
@@ -14,7 +14,7 @@ export function Cards(props) {
     // based on the listView/GridView thing, rerender the cards accordingly
     if(props.gridView) {
       return props.currentData.map((currentCard) => {
-        console.log("current card:", currentCard);
+        
         return(
         <div className="cardpoolGrid" key={currentCard.competitorname}>
           <CardGridView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
@@ -23,7 +23,7 @@ export function Cards(props) {
     }
     else {
       return props.currentData.map((currentCard) => {
-        console.log("current card:", currentCard);
+        
         return(
           <div className="cardpoolList" key={currentCard.competitorname}>
             <CardListView key={currentCard.competitorname} card={currentCard} likeCallback={props.likeCallBack} signedIn={props.signedIn} currentUser={props.currentUser} favCandyNums={props.favCandyNums}/>
@@ -87,7 +87,7 @@ function CardGridView(props) {
         <img className="card-img-top" src={props.card.imglink} alt={props.card.competitorname}/>
         <div className="card-body">
             <p className="card-title h5">{props.card.competitorname}</p>
-            <Heart className="heart nobreak" isActive={heartStatus(props.card.candynum)} onClick={() => {setActive(!active); handleClickHeart()}}/>
+            {props.card.userAdded ? <span></span>: <Heart className="heart nobreak" isActive={heartStatus(props.card.candynum)} onClick={() => {setActive(!active); handleClickHeart()}}/>}
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>
@@ -155,7 +155,7 @@ function CardListView(props) {
             <p className="card-text">{"Has Egg: " + convertToWords(props.card.hasegg)}</p>
             <p className="card-text">{"Has Milk: " + convertToWords(props.card.hasmilk)}</p>
             <p className="card-text">{"Has Soy: " + convertToWords(props.card.hassoy)}</p>
-            <Heart className="heart nobreak" key={"candy"+props.card.candynum} isActive={heartStatus(props.card.candynum)} onClick={() => {handleClickHeart()}} currentUser={props.currentUser} value={props.card.candynum}/>
+            {props.card.userAdded ? <span></span>: <Heart className="heart nobreak" key={"candy"+props.card.candynum} isActive={heartStatus(props.card.candynum)} onClick={() => {handleClickHeart()}} currentUser={props.currentUser} value={props.card.candynum}/>}
             <Link to="/indv" className="btn btn-primary" onClick={handleClickIndv}>More Info</Link>
         </div>
       </div>

@@ -8,7 +8,7 @@ export function AddModal(props) {
 
 
     const handleApply = (candyObj) => {
-        console.log("inside handleApply")
+
         if(!props.signedIn || props.currentUser === undefined) {
           let modal = document.querySelector("#signin-modal");
           modal.style.display="block";
@@ -17,9 +17,9 @@ export function AddModal(props) {
           let state = !active
           setActive(state);
 
-          console.log("candyObj", candyObj);
+          
           let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/added')
-          console.log("tempRef", tempRef)
+          
           tempRef.push(candyObj);
           addedID++;
         }
@@ -51,53 +51,79 @@ export function AddModal(props) {
         <div className="modal add-modal card">
             <div className="modal-content card-body">
                 <span className="add-modal-close close" onClick={() => props.handleModalClose()} alt="close button">×</span>
-                <span className="add-modal-txt">Add Your New Candy Information</span>
-                <label>Name of your Candy: </label>
-                <input type="text" name="name" onChange={(event) => {candy.competitorname = event.target.value}}></input>
+                <span className="add-modal-txt">Add Your New candy Information</span>
                 <br/>
-                <label >Image Url of a Picture of your Candy: </label>
-                <input type="text" name="image" onChange={(event) => {candy.imglink = event.target.value}}></input>
+                <label>Name of your candy: </label>
+                <input type="text" name="name" defaultValue="" onChange={(event) => {candy.competitorname = event.target.value}}></input>
                 <br/>
-                <input type="checkbox" name="containsEgg" onClick={() => {candy.hasegg = 1}} alt="egg checkbox"></input>
-                <label >Your Candy contains Egg</label>
+                <label >Image Url of a picture of your candy: </label> 
+                <input type="text" name="image" defaultValue="" onChange={(event) => {candy.imglink = event.target.value}}></input>
                 <br/>
-                <input type="checkbox" name="containsMilk" onClick={() => {candy.hasmilk = 1}} alt="milk checkbox"></input>
-                <label >Your Candy contains Milk</label>
+
+
+                <nobr>
+                  <input type="checkbox" name="containsEgg" defaultValue="Reset" onClick={() => {candy.hasegg = 1}} alt="egg checkbox"></input>
+                  <label >&ensp;Your candy contains Egg</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="containsSoy" onClick={() => {candy.hassoy = 1}} alt="soy checkbox"></input>
-                <label >Your Candy contains Soy</label>
+                <nobr>
+                  <input type="checkbox" name="containsMilk" defaultValue="Reset" onClick={() => {candy.hasmilk = 1}} alt="milk checkbox"></input>
+                  <label >&ensp;Your candy contains Milk</label>
+                </nobr>
                 <br/>
-                
-                <input type="checkbox" name="chocolate" onClick={() => {candy.chocolate = 1}} alt="chocolate checkbox"></input>
-                <label >Your Candy contains Chocolate</label>
+                <nobr>
+                  <input type="checkbox" name="containsSoy" defaultValue="Reset" onClick={() => {candy.hassoy = 1}} alt="soy checkbox"></input>
+                  <label >&ensp;Your candy contains Soy</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="fruity" onClick={() => {candy.fruity = 1}} alt="fruity checkbox"></input>
-                <label >Your Candy is Fruity</label>
+                <nobr>
+                  <input type="checkbox" name="chocolate" defaultValue="Reset" onClick={() => {candy.chocolate = 1}} alt="chocolate checkbox"></input>
+                  <label >&ensp;Your candy contains Chocolate</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="caramel" onClick={() => {candy.caramel = 1}} alt="caramel checkbox"></input>
-                <label >Your Candy contains caramel</label>
+                <nobr>
+                  <input type="checkbox" name="fruity" defaultValue="Reset" onClick={() => {candy.fruity = 1}} alt="fruity checkbox"></input>
+                  <label >&ensp;Your candy is Fruity</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="peanutyalmondy" onClick={() => {candy.peanutyalmondy = 1}} alt="peanuty almondy checkbox"></input>
-                <label >Your Candy contains peanuts, almonds, or peanut butter</label>
+                <nobr>
+                  <input type="checkbox" name="caramel" defaultValue="Reset" onClick={() => {candy.caramel = 1}} alt="caramel checkbox"></input>
+                  <label >&ensp;Your candy contains caramel</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="nougat" onClick={() => {candy.nougat = 1}} alt="nougat checkbox"></input>
-                <label >Your Candy has nougat</label>
+                <nobr>
+                  <input type="checkbox" name="peanutyalmondy" defaultValue="Reset" onClick={() => {candy.peanutyalmondy = 1}} alt="peanuty almondy checkbox"></input>
+                  <label >&ensp;Your candy contains peanuts, almonds, or peanut butter</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="crispedricewafer" onClick={() => {candy.crispedricewafer = 1}} alt="crisped ricewafer checkbox"></input>
-                <label >Your Candy contains crisped rice wafers</label>
+                <nobr>
+                  <input type="checkbox" name="nougat" defaultValue="Reset" onClick={() => {candy.nougat = 1}} alt="nougat checkbox"></input>
+                  <label >&ensp;Your candy has nougat</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="hard" onClick={() => {candy.hard = 1}} alt="hard checkbox"></input>
-                <label >Your Candy contains is hard</label>
+                <nobr>
+                  <input type="checkbox" name="crispedricewafer" defaultValue="Reset" onClick={() => {candy.crispedricewafer = 1}} alt="crisped ricewafer checkbox"></input>
+                  <label >&ensp;Your candy contains crisped rice wafers</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="bar" onClick={() => {candy.bar = 1}} alt="bar checkbox"></input>
-                <label >Your Candy is a bar</label>
+                <nobr>
+                  <input type="checkbox" name="hard" defaultValue="Reset" onClick={() => {candy.hard = 1}} alt="hard checkbox"></input>
+                  <label >&ensp;Your candy contains is hard</label>
+                </nobr>
                 <br/>
-                <input type="checkbox" name="pluribus" onClick={() => {candy.pluribus = 1}} alt="multiple candies in a box checkbox"></input>
-                <label >Your Candy has many pieces inside 1 box</label>
+                <nobr>
+                  <input type="checkbox" name="bar" defaultValue="Reset" onClick={() => {candy.bar = 1}} alt="bar checkbox"></input>
+                  <label >&ensp;Your candy is a bar</label>
+                </nobr>
+                <br/>
+                <nobr>
+                  <input type="checkbox" name="pluribus" defaultValue="Reset" onClick={() => {candy.pluribus = 1}} alt="multiple candies in a box checkbox"></input>
+                  <label >&ensp;Your candy has many pieces inside 1 box</label>
+                </nobr>
                 <br/>
 
                 <label >Sugar percentage of your Candy __% (if known): </label>
-                <input type="number" name="sugarpercent" onChange={(event) => {candy.sugarpercent = event.target.value/100}}></input>
+                <input type="number" name="sugarpercent" defaultValue="" onChange={(event) => {candy.sugarpercent = event.target.value/100}}></input>
                 <br/>
                 <br/>
                 <button className="btn btn-primary" defaultValue="Reset" onClick={() => handleApply(candy)} alt="Reset Button">Add</button>

@@ -27,22 +27,18 @@ export function AddedCandyCards(props) {
             var result = {};
             objectKeyArray.forEach((key, i) => result[key] = candiesArray[i]);
             addedCandies = Object.values(result);
-            let initialLength = props.candyData.length;
-            console.log(addedCandies);
+            let initialLength = props.candyNum;
+            
             props.setAddedCandies(addedCandies);
-            let temp = props.candyData;
+            let temp = [];
             for(let i = 0; i< addedCandies.length; i++) {
-              let check = props.candyData.filter((candyObj) => {return (candyObj.competitorname === addedCandies[i].competitiorname)});
-              console.log("check:" , check);
-              if(check.length === 0) { // if there are no other same items, add to temp
+              // if there are no other same items, add to temp
                 addedCandies[i].candynum = initialLength;
                 temp.push(addedCandies[i]);
                 initialLength ++;
-              }
-              
             }
-            console.log(temp);
-            props.setCandyData(temp)
+  
+            props.setAddedCandies(temp)
            
         }); 
       }

@@ -52,7 +52,7 @@ export function SignIn(props) {
       }
     })
   });
-  console.log("inside signin")
+  
   return (
     <div className="container">
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
