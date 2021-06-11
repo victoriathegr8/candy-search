@@ -12,41 +12,41 @@ export function RenderForm (props) {
   <form>
     <h2>Filter</h2>
     <nobr className="filtertype">Contains:</nobr><br />
-    <input type="checkbox" name="contains1" value="chocolate" />
+    <input type="checkbox" name="contains1" value="chocolate" alt="chocolate button"/>
     <label htmlFor="contains1">
       Chocolate</label><br />
-    <input type="checkbox" name="contains2" value="caramel" />
+    <input type="checkbox" name="contains2" value="caramel"  alt="caramel button"/>
     <label htmlFor="contains2">
       Caramel</label><br />
-    <input type="checkbox" name="contains3" value="peanutyalmondy" />
+    <input type="checkbox" name="contains3" value="peanutyalmondy" alt="peanuty almondy button"/>
     <label htmlFor="contains3">
       Peanuts/Peanut Butter/Almonds</label><br />
-    <input type="checkbox" name="contains4" value="nougat" />
+    <input type="checkbox" name="contains4" value="nougat" alt="nougat button"/>
     <label htmlFor="contains4">
       Nougat</label><br />
-    <input type="checkbox" name="contains5" value="crispedricewafer" />
+    <input type="checkbox" name="contains5" value="crispedricewafer" alt="crisped ricewafer button"/>
     <label htmlFor="contains5">
       Crisped Rice/Wafers/Cookie</label><br />
-    <input type="checkbox" name="contains6" value="pluribus" />
+    <input type="checkbox" name="contains6" value="pluribus" alt="pluribus button"/>
     <label htmlFor="contains6">
       Multiple Candies in Bag/Box</label><br />
-    <input type="checkbox" name="contains7" defaultValue="Egg" />
+    <input type="checkbox" name="contains7" defaultValue="Egg" alt="Egg button"/>
     <label htmlFor="contains7">
       No Egg</label><br />
-    <input type="checkbox" name="contains8" defaultValue="Milk" />
+    <input type="checkbox" name="contains8" defaultValue="Milk" alt="Milk button"/>
     <label htmlFor="contains8">
       No Milk</label><br />
-    <input type="checkbox" name="contains9" defaultValue="Soy" />
+    <input type="checkbox" name="contains9" defaultValue="Soy" alt="Soy button"/>
     <label htmlFor="contains9">
       No Soy</label><br /><br />
     <nobr className="filtertype">Other Attributes:</nobr><br />
-    <input type="checkbox" name="other1" defaultValue="Fruity" />
+    <input type="checkbox" name="other1" defaultValue="Fruity" alt="Fruity button"/>
     <label htmlFor="other1">
       Fruit-Flavored</label><br />
-    <input type="checkbox" name="other2" defaultValue="Hard" />
+    <input type="checkbox" name="other2" defaultValue="Hard" alt="Hard button"/>
     <label htmlFor="other2">
       Hard Candy</label><br />
-    <input type="checkbox" name="other3" defaultValue="Bar" />
+    <input type="checkbox" name="other3" defaultValue="Bar" alt="Bar button"/>
     <label htmlFor="other3">
       Candy Bar</label><br /><br />
     <nobr className="filtertype">Sugar Percentile:</nobr><br />
@@ -67,7 +67,7 @@ export function RenderForm (props) {
     {/* need an onClick for the button */}
     {/* {onClick={props.handleSubmit()}} */}
     {/* id="applybutton" */}
-    <button  type="button" defaultValue="Reset" onClick={() => props.handleSubmit() } >Apply</button>
+    <button  type="button" defaultValue="Reset" onClick={() => props.handleSubmit() } alt="Reset button">Apply</button>
     <input type="reset" defaultValue="Reset" />
     <div className="error-message">
       <p className="text-danger">Values in sugar percent ranges must be between 0 and 100.</p>

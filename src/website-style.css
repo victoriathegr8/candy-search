@@ -1,14 +1,17 @@
 * {
     box-sizing: border-box;
 }
+
 .nowrap {
     white-space: nowrap;
 }
+
 /*-- author pictures --*/
 img {
     width: 200px;
     height: 210px;
 }
+
 /*-- nav bar --*/
 nav {
     position: fixed;
@@ -207,6 +210,7 @@ nav ul {
     align-content: center;
     padding-left: 38%;
 }
+
 /*-- list view --*/
 .cardpoolList {
     display: flex;
@@ -274,14 +278,11 @@ nav ul {
     font-size: 1rem;
     font-weight: bold;
 }
-
 .btn:hover {
     text-decoration: none;
     background-color:rgb(49, 49, 253);
     border-bottom: none;
 }
-
-
 .signin-modal-txt {
     text-align: center;
 }
@@ -291,7 +292,6 @@ nav ul {
 }
 
 /*-- problem statement --*/
-
 body {
     background-color: #F0EBF4;
     padding-top: 100px;
@@ -313,12 +313,12 @@ body {
 }
 
 /*-- authors --*/
-
 .authors {
     width: 80%;
     margin: auto;
     text-align: center;
 }
+
 /*-- author row --*/
 .authors-about {
     display: flex;
@@ -327,8 +327,7 @@ body {
 }
 
 /*-- author info box  --*/
-.author-col {
-    
+.author-col {    
     width: 100%;
     background: #8b71be;
     border-radius: 10px;
@@ -336,12 +335,14 @@ body {
     padding: 20px 12px;
     box-sizing: border-box;
 }
+
 /*-- names --*/
 h3 {
     text-align: center;
     font-weight: 600;
     margin: 10px 0;
 }
+
 /*-- linkedin logos --*/
 .linkedin {
     width: 50px;
@@ -349,7 +350,6 @@ h3 {
 }
 
 /*-- individual candy info pages --*/
-
 .candy-detail {
     background-color: #A1C3D1;
     color: #4b2e83;
@@ -371,10 +371,8 @@ h3 {
 .nutrition-info img{
     align-content: center;
     width: 400px;
-    height: fit-content;
-    
+    height: fit-content;    
 }
-
 .indv-info {
     display: flex;
     justify-content: space-around;
@@ -414,7 +412,6 @@ h3 {
     width: 50px;
     height: 50px;
 }
-
 .header-text{
     display: inline-block;
     position: relative;
@@ -425,8 +422,7 @@ h3 {
 }
 
 /*-- footer --*/
-.footer {
-    
+.footer {    
     bottom: 0;
     width: 100%;
     text-align: center;
@@ -473,4 +469,3 @@ h3 {
         flex-basis: 30%;
     }
 }
-
