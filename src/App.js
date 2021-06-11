@@ -240,7 +240,6 @@ function App (props) {
                   </div> 
                 </section>
               </div>
-              
             </Route>
             <Route path="/">
               <Header/>

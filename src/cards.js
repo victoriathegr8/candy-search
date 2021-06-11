@@ -42,7 +42,6 @@ function CardGridView(props) {
     // set path for each more info button on each card
     const handleClickIndv = () => {
       setRedirect("/indv/" + props.card.competitorname);
-      console.log('redirect to: /indv/'+ props.card.competitorname);
     }
     
     // figure out the correct display mode of the heart -
@@ -80,6 +79,7 @@ function CardGridView(props) {
     // this is where the cards code goes
     
     if(redirectTo !== undefined && redirectTo.indexOf("/indv/") >= 0) {
+      
       return (<Redirect push to={redirectTo}/>);
     }
     return(
@@ -102,8 +102,8 @@ function CardListView(props) {
     const[redirectTo, setRedirect] = useState(undefined);
 
     // same three functions as grid view
+    // set path for each more info button on each card
     const handleClickIndv = () => {
-      
       setRedirect("/indv/" + props.card.competitorname);
     }
 
