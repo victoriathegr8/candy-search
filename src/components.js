@@ -64,15 +64,15 @@ export function ButtonsLarge(props){
   
     return(
       <div>
-        <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false)}}>
+        <button id="list-button" className="view" aria-label="List View" onClick={() => {props.handleClick(false)}} alt="list button">
           <i className="fa fa-bars"></i>
           List
         </button>
-        <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true)}}>
+        <button id="grid-button" className="view" aria-label="Grid View" onClick={() => {props.handleClick(true)}} alt="grid button">
           <i className="fa fa-th-large"></i>
           Grid
         </button>
-        <button id="add-button" className="view" aria-label="Add Candy" onClick={() => {props.showAddModal()}}>
+        <button id="add-button" className="view" aria-label="Add Candy" onClick={() => {props.showAddModal()}} alt="add button">
           <i className="fa fa-edit"></i>
           Add Candy
         </button>
@@ -87,15 +87,15 @@ export function ButtonsSmall(props) {
   
       return(
       <div>
-        <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false)}}>
+        <button id="list-button" aria-label="List View" onClick={() => {props.handleClick(false)}} alt="list button">
           <i className="fa fa-bars"></i>
           List
         </button>
-        <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true)}}>
+        <button id="grid-button" aria-label="Grid View" onClick={() => {props.handleClick(true)}} alt="grid button">
           <i className="fa fa-th-large"></i>
           Grid
         </button>
-        <button id="smallfilterbutton" aria-label="Filter"  onClick={() => {props.filterButtonCallBack()}}>
+        <button id="smallfilterbutton" aria-label="Filter"  onClick={() => {props.filterButtonCallBack()}} alt="filter button">
           <i className="fa fa-filter"></i>
           Filter
         </button>
