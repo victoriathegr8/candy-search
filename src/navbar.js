@@ -3,10 +3,10 @@ import {Link, NavLink} from 'react-router-dom';
 
 export function NavBar(props) {
     if(props.signedIn === true && props.user !== null) {
-        return (<NavBarLogOut handleClick={props.handleLogOut}/>);
+        return (<NavBarLogOut handleClick={props.handleLogOut} searchCallBack={props.searchCallBack}/>);
     }
     else {
-        return (<NavBarSignIn handleClick={props.handleSignIn}/>);
+        return (<NavBarSignIn handleClick={props.handleSignIn} searchCallBack={props.searchCallBack}/>);
     }
 }
 
@@ -41,6 +41,7 @@ function NavBarLogOut(props){
 
 // creates the Nav Bar with a button that says sign in
 function NavBarSignIn(props){
+    console.log("navbar props", props)
     return (
         <nav>
             <ul>
@@ -61,7 +62,7 @@ function NavBarSignIn(props){
                 </li>
             </ul>
             <div id="search-div" className="search" role="search">
-                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={event => {props.searchCallBack(event.target.value)}}></input>
+                <input id="search-bar" type="text" placeholder="Search for your Candy..." onChange={(event) => {props.searchCallBack(event.target.value)}}></input>
                 <NavLink id="signin" to="/signin" className="navLink" type="button" onClick={() => {props.handleClick()}}>Sign In</NavLink>
             </div>
             

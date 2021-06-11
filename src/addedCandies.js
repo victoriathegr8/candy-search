@@ -33,6 +33,7 @@ export function AddedCandyCards(props) {
             let temp = props.candyData;
             for(let i = 0; i< addedCandies.length; i++) {
               let check = props.candyData.filter((candyObj) => {return (candyObj.competitorname === addedCandies[i].competitiorname)});
+              console.log("check:" , check);
               if(check.length === 0) { // if there are no other same items, add to temp
                 addedCandies[i].candynum = initialLength;
                 temp.push(addedCandies[i]);
