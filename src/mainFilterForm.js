@@ -50,10 +50,10 @@ export function RenderForm (props) {
     <label htmlFor="other3">
       Candy Bar</label><br /><br />
     <nobr className="filtertype">Sugar Percentile:</nobr><br />
-    <input className="sugarrange" placeholder="Min" aria-label="Minimum Sugar Percentile" type="number" id="sugarmin" name="sugarmin" min={0} max={100} onChange={(event) => {props.handleSugarMin(event.target.value)}} />
+    <input className="sugarrange" placeholder="Min" aria-label="Minimum Sugar Percentile" type="number" name="sugarmin" min={0} max={100} onChange={(event) => {props.handleSugarMin(event.target.value)}} />
     <nobr>% to
     </nobr>
-    <input className="sugarrange" placeholder="Max" aria-label="Maximum Sugar Percentile" type="number" id="sugarmax" name="sugarmax" min={0} max={100} onChange={(event) => {props.handleSugarMax(event.target.value)}} /><nobr>
+    <input className="sugarrange" placeholder="Max" aria-label="Maximum Sugar Percentile" type="number" name="sugarmax" min={0} max={100} onChange={(event) => {props.handleSugarMax(event.target.value)}} /><nobr>
       %</nobr><br />
       {/* id="sugarFeedback" */}
     <p  className="invalid-feedback" /><br />

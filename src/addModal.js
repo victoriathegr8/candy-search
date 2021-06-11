@@ -18,9 +18,9 @@ export function AddModal(props) {
           setActive(state);
 
           console.log("candyObj", candyObj);
-          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/added/' + addedID + "/")
+          let tempRef = firebase.database().ref('users/'+ props.currentUser.uid + '/added')
           console.log("tempRef", tempRef)
-          tempRef.update(candyObj);
+          tempRef.push(candyObj);
           addedID++;
         }
         props.handleModalClose();
@@ -100,7 +100,7 @@ export function AddModal(props) {
                 <input type="number" name="sugarpercent" onChange={(event) => {candy.sugarpercent = event.target.value/100}}></input>
                 <br/>
                 <br/>
-                <button className="btn btn-primary" onClick={() => handleApply(candy)}>Apply</button>
+                <button className="btn btn-primary" defaultValue="Reset" onClick={() => handleApply(candy)}>Add</button>
             </div>
         </div>
         

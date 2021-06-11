@@ -1,5 +1,5 @@
 // importing the right libraries and css styling
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import "./website-style.css";
 import firebase from 'firebase';
@@ -19,7 +19,7 @@ import {NavBar} from './navbar.js';
 import {FavoritesPage} from './favorites.js';
 import {PromptModal} from "./signInPromptModal";
 import { AddModal } from './addModal';
-
+import { Scroll } from 'react-scroll-top-btn'
 
 
 
@@ -235,7 +235,7 @@ function App (props) {
           </Route>
           <Route  path="/signin">
             <SignIn setSignedIn={setSignedIn} setUser={setUser}/>
-            <h1>Click on 'home' in the nav bar to see the candies</h1>
+            <h1 style={{textAlign:"center"}}>Click on 'home' in the nav bar to see the candies!</h1>
           </Route>
           <Route  path="/fav">
           <Header/>
@@ -255,6 +255,7 @@ function App (props) {
                   <PromptModal/>
                   <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={candydata} setFavCandyNums={setFavCandyNums}/>
                   {!user ? <Redirect to="/signin"/> : <Cards currentData={favoriteCandies} gridView={gridView} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>}
+                  <Scroll icon={"fas fa-chevron-up"}/>
                 </div> 
               </section>
             </div>
@@ -279,6 +280,7 @@ function App (props) {
                   {/* <FavoritesPage currentUser={user} setCandydata={setFavoriteCandies} data={props.data} setFavCandyNums={setFavCandyNums}/> */}
                   <AddedCandyCards currentUser={user} setAddedCandies={setAddedCandies} candyData={candydata} setCandyData={setCandydata}/>
                   <Cards currentData={candydata} gridView={gridView} likeCallBack={handleLike} signedIn={signedIn} currentUser={user} favCandyNums={favCandyNums}/>
+                  <Scroll icon={"fas fa-chevron-up"}/>
                 </div> 
               </section>
             </div>
